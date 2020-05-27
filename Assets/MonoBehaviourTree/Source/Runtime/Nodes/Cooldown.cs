@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace MonoBT
+namespace MBT
 {
     [MBTNode(name = "Cooldown")]
     public class Cooldown : Decorator

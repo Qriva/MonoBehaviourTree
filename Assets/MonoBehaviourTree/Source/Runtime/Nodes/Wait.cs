@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace MonoBT
+namespace MBT
 {
     [MBTNode(name = "Wait")]
     public class Wait : Leaf

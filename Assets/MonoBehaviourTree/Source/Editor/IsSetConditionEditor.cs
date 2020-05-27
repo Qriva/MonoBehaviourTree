@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
+using MBT;
 
-namespace MonoBT
+namespace MBTEditor
 {
     [CustomEditor(typeof(IsSetCondition))]
     public class IsSetConditionEditor : Editor

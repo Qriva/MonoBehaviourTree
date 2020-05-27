@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace MonoBT
+namespace MBT
 {
     public class Vector3Variable : Variable<Vector3>
     {

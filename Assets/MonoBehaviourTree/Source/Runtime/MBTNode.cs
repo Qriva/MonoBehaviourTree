@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-namespace MonoBT
+namespace MBT
 { 
     [AttributeUsage(AttributeTargets.Class, Inherited = false, AllowMultiple = false)]
     public class MBTNode : Attribute

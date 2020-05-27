@@ -3,3 +3,4 @@
 3. Condition Invert checkbox for all nodes of this type
 4. Updating script throw errors from ConditionEditor
 5. Random Composite
+6. Reduce memory usage (new NodeResult)

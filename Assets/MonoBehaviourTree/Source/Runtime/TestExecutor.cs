@@ -7,7 +7,7 @@ using System;
 using System.Reflection;
 using System.Threading;
 
-namespace MonoBT
+namespace MBT
 {
     public class TestExecutor : MonoBehaviour
     {

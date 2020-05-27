@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace MonoBT
+namespace MBT
 {
     [MBTNode(name = "Selector", order = 100)]
     public class Selector : Composite
@@ -23,14 +23,14 @@ namespace MonoBT
                 switch (child.status)
                 {
                     case Status.Success:
-                        return new NodeResult(Status.Success);
+                        return NodeResult.success;
                     case Status.Failure:
                         index += 1;
                         continue;
                 }
                 return new NodeResult(Status.Running, child);
             }
-            return new NodeResult(Status.Failure);
+            return NodeResult.failure;
         }
     }
 }
