@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace MonoBT
+namespace MBT
 {
     [MBTNode(name = "Sequence", order = 200)]
     public class Sequence : Composite
@@ -26,11 +26,11 @@ namespace MonoBT
                         index += 1;
                         continue;
                     case Status.Failure:
-                        return new NodeResult(Status.Failure); 
+                        return NodeResult.failure; 
                 }
                 return new NodeResult(Status.Running, child);
             }
-            return new NodeResult(Status.Success);
+            return NodeResult.success;
         }
     }
 }

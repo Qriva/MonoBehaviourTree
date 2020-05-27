@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace MonoBT
+namespace MBT
 {
     [DisallowMultipleComponent]
     [RequireComponent(typeof(Blackboard))]

@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
+using MBT;
 
-namespace MonoBT
+namespace MBTEditor
 {
     [CustomPropertyDrawer(typeof(BaseVariableReference), true)]
     public class VariableReferenceDrawer : PropertyDrawer

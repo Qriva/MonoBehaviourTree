@@ -6,8 +6,9 @@ using System;
 using System.Linq;
 using System.Reflection;
 using UnityEditor.IMGUI.Controls;
+using MBT;
 
-namespace MonoBT
+namespace MBTEditor
 {
     public class ClassTypeDropdownItem : AdvancedDropdownItem
     {

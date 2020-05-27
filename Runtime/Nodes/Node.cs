@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace MonoBT
+namespace MBT
 { 
     public abstract class Node : MonoBehaviour
     {
@@ -73,14 +73,17 @@ namespace MonoBT
 
     public class NodeResult
     {
-        public Status status;
-        public Node child;
+        public Status status {get; private set;}
+        public Node child {get; private set;}
 
         public NodeResult(Status status, Node child = null)
         {
             this.status = status;
             this.child = child;
         }
+
+        public static readonly NodeResult success = new NodeResult(Status.Success);
+        public static readonly NodeResult failure = new NodeResult(Status.Failure);
     }
 
     public interface IChildrenNode{

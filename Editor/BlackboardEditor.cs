@@ -4,8 +4,9 @@ using UnityEngine;
 using UnityEditor;
 using System;
 using System.Linq;
+using MBT;
 
-namespace MonoBT
+namespace MBTEditor
 {
     [CustomEditor(typeof(Blackboard))]
     public class BlackboardEditor : Editor

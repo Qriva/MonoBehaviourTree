@@ -2,8 +2,9 @@
 using UnityEditor;
 using System.Collections.Generic;
 using UnityEditor.IMGUI.Controls;
+using MBT;
 
-namespace MonoBT
+namespace MBTEditor
 {    
     public class BehaviourTreeWindow : EditorWindow
     {
