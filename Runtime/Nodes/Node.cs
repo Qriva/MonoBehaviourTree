@@ -11,13 +11,15 @@ namespace MBT
         public string title;
         [HideInInspector]
         public Rect rect = new Rect(0, 0, NODE_DEFAULT_WIDTH, 50);
+        [HideInInspector]
         public Node parent;
+        [HideInInspector]
         public List<Node> children = new List<Node>();
         [System.NonSerialized]
         public Status status = Status.Ready;
-        [System.NonSerialized]
+        [HideInInspector]
         public MonoBehaviourTree behaviourTree;
-        [System.NonSerialized]
+        [HideInInspector]
         public int runtimePriority = 0;
         private bool _selected = false;
         public bool selected

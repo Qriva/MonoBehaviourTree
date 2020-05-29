@@ -15,6 +15,7 @@ namespace MBT
         public float floatValue;
         public int intValue;
 
+        // IMPROVEMENT: This class could be split into to different nodes
         public override bool Check()
         {
             if (type == Type.Float)
