@@ -289,9 +289,13 @@ GameObject:
   - component: {fileID: 464764222}
   - component: {fileID: 464764221}
   - component: {fileID: 464764220}
-  - component: {fileID: 464764226}
   - component: {fileID: 464764225}
   - component: {fileID: 464764224}
+  - component: {fileID: 464764227}
+  - component: {fileID: 464764226}
+  - component: {fileID: 464764228}
+  - component: {fileID: 464764229}
+  - component: {fileID: 464764230}
   m_Layer: 0
   m_Name: MBT
   m_TagString: Untagged
@@ -380,7 +384,9 @@ MonoBehaviour:
     height: 57
   parent: {fileID: 0}
   children:
-  - {fileID: 464764226}
+  - {fileID: 464764227}
+  behaviourTree: {fileID: 0}
+  runtimePriority: 0
 --- !u!114 &464764225
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -404,30 +410,149 @@ MonoBehaviour:
   m_GameObject: {fileID: 464764219}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 534e3ec7de6cd444e984c2e7f68e42e2, type: 3}
+  m_Script: {fileID: 11500000, guid: f9f8fc43d8d667e46a433232d46363ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  title: Is Set Condition
+  title: Moja szansa
   rect:
     serializedVersion: 2
     x: 270
-    y: 197
+    y: 330
+    width: 200
+    height: 57
+  parent: {fileID: 464764227}
+  children:
+  - {fileID: 464764230}
+  behaviourTree: {fileID: 0}
+  runtimePriority: 0
+  probability: 0.5
+--- !u!114 &464764227
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 464764219}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b95a918be8d9a4f9085201010bdec1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  title: Number Condition
+  rect:
+    serializedVersion: 2
+    x: 269
+    y: 227
     width: 200
     height: 57
   parent: {fileID: 464764224}
-  children: []
+  children:
+  - {fileID: 464764226}
+  behaviourTree: {fileID: 0}
+  runtimePriority: 0
   abort: 0
-  invert: 0
-  type: 0
-  boolReference:
+  type: 1
+  floatReference:
+    blackboard: {fileID: 0}
+    key: 
+  intReference:
     blackboard: {fileID: 464764222}
-    key: test
-  objectReference:
+    key: testVar
+  comparator: 0
+  floatValue: 0
+  intValue: 0
+--- !u!114 &464764228
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 464764219}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b95a918be8d9a4f9085201010bdec1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  title: Number Condition
+  rect:
+    serializedVersion: 2
+    x: 398
+    y: 427
+    width: 200
+    height: 57
+  parent: {fileID: 0}
+  children: []
+  behaviourTree: {fileID: 0}
+  runtimePriority: 0
+  abort: 0
+  type: 0
+  floatReference:
     blackboard: {fileID: 0}
     key: 
-  transformReference:
+  intReference:
     blackboard: {fileID: 0}
     key: 
+  comparator: 0
+  floatValue: 0
+  intValue: 0
+--- !u!114 &464764229
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 464764219}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08540605df275034fafc8e05c6704214, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  title: Selector
+  rect:
+    serializedVersion: 2
+    x: 521
+    y: 246
+    width: 200
+    height: 57
+  parent: {fileID: 0}
+  children: []
+  behaviourTree: {fileID: 0}
+  runtimePriority: 0
+  random: 0
+--- !u!114 &464764230
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 464764219}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b95a918be8d9a4f9085201010bdec1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  title: Number Condition
+  rect:
+    serializedVersion: 2
+    x: 281
+    y: 511
+    width: 200
+    height: 57
+  parent: {fileID: 464764226}
+  children: []
+  behaviourTree: {fileID: 0}
+  runtimePriority: 0
+  abort: 0
+  type: 0
+  floatReference:
+    blackboard: {fileID: 0}
+    key: 
+  intReference:
+    blackboard: {fileID: 0}
+    key: 
+  comparator: 0
+  floatValue: 0
+  intValue: 0
 --- !u!1 &1572895904
 GameObject:
   m_ObjectHideFlags: 0

@@ -523,6 +523,7 @@ namespace MBTEditor
             if (currentMBT == null) {
                 return;
             }
+            DeselectNode();
             // Disconnect all children and parent
             Undo.SetCurrentGroupName("Delete Node");
             DisconnectNodeChildren(node);
