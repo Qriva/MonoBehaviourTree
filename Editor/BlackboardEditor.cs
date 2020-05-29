@@ -19,12 +19,33 @@ namespace MBTEditor
         Type[] variableTypes = new Type[0];
         int selectedVariableType = 0;
         Blackboard blackboard;
+        GameObject blackboardGameObject;
+        bool showVariables = true;
 
         void OnEnable()
         {
             variables = serializedObject.FindProperty("variables");
             blackboard = target as Blackboard;
+            blackboardGameObject = blackboard.gameObject;
             SetupVariableTypes();
+        }
+
+        void OnDestroy()
+        {
+            // Remove all variables in case Blackboard was removed
+            if (Application.isEditor && (Blackboard)target == null && blackboardGameObject != null)
+            {
+                // Additional check to avoid errors when exiting playmode
+                if (Application.IsPlaying(blackboardGameObject) || blackboardGameObject.GetComponent<Blackboard>() != null)
+                {
+                    return;
+                }
+                BlackboardVariable[] blackboardVariables = blackboardGameObject.GetComponents<BlackboardVariable>();
+                for (int i = 0; i < blackboardVariables.Length; i++)
+                {
+                    Undo.DestroyObjectImmediate(blackboardVariables[i]);
+                }
+            }
         }
 
         private void SetupVariableTypes()
@@ -71,30 +92,35 @@ namespace MBTEditor
 
             // serializedObject.Update();
             // EditorGUI.BeginChangeCheck();
+            // TODO: Menu to remove variables all at once in BeginFoldoutHeaderGroup
+            showVariables = EditorGUILayout.BeginFoldoutHeaderGroup(showVariables, "Variables");
+            if(showVariables){
+                SerializedProperty vars = variables.Copy();
+                if (vars.isArray && Event.current.type != EventType.DragPerform) {
+                    for (int i = 0; i < vars.arraySize; i++)
+                    {
+                        EditorGUI.BeginChangeCheck();
+                        int popupOption = -1;
+                        SerializedProperty serializedV = vars.GetArrayElementAtIndex(i);
+                        SerializedObject serializedVariable = new SerializedObject(serializedV.objectReferenceValue);
+                        EditorGUILayout.BeginHorizontal();
+                            EditorGUILayout.PrefixLabel(serializedVariable.FindProperty("key").stringValue);
+                            int v = EditorGUILayout.Popup(popupOption, varOptions, popupStyle, GUILayout.MaxWidth(20));
+                            EditorGUILayout.PropertyField(serializedVariable.FindProperty("val"), GUIContent.none);
+                        EditorGUILayout.EndHorizontal();
 
-            SerializedProperty vars = variables.Copy();
-            if (vars.isArray && Event.current.type != EventType.DragPerform) {
-                for (int i = 0; i < vars.arraySize; i++)
-                {
-                    EditorGUI.BeginChangeCheck();
-                    int popupOption = -1;
-                    SerializedProperty serializedV = vars.GetArrayElementAtIndex(i);
-                    SerializedObject serializedVariable = new SerializedObject(serializedV.objectReferenceValue);
-                    EditorGUILayout.BeginHorizontal();
-                        EditorGUILayout.PrefixLabel(serializedVariable.FindProperty("key").stringValue);
-                        int v = EditorGUILayout.Popup(popupOption, varOptions, popupStyle, GUILayout.MaxWidth(20));
-                        EditorGUILayout.PropertyField(serializedVariable.FindProperty("val"), GUIContent.none);
-                    EditorGUILayout.EndHorizontal();
-
-                    if (EditorGUI.EndChangeCheck()) {
-                        serializedVariable.ApplyModifiedProperties();
-                    }
-                    // Delete on change
-                    if (v != popupOption) {
-                        DeleteVariabe(serializedV.objectReferenceValue as BlackboardVariable);
+                        if (EditorGUI.EndChangeCheck()) {
+                            serializedVariable.ApplyModifiedProperties();
+                        }
+                        // Delete on change
+                        if (v != popupOption) {
+                            DeleteVariabe(serializedV.objectReferenceValue as BlackboardVariable);
+                        }
                     }
                 }
             }
+            EditorGUILayout.EndFoldoutHeaderGroup();
+            EditorGUILayout.Space();
 
             // if (EditorGUI.EndChangeCheck()) {
             //     Debug.Log("tak");
