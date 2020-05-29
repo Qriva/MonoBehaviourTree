@@ -22,6 +22,7 @@ namespace MBT
             if(node == null) {
                 return new NodeResult(Status.Failure);
             }
+            // TODO: Check if this node works correctly
             if (infinite || count > 0) {
                 // Repeat children
                 behaviourTree.ResetNodesTo(this);

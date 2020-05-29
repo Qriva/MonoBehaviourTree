@@ -77,7 +77,7 @@ namespace MBT
         }
 
         /// <summary>
-        /// Update tree state
+        /// Update tree state.
         /// </summary>
         public void Tick()
         {
@@ -151,7 +151,7 @@ namespace MBT
                 if (n == node) {
                     break;
                 }
-                // If not is running (on exec stack) then call exit
+                // If node is running (on exec stack) then call exit
                 if (n.status == Status.Running) {
                     n.OnExit();
                     // IMPROVEMENT: Abort event can be added or abort param onExit

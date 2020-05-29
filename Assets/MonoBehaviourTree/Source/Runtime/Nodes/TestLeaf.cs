@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace MBT
 {
+    [System.Obsolete("This is an obsolete node")]
     [MBTNode(name = "Test leaf node")]
     public class TestLeaf : Leaf
     {

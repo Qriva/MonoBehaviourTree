@@ -7,6 +7,7 @@ namespace MBT
     [MBTNode("Random Chance")]
     public class RandomChance : Decorator
     {
+        [Range(0f, 1f)]
         public float probability = 0.5f;
 
         public override NodeResult Execute()

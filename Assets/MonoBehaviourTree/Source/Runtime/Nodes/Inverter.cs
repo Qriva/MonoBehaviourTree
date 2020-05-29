@@ -11,12 +11,12 @@ namespace MBT
         {
             Node node = GetChild();
             if (node == null) {
-                return new NodeResult(Status.Failure);
+                return NodeResult.failure;
             }
             if (node.status == Status.Success) {
-                return new NodeResult(Status.Failure);
+                return NodeResult.failure;
             } else if (node.status == Status.Failure) {
-                return new NodeResult(Status.Success);
+                return NodeResult.success;
             }
             return new NodeResult(Status.Running, node);
         }
