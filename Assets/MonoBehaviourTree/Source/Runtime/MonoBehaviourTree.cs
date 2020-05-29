@@ -6,16 +6,16 @@ using UnityEngine;
 namespace MBT
 {
     [DisallowMultipleComponent]
-    [RequireComponent(typeof(Blackboard))]
+    // [RequireComponent(typeof(Blackboard))]
     public class MonoBehaviourTree : MonoBehaviour
     {
-        [System.NonSerialized]
+        [HideInInspector]
         public Node selectedEditorNode;
         public string description;
         public bool repeatOnFinish = false;
         public int maxExecutionsPerTick = 1000;
+        public MonoBehaviourTree parent;
         
-        private Blackboard blackboard;
         private Root rootNode;
         private List<Node> executionStack = new List<Node>();
         private List<Node> executionLog = new List<Node>();
@@ -23,19 +23,24 @@ namespace MBT
         
         void Awake()
         {
-            blackboard = GetComponent<Blackboard>();
             rootNode = GetComponent<Root>();
             if (rootNode == null) {
                 Debug.LogWarning("Missing Root node in behaviour tree.", this);
             }
-            // Set start node when tree is created first time
-            executionStack.Add(rootNode);
-            executionLog.Add(rootNode);
-            // FIXME: this might be not needed and it's done wrong, what about subtree?
+            
+            // Find for master parent tree
+            MonoBehaviourTree masterTree = this.GetMasterTree();
+            if(masterTree == this)
+            {
+                // Set start node when tree is created first time
+                executionStack.Add(rootNode);
+                executionLog.Add(rootNode);
+            }
+            // Initialize nodes of tree/subtree
             Node[] nodes = GetComponents<Node>();
             for (int i = 0; i < nodes.Length; i++)
             {
-                nodes[i].behaviourTree = this;
+                nodes[i].behaviourTree = masterTree;
             }
         }
 
@@ -183,6 +188,15 @@ namespace MBT
         public Node GetRoot()
         {
             return rootNode;
+        }
+
+        public MonoBehaviourTree GetMasterTree()
+        {
+            if (parent == null)
+            {
+                return this;
+            }
+            return parent.GetMasterTree();
         }
     }
 }

@@ -34,7 +34,10 @@ namespace MBT
 
         // void OnValidate()
         // {
-            
+        //     if (tree = null)
+        //     {
+                
+        //     }
         // }
     }
 }
