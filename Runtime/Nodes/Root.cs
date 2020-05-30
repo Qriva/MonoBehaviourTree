@@ -4,7 +4,8 @@ using UnityEngine;
 
 namespace MBT
 {
-    [MBTNode(name = "Root")]
+    [AddComponentMenu("")]
+    [MBTNode(name = "Root", order = 200)]
     public class Root : Node, IParentNode
     {
         public override void AddChild(Node node)
@@ -36,7 +37,7 @@ namespace MBT
                 }
                 return new NodeResult(Status.Running, child);
             }
-            return new NodeResult(Status.Failure);
+            return NodeResult.failure;
         }
 
         public override void RemoveChild(Node node)

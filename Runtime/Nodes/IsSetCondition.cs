@@ -4,7 +4,8 @@ using UnityEngine;
 
 namespace MBT
 {
-    [MBTNode(name = "Is Set Condition")]
+    [AddComponentMenu("")]
+    [MBTNode(name = "Conditions/Is Set Condition")]
     public class IsSetCondition : Condition
     {
         public Abort abort;

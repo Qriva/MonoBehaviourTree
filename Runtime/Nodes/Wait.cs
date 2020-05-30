@@ -4,7 +4,8 @@ using UnityEngine;
 
 namespace MBT
 {
-    [MBTNode(name = "Wait")]
+    [AddComponentMenu("")]
+    [MBTNode(name = "Tasks/Wait")]
     public class Wait : Leaf
     {
         [Tooltip("Wait time in seconds")]
@@ -25,9 +26,9 @@ namespace MBT
             if (timer > time) {
                 // Reset timer in case continueOnRestart option is active
                 timer = 0;
-                return new NodeResult(Status.Success);
+                return NodeResult.success;
             }
-            return new NodeResult(Status.Running);
+            return NodeResult.running;
         }
     }
 }

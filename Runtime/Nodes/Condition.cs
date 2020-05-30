@@ -12,14 +12,14 @@ namespace MBT
         {
             Node node = GetChild();
             if (node == null) {
-                return new NodeResult(Status.Failure);
+                return NodeResult.failure;
             }
             if (node.status == Status.Success || node.status == Status.Failure) {
                 return new NodeResult(node.status);
             }
             lastConditionCheckResult = Check();
             if (lastConditionCheckResult == false) {
-                return new NodeResult(Status.Failure);
+                return NodeResult.failure;
             }
             return new NodeResult(Status.Running, node);
         }

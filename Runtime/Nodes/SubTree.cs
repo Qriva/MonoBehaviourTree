@@ -4,7 +4,8 @@ using UnityEngine;
 
 namespace MBT
 {
-    [MBTNode(name = "Sub Tree")]
+    [AddComponentMenu("")]
+    [MBTNode(name = "SubTree", order = 250)]
     public class SubTree : Node, IChildrenNode
     {
         public MonoBehaviourTree tree;
@@ -18,7 +19,7 @@ namespace MBT
         {
             // Return fialure when subtree is not defined
             if (tree == null) {
-                return new NodeResult(Status.Failure);
+                return NodeResult.failure;
             }
             Node root = tree.GetRoot();
             if (root.status == Status.Success || root.status == Status.Failure) {
