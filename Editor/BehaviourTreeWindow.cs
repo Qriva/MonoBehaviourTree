@@ -508,8 +508,7 @@ namespace MBTEditor
             Undo.SetCurrentGroupName("Create Node");
             Node node = (Node)Undo.AddComponent(currentMBT.gameObject, item.classType);
             node.title = item.name;
-            // TODO: uncomment this later or put in Reset()
-            // node.hideFlags = HideFlags.HideInInspector;
+            node.hideFlags = HideFlags.HideInInspector;
             node.rect.position = nodeDropdownTargetPosition - new Vector2(node.rect.width/2, 0);
             UpdateSelection();
             if (dropdownHandleCache != null) {

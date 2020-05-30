@@ -86,6 +86,7 @@ namespace MBT
 
         public static readonly NodeResult success = new NodeResult(Status.Success);
         public static readonly NodeResult failure = new NodeResult(Status.Failure);
+        public static readonly NodeResult running = new NodeResult(Status.Running);
     }
 
     public interface IChildrenNode{

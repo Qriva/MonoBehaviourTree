@@ -6,6 +6,7 @@ using UnityEngine;
 namespace MBT
 {
     [MBTNode(name = "Cooldown")]
+    [AddComponentMenu("")]
     public class Cooldown : Decorator
     {
         public float time = 1f;
