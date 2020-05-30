@@ -4,7 +4,8 @@ using UnityEngine;
 
 namespace MBT
 {
-    [MBTNode("Random Chance")]
+    [AddComponentMenu("")]
+    [MBTNode("Decorators/Random Chance")]
     public class RandomChance : Decorator
     {
         [Range(0f, 1f)]
@@ -14,14 +15,14 @@ namespace MBT
         {
             Node node = GetChild();
             if (node == null) {
-                return new NodeResult(Status.Failure);
+                return NodeResult.failure;
             }
             if (node.status == Status.Success || node.status == Status.Failure) {
                 return new NodeResult(node.status);
             }
             float roll = Random.Range(0f, 1f);
             if (roll > probability) {
-                return new NodeResult(Status.Failure);
+                return NodeResult.failure;
             }
             return new NodeResult(Status.Running, node);
         }

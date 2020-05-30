@@ -4,7 +4,8 @@ using UnityEngine;
 
 namespace MBT
 {
-    [MBTNode(name = "Sequence", order = 200)]
+    [AddComponentMenu("")]
+    [MBTNode(name = "Sequence", order = 150)]
     public class Sequence : Composite
     {
         private int index;

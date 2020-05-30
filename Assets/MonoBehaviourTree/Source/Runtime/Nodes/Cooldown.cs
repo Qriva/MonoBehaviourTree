@@ -5,8 +5,8 @@ using UnityEngine;
 
 namespace MBT
 {
-    [MBTNode(name = "Cooldown")]
     [AddComponentMenu("")]
+    [MBTNode(name = "Decorators/Cooldown")]
     public class Cooldown : Decorator
     {
         public float time = 1f;
@@ -34,7 +34,7 @@ namespace MBT
         {
             Node node = GetChild();
             if(node == null) {
-                return new NodeResult(Status.Failure);
+                return NodeResult.failure;
             }
             if (node.status == Status.Success || node.status == Status.Failure) {
                 return new NodeResult(node.status);
@@ -45,7 +45,7 @@ namespace MBT
                 ready = false;
                 return new NodeResult(Status.Running, node);
             } else {
-                return new NodeResult(Status.Failure);
+                return NodeResult.failure;
             }
         }
 

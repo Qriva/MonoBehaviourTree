@@ -4,7 +4,8 @@ using UnityEngine;
 
 namespace MBT
 {
-    [MBTNode("Inverter")]
+    [AddComponentMenu("")]
+    [MBTNode("Decorators/Inverter")]
     public class Inverter : Decorator
     {
         public override NodeResult Execute()

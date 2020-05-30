@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace MBT
 {
+    [AddComponentMenu("")]
     [MBTNode(name = "Selector", order = 100)]
     public class Selector : Composite
     {

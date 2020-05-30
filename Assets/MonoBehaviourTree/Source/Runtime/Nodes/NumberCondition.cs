@@ -4,7 +4,8 @@ using UnityEngine;
 
 namespace MBT
 {
-    [MBTNode(name = "Number Condition")]
+    [AddComponentMenu("")]
+    [MBTNode(name = "Conditions/Number Condition")]
     public class NumberCondition : Condition
     {
         public Abort abort;
