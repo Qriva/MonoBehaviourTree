@@ -6,7 +6,7 @@ using MBT;
 namespace MBTExample
 {
     [AddComponentMenu("")]
-    [MBTNode("Set Random Position")]
+    [MBTNode("Example/Set Random Position", 500)]
     public class SetRandomPosition : Leaf
     {
         public Bounds bounds;

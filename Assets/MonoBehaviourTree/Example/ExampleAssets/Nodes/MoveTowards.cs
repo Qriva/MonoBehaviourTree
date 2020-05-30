@@ -5,7 +5,7 @@ using MBT;
 
 namespace MBTExample
 {
-    [MBTNode("Move Towards")]
+    [MBTNode("Example/Move Towards")]
     [AddComponentMenu("")]
     public class MoveTowards : Leaf
     {
