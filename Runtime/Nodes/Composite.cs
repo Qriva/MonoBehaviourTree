@@ -6,6 +6,8 @@ namespace MBT
 {
     public abstract class Composite : Node, IParentNode, IChildrenNode
     {
+        private static readonly System.Random rng = new System.Random();
+        
         public bool random = false;
 
         public override void AddChild(Node node)
@@ -27,6 +29,18 @@ namespace MBT
             {
                 children.Remove(node);
                 node.parent = null;
+            }
+        }
+
+        protected static void ShuffleList<T>(List<T> list)
+        {  
+            int n = list.Count;  
+            while (n > 1) {
+                n--;
+                int k = rng.Next(n + 1);
+                T value = list[k];
+                list[k] = list[n];
+                list[n] = value;
             }
         }
     }
