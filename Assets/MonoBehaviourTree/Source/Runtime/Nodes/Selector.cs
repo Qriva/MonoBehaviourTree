@@ -12,11 +12,14 @@ namespace MBT
         public override void OnEnter()
         {
             index = 0;
+            if (random)
+            {
+                ShuffleList(children);
+            }
         }
 
         public override NodeResult Execute()
         {
-            // TODO: Missing random selector implementation
             while (index < children.Count)
             {
                 Node child = children[index];

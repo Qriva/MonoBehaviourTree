@@ -2,7 +2,7 @@
 2. More basic nodes and conditions
 3. -
 4. -
-5. Random Composite
+5. -
 6. Reduce memory usage (new NodeResult)
 7. Wrapper .Value get/set in VarReference
 8. Make all nodes invisible in component menu
