@@ -96,7 +96,9 @@ namespace MBTEditor
             showVariables = EditorGUILayout.BeginFoldoutHeaderGroup(showVariables, "Variables");
             if(showVariables){
                 SerializedProperty vars = variables.Copy();
-                if (vars.isArray && Event.current.type != EventType.DragPerform) {
+                if (vars.isArray) {
+                // TODO: Why this line existed? Why EventType.DragPerform is not allowed here?
+                // if (vars.isArray && Event.current.type != EventType.DragPerform) {
                     for (int i = 0; i < vars.arraySize; i++)
                     {
                         EditorGUI.BeginChangeCheck();
@@ -123,8 +125,6 @@ namespace MBTEditor
             EditorGUILayout.Space();
 
             // if (EditorGUI.EndChangeCheck()) {
-            //     Debug.Log("tak");
-                
             //     serializedObject.ApplyModifiedProperties();
             // }
         }
@@ -153,6 +153,7 @@ namespace MBTEditor
             // Add variable
             Undo.RecordObject(blackboard, "Create Blackboard Variable");
             BlackboardVariable var = Undo.AddComponent(blackboard.gameObject, variableTypes[selectedVariableType]) as BlackboardVariable;
+            var.hideFlags = HideFlags.HideInInspector;
             var.key = k;
             blackboard.variables.Add(var);
             // Reset field

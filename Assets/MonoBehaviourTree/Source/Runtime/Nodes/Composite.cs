@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace MBT
-{ 
+{
     public abstract class Composite : Node, IParentNode, IChildrenNode
     {
         public bool random = false;

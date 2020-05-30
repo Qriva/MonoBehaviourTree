@@ -1,6 +1,8 @@
 1. - 
 2. More basic nodes and conditions
-3. Condition Invert checkbox for all nodes of this type
-4. Updating script throw errors from ConditionEditor [?]
+3. -
+4. -
 5. Random Composite
 6. Reduce memory usage (new NodeResult)
+7. Wrapper .Value get/set in VarReference
+8. Make all nodes invisible in component menu
