@@ -198,5 +198,30 @@ namespace MBT
             }
             return parent.GetMasterTree();
         }
+
+        #if UNITY_EDITOR
+        void OnValidate()
+        {
+            if (maxExecutionsPerTick <= 0)
+            {
+                maxExecutionsPerTick = 1;
+            }
+            
+            if (parent != null)
+            {
+                if (parent == this)
+                {
+                    parent = null;
+                    Debug.LogWarning("This tree cannot be its own parent.");
+                    return;
+                }
+                if (transform.parent == null || parent.gameObject != transform.parent.gameObject)
+                {
+                    // parent = null;
+                    Debug.LogWarning("Parent tree should be also parent of this gameobject.", this.gameObject);
+                }
+            }
+        }
+        #endif
     }
 }
