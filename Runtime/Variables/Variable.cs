@@ -28,7 +28,7 @@ namespace MBT
             }
             set
             {
-                if (!val.Equals(value)) {
+                if (!Object.Equals(val, value)) {
                     T oldValue = val;
                     val = value;
                     listeners.Invoke(oldValue, value);
