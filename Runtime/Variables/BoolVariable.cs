@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace MBT
 {
+    [AddComponentMenu("")]
     public class BoolVariable : Variable<bool>
     {
         
