@@ -92,12 +92,11 @@ namespace MBTEditor
 
             // serializedObject.Update();
             // EditorGUI.BeginChangeCheck();
-            // TODO: Menu to remove variables all at once in BeginFoldoutHeaderGroup
             showVariables = EditorGUILayout.BeginFoldoutHeaderGroup(showVariables, "Variables");
             if(showVariables){
                 SerializedProperty vars = variables.Copy();
                 if (vars.isArray) {
-                // TODO: Why this line existed? Why EventType.DragPerform is not allowed here?
+                // xxx: Why this line existed? Why EventType.DragPerform is not allowed here? (maybe BeginChangeCheck)
                 // if (vars.isArray && Event.current.type != EventType.DragPerform) {
                     for (int i = 0; i < vars.arraySize; i++)
                     {

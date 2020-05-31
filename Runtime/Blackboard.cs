@@ -28,7 +28,25 @@ namespace MBT
 
         public T GetVariable<T>(string key) where T : BlackboardVariable
         {
-            return (T)dictionary[key];
+            return (dictionary.TryGetValue(key, out BlackboardVariable val)) ? (T)val : null;
         }
+
+        #if UNITY_EDITOR
+        [ContextMenu("Delete all variables", false)]
+        protected void DeleteAllVariables()
+        {
+            for (int i = 0; i < variables.Count; i++)
+            {
+                UnityEditor.Undo.DestroyObjectImmediate(variables[i]);
+            }
+            variables.Clear();
+        }
+
+        [ContextMenu("Delete all variables", true)]
+        protected bool HasVariables()
+        {
+            return variables.Count > 0;
+        }
+        #endif
     }
 }
