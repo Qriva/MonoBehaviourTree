@@ -880,7 +880,7 @@ MonoBehaviour:
   rect:
     serializedVersion: 2
     x: 245
-    y: 221
+    y: 195
     width: 200
     height: 57
   parent: {fileID: 0}

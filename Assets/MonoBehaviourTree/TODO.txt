@@ -1,2 +1,4 @@
 1. Implement breakpoints
 2. More basic nodes and conditions
+3. Possibly aborts make no sense when condition changes to false
+4. Distance service node
