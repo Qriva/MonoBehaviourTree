@@ -275,8 +275,16 @@ namespace MBTEditor
                             // Let PaintConnections draw lines
                         } else if (selectedNode != null) {
                             Undo.RecordObject(selectedNode, "Move Node");
-                            // TODO: Add moving whole branch on Alt or Ctrl press
                             selectedNode.rect.position += Event.current.delta;
+                            // Move whole branch when Ctrl is pressed
+                            if(e.control) {
+                                List<Node> movedNodes = selectedNode.GetAllSuccessors();
+                                for (int i = 0; i < movedNodes.Count; i++)
+                                {
+                                    Undo.RecordObject(movedNodes[i], "Move Node");
+                                    movedNodes[i].rect.position += Event.current.delta;
+                                }
+                            }
                             nodeMoved = true;
                         } else {
                             workspaceOffset += Event.current.delta;
