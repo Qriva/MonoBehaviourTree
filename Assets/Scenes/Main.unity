@@ -685,6 +685,9 @@ GameObject:
   - component: {fileID: 1794967348}
   - component: {fileID: 1794967347}
   - component: {fileID: 1794967351}
+  - component: {fileID: 1794967355}
+  - component: {fileID: 1794967354}
+  - component: {fileID: 1794967356}
   m_Layer: 0
   m_Name: GameObject
   m_TagString: Untagged
@@ -751,8 +754,8 @@ MonoBehaviour:
   title: Wait
   rect:
     serializedVersion: 2
-    x: 475
-    y: 408
+    x: 530
+    y: 348
     width: 200
     height: 57
   parent: {fileID: 1794967351}
@@ -776,8 +779,8 @@ MonoBehaviour:
   title: Wait
   rect:
     serializedVersion: 2
-    x: 359
-    y: 476
+    x: 414
+    y: 416
     width: 200
     height: 57
   parent: {fileID: 1794967351}
@@ -801,8 +804,8 @@ MonoBehaviour:
   title: Wait
   rect:
     serializedVersion: 2
-    x: 146
-    y: 477
+    x: 201
+    y: 417
     width: 200
     height: 57
   parent: {fileID: 1794967351}
@@ -826,8 +829,8 @@ MonoBehaviour:
   title: Wait
   rect:
     serializedVersion: 2
-    x: 14
-    y: 412
+    x: 69
+    y: 352
     width: 200
     height: 57
   parent: {fileID: 1794967351}
@@ -851,8 +854,8 @@ MonoBehaviour:
   title: Sequence
   rect:
     serializedVersion: 2
-    x: 245
-    y: 303
+    x: 300
+    y: 243
     width: 200
     height: 57
   parent: {fileID: 1794967352}
@@ -879,8 +882,8 @@ MonoBehaviour:
   title: Root
   rect:
     serializedVersion: 2
-    x: 245
-    y: 195
+    x: 300
+    y: 142
     width: 200
     height: 57
   parent: {fileID: 0}
@@ -888,3 +891,46 @@ MonoBehaviour:
   - {fileID: 1794967351}
   behaviourTree: {fileID: 0}
   runtimePriority: 0
+--- !u!114 &1794967354
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1794967343}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ae15c5e6bcb1714080f2e8296c3d17a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  key: 87897
+  val: 0
+--- !u!114 &1794967355
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1794967343}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b2217e4d35c0c94ea02cf2166c17e4b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  variables:
+  - {fileID: 1794967354}
+  - {fileID: 1794967356}
+--- !u!114 &1794967356
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1794967343}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dbc98ff6538275b4c9a8383882546ee9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  key: dfgf
+  val: {fileID: 0}
