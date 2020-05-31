@@ -60,6 +60,12 @@ namespace MBT
                 return null;
             }
             value = blackboard.GetVariable<T>(key);
+            #if UNITY_EDITOR
+            if (value == null)
+            {
+                Debug.LogWarningFormat(blackboard, "Variable '{0}' does not exists on blackboard.", key);
+            }
+            #endif
             return value;
         }
     }

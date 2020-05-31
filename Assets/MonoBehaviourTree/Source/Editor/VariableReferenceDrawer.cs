@@ -42,6 +42,11 @@ namespace MBTEditor
                     int selected = keys.IndexOf(keyProperty.stringValue);
                     if (selected < 0) {
                         selected = 0;
+                        // If key is not empty it means variable was deleted and missing
+                        if (!System.String.IsNullOrEmpty(keyProperty.stringValue))
+                        {
+                            keys[0] = "Missing";
+                        }
                     }
                     int result = EditorGUI.Popup(position, label.text, selected, keys.ToArray());
                     if (result > 0) {
