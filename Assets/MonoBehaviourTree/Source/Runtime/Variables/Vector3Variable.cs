@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace MBT
 {
+    [AddComponentMenu("")]
     public class Vector3Variable : Variable<Vector3>
     {
         
