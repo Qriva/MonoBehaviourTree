@@ -24,6 +24,21 @@ namespace MBTEditor
 
         void OnEnable()
         {
+            // Set hide flags in case object was duplicated or turned into prefab
+            if (target != null)
+            {
+                Blackboard bb = (Blackboard) target;
+                // Sample one variable and check if its hidden. Hide all varialbes if sample is visible.
+                if (bb.TryGetComponent<BlackboardVariable>(out BlackboardVariable bv) && bv.hideFlags != HideFlags.HideInInspector)
+                {
+                    BlackboardVariable[] vars = bb.GetComponents<BlackboardVariable>();
+                    for (int i = 0; i < vars.Length; i++)
+                    {
+                        vars[i].hideFlags = HideFlags.HideInInspector;
+                    }
+                }
+            }
+            // Init
             variables = serializedObject.FindProperty("variables");
             blackboard = target as Blackboard;
             blackboardGameObject = blackboard.gameObject;

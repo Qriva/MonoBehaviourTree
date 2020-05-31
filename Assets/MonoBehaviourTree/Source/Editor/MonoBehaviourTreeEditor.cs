@@ -20,6 +20,25 @@ namespace MBTEditor
             }
         }
 
+        void OnEnable()
+        {
+            // Set hide flags in case object was duplicated or turned into prefab
+            if (target == null)
+            {
+                return;
+            }
+            MonoBehaviourTree mbt = (MonoBehaviourTree) target;
+            // Sample one component and check if its hidden. Hide all nodes if sample is visible.
+            if (mbt.TryGetComponent<Node>(out Node n) && n.hideFlags != HideFlags.HideInInspector)
+            {
+                Node[] nodes = mbt.GetComponents<Node>();
+                for (int i = 0; i < nodes.Length; i++)
+                {
+                    nodes[i].hideFlags = HideFlags.HideInInspector;
+                }
+            }
+        }
+
         void OnDisable()
         {
             // Destroy editor if there is any
