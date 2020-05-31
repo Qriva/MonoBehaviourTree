@@ -57,6 +57,17 @@ namespace MBT
             return this.parent.IsDescendantOf(node);
         }
 
+        public List<Node> GetAllSuccessors()
+        {
+            List<Node> result = new List<Node>();
+            for (int i = 0; i < children.Count; i++)
+            {
+                result.Add(children[i]);
+                result.AddRange(children[i].GetAllSuccessors());
+            }
+            return result;
+        }
+
         public void SortChildren()
         {
             this.children.Sort((c, d) => c.rect.x.CompareTo(d.rect.x));
