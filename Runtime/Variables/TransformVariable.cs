@@ -13,6 +13,11 @@ namespace MBT
     [System.Serializable]
     public class TransformReference : VariableReference<TransformVariable, Transform>
     {
+        public TransformReference(VarRefMode mode = VarRefMode.EnableConstant)
+        {
+            SetMode(mode);
+        }
+
         public Transform Value
         {
             get

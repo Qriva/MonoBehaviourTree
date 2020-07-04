@@ -13,7 +13,10 @@ namespace MBT
     [System.Serializable]
     public class StringReference : VariableReference<StringVariable, string>
     {
-        public StringReference() {}
+        public StringReference(VarRefMode mode = VarRefMode.EnableConstant)
+        {
+            SetMode(mode);
+        }
         
         public StringReference(string defaultConstant)
         {

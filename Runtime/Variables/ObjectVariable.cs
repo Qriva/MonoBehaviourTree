@@ -13,6 +13,11 @@ namespace MBT
     [System.Serializable]
     public class ObjectReference : VariableReference<ObjectVariable, UnityEngine.Object>
     {
+        public ObjectReference(VarRefMode mode = VarRefMode.EnableConstant)
+        {
+            SetMode(mode);
+        }
+        
         public UnityEngine.Object Value
         {
             get

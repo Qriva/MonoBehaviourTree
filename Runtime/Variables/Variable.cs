@@ -50,11 +50,16 @@ namespace MBT
     public class VariableReference<T, U> : BaseVariableReference where T : BlackboardVariable
     {
         // Cache
-        private T value = null;
+        protected T value = null;
         [SerializeField]
         protected U constantValue = default(U);
         [SerializeField]
         protected bool useConstant = false;
+        // Additional editor feature to lock switch
+        #if UNITY_EDITOR
+        [SerializeField]
+        protected VarRefMode mode = VarRefMode.EnableConstant;
+        #endif
 
         /// <summary>
         /// Returns observable Variable or null if it doesn't exists on blackboard.
@@ -86,7 +91,15 @@ namespace MBT
         {
             get { return useConstant; }
         }
+
+        protected void SetMode(VarRefMode mode)
+        {
+            this.mode = mode;
+            useConstant = (mode == VarRefMode.DisableConstant)? false : useConstant;
+        }
     }
+
+    public enum VarRefMode { EnableConstant, DisableConstant }
 
     [System.Serializable]
     public abstract class BaseVariableReference
