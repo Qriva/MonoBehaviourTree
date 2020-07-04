@@ -11,8 +11,25 @@ namespace MBT
     }
 
     [System.Serializable]
-    public class Vector2Reference : VariableReference<Vector2Variable>
+    public class Vector2Reference : VariableReference<Vector2Variable, Vector2>
     {
-        
+        public Vector2 Value
+        {
+            get
+            {
+                return (useConstant)? constantValue : this.GetVariable().Value;
+            }
+            set
+            {
+                if (useConstant)
+                {
+                    constantValue = value;
+                }
+                else
+                {
+                    this.GetVariable().Value = value;
+                }
+            }
+        }
     }
 }

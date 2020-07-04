@@ -11,8 +11,25 @@ namespace MBT
     }
 
     [System.Serializable]
-    public class FloatReference : VariableReference<FloatVariable>
+    public class FloatReference : VariableReference<FloatVariable, float>
     {
-        
+        public float Value
+        {
+            get
+            {
+                return (useConstant)? constantValue : this.GetVariable().Value;
+            }
+            set
+            {
+                if (useConstant)
+                {
+                    constantValue = value;
+                }
+                else
+                {
+                    this.GetVariable().Value = value;
+                }
+            }
+        }
     }
 }

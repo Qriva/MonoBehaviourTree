@@ -24,11 +24,11 @@ namespace MBT
                 switch (comparator)
                 {
                     case Comparator.Equal:
-                        return floatReference.Get().Value == floatValue;
+                        return floatReference.GetVariable().Value == floatValue;
                     case Comparator.GreaterThan:
-                        return floatReference.Get().Value > floatValue;
+                        return floatReference.GetVariable().Value > floatValue;
                     case Comparator.LessThan:
-                        return floatReference.Get().Value < floatValue;
+                        return floatReference.GetVariable().Value < floatValue;
                 }
             }
             else
@@ -36,11 +36,11 @@ namespace MBT
                 switch (comparator)
                 {
                     case Comparator.Equal:
-                        return intReference.Get().Value == intValue;
+                        return intReference.GetVariable().Value == intValue;
                     case Comparator.GreaterThan:
-                        return intReference.Get().Value > intValue;
+                        return intReference.GetVariable().Value > intValue;
                     case Comparator.LessThan:
-                        return intReference.Get().Value < intValue;
+                        return intReference.GetVariable().Value < intValue;
                 }
             }
             return false;
@@ -51,9 +51,9 @@ namespace MBT
             if (abort != Abort.None)
             {
                 if (type == Type.Float) {
-                    floatReference.Get().AddListener(OnVariableChange);
+                    floatReference.GetVariable().AddListener(OnVariableChange);
                 } else {
-                    intReference.Get().AddListener(OnVariableChange);
+                    intReference.GetVariable().AddListener(OnVariableChange);
                 }
             }
         }
@@ -63,9 +63,9 @@ namespace MBT
             if (abort != Abort.None)
             {
                 if (type == Type.Float) {
-                    floatReference.Get().RemoveListener(OnVariableChange);
+                    floatReference.GetVariable().RemoveListener(OnVariableChange);
                 } else {
-                    intReference.Get().RemoveListener(OnVariableChange);
+                    intReference.GetVariable().RemoveListener(OnVariableChange);
                 }
             }
         }

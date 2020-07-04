@@ -73,7 +73,7 @@ namespace MBTEditor
                 EditorGUILayout.LabelField("Node inspector", EditorStyles.boldLabel);
                 
                 EditorGUILayout.BeginHorizontal(boxStyle);
-                    GUILayout.Space(10);
+                    GUILayout.Space(3);
                     EditorGUILayout.BeginVertical();
                         GUILayout.Space(5);
                         nodeEditor = Editor.CreateEditor(mbt.selectedEditorNode);

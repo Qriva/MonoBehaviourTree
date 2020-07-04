@@ -11,8 +11,25 @@ namespace MBT
     }
     
     [System.Serializable]
-    public class ObjectReference : VariableReference<ObjectVariable>
+    public class ObjectReference : VariableReference<ObjectVariable, UnityEngine.Object>
     {
-        
+        public UnityEngine.Object Value
+        {
+            get
+            {
+                return (useConstant)? constantValue : this.GetVariable().Value;
+            }
+            set
+            {
+                if (useConstant)
+                {
+                    constantValue = value;
+                }
+                else
+                {
+                    this.GetVariable().Value = value;
+                }
+            }
+        }
     }
 }

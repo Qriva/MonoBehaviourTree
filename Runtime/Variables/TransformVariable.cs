@@ -11,8 +11,25 @@ namespace MBT
     }
 
     [System.Serializable]
-    public class TransformReference : VariableReference<TransformVariable>
+    public class TransformReference : VariableReference<TransformVariable, Transform>
     {
-        
+        public Transform Value
+        {
+            get
+            {
+                return (useConstant)? constantValue : this.GetVariable().Value;
+            }
+            set
+            {
+                if (useConstant)
+                {
+                    constantValue = value;
+                }
+                else
+                {
+                    this.GetVariable().Value = value;
+                }
+            }
+        }
     }
 }
