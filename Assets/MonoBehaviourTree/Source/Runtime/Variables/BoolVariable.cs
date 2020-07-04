@@ -11,8 +11,25 @@ namespace MBT
     }
 
     [System.Serializable]
-    public class BoolReference : VariableReference<BoolVariable>
+    public class BoolReference : VariableReference<BoolVariable, bool>
     {
-        
+        public bool Value
+        {
+            get
+            {
+                return (useConstant)? constantValue : this.GetVariable().Value;
+            }
+            set
+            {
+                if (useConstant)
+                {
+                    constantValue = value;
+                }
+                else
+                {
+                    this.GetVariable().Value = value;
+                }
+            }
+        }
     }
 }

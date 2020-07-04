@@ -20,7 +20,7 @@ namespace MBTExample
         {
             time = 0;
             agent.isStopped = false;
-            agent.SetDestination(destination.Get().Value.position);
+            agent.SetDestination(destination.GetVariable().Value.position);
         }
         
         public override NodeResult Execute()
@@ -29,7 +29,7 @@ namespace MBTExample
             if (time > updateTime)
             {
                 time = 0;
-                agent.SetDestination(destination.Get().Value.position);
+                agent.SetDestination(destination.GetVariable().Value.position);
             }
             // Check if path is ready
             if (agent.pathPending)

@@ -20,11 +20,11 @@ namespace MBT
             switch (type)
             {
                 case Type.Boolean:
-                    return (boolReference.Get().Value == true) ^ invert;
+                    return (boolReference.GetVariable().Value == true) ^ invert;
                 case Type.Object:
-                    return (objectReference.Get().Value != null) ^ invert;
+                    return (objectReference.GetVariable().Value != null) ^ invert;
                 case Type.Transform:
-                    return (transformReference.Get().Value != null) ^ invert;
+                    return (transformReference.GetVariable().Value != null) ^ invert;
             }
             return invert;
         }
@@ -36,13 +36,13 @@ namespace MBT
                 switch (type)
                 {
                     case Type.Boolean:
-                        boolReference.Get().AddListener(OnVariableChange);
+                        boolReference.GetVariable().AddListener(OnVariableChange);
                         break;
                     case Type.Object:
-                        objectReference.Get().AddListener(OnVariableChange);
+                        objectReference.GetVariable().AddListener(OnVariableChange);
                         break;
                     case Type.Transform:
-                        transformReference.Get().AddListener(OnVariableChange);
+                        transformReference.GetVariable().AddListener(OnVariableChange);
                         break;
                 }
             }
@@ -55,13 +55,13 @@ namespace MBT
                 switch (type)
                 {
                     case Type.Boolean:
-                        boolReference.Get().RemoveListener(OnVariableChange);
+                        boolReference.GetVariable().RemoveListener(OnVariableChange);
                         break;
                     case Type.Object:
-                        objectReference.Get().RemoveListener(OnVariableChange);
+                        objectReference.GetVariable().RemoveListener(OnVariableChange);
                         break;
                     case Type.Transform:
-                        transformReference.Get().RemoveListener(OnVariableChange);
+                        transformReference.GetVariable().RemoveListener(OnVariableChange);
                         break;
                 }
             }

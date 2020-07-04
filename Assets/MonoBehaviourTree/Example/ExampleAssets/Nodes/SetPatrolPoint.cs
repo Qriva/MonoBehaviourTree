@@ -30,7 +30,7 @@ namespace MBTExample
             }
             index += direction;
             
-            variableToSet.Get().Value = waypoints[index];
+            variableToSet.GetVariable().Value = waypoints[index];
             return NodeResult.success;
         }
     }

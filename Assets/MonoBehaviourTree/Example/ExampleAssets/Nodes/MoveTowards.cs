@@ -15,8 +15,8 @@ namespace MBTExample
 
         public override NodeResult Execute()
         {
-            Vector3 target = targetPosition.Get().Value;
-            Transform obj = transformToMove.Get().Value;
+            Vector3 target = targetPosition.GetVariable().Value;
+            Transform obj = transformToMove.GetVariable().Value;
             float dist = Vector3.Distance(target, obj.position);
             if (dist > 0)
             {
