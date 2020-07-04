@@ -13,6 +13,14 @@ namespace MBT
     [System.Serializable]
     public class StringReference : VariableReference<StringVariable, string>
     {
+        public StringReference() {}
+        
+        public StringReference(string defaultConstant)
+        {
+            useConstant = true;
+            constantValue = defaultConstant;
+        }
+
         public string Value
         {
             get
