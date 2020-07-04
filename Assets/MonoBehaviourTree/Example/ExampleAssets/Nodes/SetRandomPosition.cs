@@ -10,11 +10,11 @@ namespace MBTExample
     public class SetRandomPosition : Leaf
     {
         public Bounds bounds;
-        public Vector3Reference blackboardVariable;
+        public Vector3Reference blackboardVariable = new Vector3Reference(VarRefMode.DisableConstant);
 
         public override NodeResult Execute()
         {
-            blackboardVariable.GetVariable().Value = new Vector3(
+            blackboardVariable.Value = new Vector3(
                 Random.Range(bounds.min.x, bounds.max.x),
                 Random.Range(bounds.min.y, bounds.max.y),
                 Random.Range(bounds.min.z, bounds.max.z)

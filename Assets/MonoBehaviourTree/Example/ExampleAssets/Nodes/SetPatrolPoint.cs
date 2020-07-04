@@ -9,7 +9,7 @@ namespace MBTExample
     [AddComponentMenu("")]
     public class SetPatrolPoint : Leaf
     {
-        public TransformReference variableToSet;
+        public TransformReference variableToSet = new TransformReference(VarRefMode.DisableConstant);
         public Transform[] waypoints;
         private int index = 0;
         private int direction = 1;
@@ -30,7 +30,7 @@ namespace MBTExample
             }
             index += direction;
             
-            variableToSet.GetVariable().Value = waypoints[index];
+            variableToSet.Value = waypoints[index];
             return NodeResult.success;
         }
     }

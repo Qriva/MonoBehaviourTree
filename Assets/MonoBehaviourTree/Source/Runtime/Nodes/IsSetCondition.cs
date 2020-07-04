@@ -11,20 +11,20 @@ namespace MBT
         public Abort abort;
         public bool invert = false;
         public Type type = Type.Boolean;
-        public BoolReference boolReference;
-        public ObjectReference objectReference;
-        public TransformReference transformReference;
+        public BoolReference boolReference = new BoolReference(VarRefMode.DisableConstant);
+        public ObjectReference objectReference = new ObjectReference(VarRefMode.DisableConstant);
+        public TransformReference transformReference = new TransformReference(VarRefMode.DisableConstant);
         
         public override bool Check()
         {
             switch (type)
             {
                 case Type.Boolean:
-                    return (boolReference.GetVariable().Value == true) ^ invert;
+                    return (boolReference.Value == true) ^ invert;
                 case Type.Object:
-                    return (objectReference.GetVariable().Value != null) ^ invert;
+                    return (objectReference.Value != null) ^ invert;
                 case Type.Transform:
-                    return (transformReference.GetVariable().Value != null) ^ invert;
+                    return (transformReference.Value != null) ^ invert;
             }
             return invert;
         }

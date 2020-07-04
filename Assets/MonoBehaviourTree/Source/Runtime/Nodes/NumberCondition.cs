@@ -10,11 +10,11 @@ namespace MBT
     {
         public Abort abort;
         public Type type = Type.Float;
-        public FloatReference floatReference;
-        public IntReference intReference;
+        public FloatReference floatReference = new FloatReference(VarRefMode.DisableConstant);
+        public IntReference intReference = new IntReference(VarRefMode.DisableConstant);
         public Comparator comparator = Comparator.Equal;
-        public float floatValue;
-        public int intValue;
+        public FloatReference floatReference2 = new FloatReference(0f);
+        public IntReference intReference2 = new IntReference(0);
 
         // IMPROVEMENT: This class could be split into to different nodes
         public override bool Check()
@@ -24,11 +24,11 @@ namespace MBT
                 switch (comparator)
                 {
                     case Comparator.Equal:
-                        return floatReference.GetVariable().Value == floatValue;
+                        return floatReference.Value == floatReference2.Value;
                     case Comparator.GreaterThan:
-                        return floatReference.GetVariable().Value > floatValue;
+                        return floatReference.Value > floatReference2.Value;
                     case Comparator.LessThan:
-                        return floatReference.GetVariable().Value < floatValue;
+                        return floatReference.Value < floatReference2.Value;
                 }
             }
             else
@@ -36,11 +36,11 @@ namespace MBT
                 switch (comparator)
                 {
                     case Comparator.Equal:
-                        return intReference.GetVariable().Value == intValue;
+                        return intReference.Value == intReference2.Value;
                     case Comparator.GreaterThan:
-                        return intReference.GetVariable().Value > intValue;
+                        return intReference.Value > intReference2.Value;
                     case Comparator.LessThan:
-                        return intReference.GetVariable().Value < intValue;
+                        return intReference.Value < intReference2.Value;
                 }
             }
             return false;
@@ -52,8 +52,16 @@ namespace MBT
             {
                 if (type == Type.Float) {
                     floatReference.GetVariable().AddListener(OnVariableChange);
+                    if (!floatReference2.isConstant)
+                    {
+                        floatReference2.GetVariable().AddListener(OnVariableChange);
+                    }
                 } else {
                     intReference.GetVariable().AddListener(OnVariableChange);
+                    if (!intReference2.isConstant)
+                    {
+                        intReference2.GetVariable().AddListener(OnVariableChange);
+                    }
                 }
             }
         }
@@ -64,8 +72,16 @@ namespace MBT
             {
                 if (type == Type.Float) {
                     floatReference.GetVariable().RemoveListener(OnVariableChange);
+                    if (!floatReference2.isConstant)
+                    {
+                        floatReference2.GetVariable().RemoveListener(OnVariableChange);
+                    }
                 } else {
                     intReference.GetVariable().RemoveListener(OnVariableChange);
+                    if (!intReference2.isConstant)
+                    {
+                        intReference2.GetVariable().RemoveListener(OnVariableChange);
+                    }
                 }
             }
         }

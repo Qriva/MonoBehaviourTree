@@ -9,7 +9,7 @@ namespace MBT
     public class Wait : Leaf
     {
         [Tooltip("Wait time in seconds")]
-        public float time = 1f;
+        public FloatReference time = new FloatReference(1f);
         public bool continueOnRestart = false;
         private float timer;
         
@@ -23,7 +23,7 @@ namespace MBT
         public override NodeResult Execute()
         {
             timer += Time.deltaTime;
-            if (timer > time) {
+            if (timer > time.Value) {
                 // Reset timer in case continueOnRestart option is active
                 timer = 0;
                 return NodeResult.success;

@@ -11,7 +11,7 @@ namespace MBTExample
     {
         public TransformReference transform1;
         public TransformReference transform2;
-        public FloatReference distanceVariable;
+        public FloatReference distanceVariable = new FloatReference(VarRefMode.DisableConstant);
 
         public override void Task()
         {
@@ -21,7 +21,7 @@ namespace MBTExample
             {
                 return;
             }
-            distanceVariable.GetVariable().Value = Vector3.Distance(t1.position, t2.position);
+            distanceVariable.Value = Vector3.Distance(t1.position, t2.position);
         }
     }
 }

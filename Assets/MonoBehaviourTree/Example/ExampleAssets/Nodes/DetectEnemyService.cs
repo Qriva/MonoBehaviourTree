@@ -18,11 +18,11 @@ namespace MBTExample
             Collider[] colliders = Physics.OverlapSphere(transform.position, range, mask, QueryTriggerInteraction.Ignore);
             if (colliders.Length > 0)
             {
-                variableToSet.GetVariable().Value = colliders[0].transform;
+                variableToSet.Value = colliders[0].transform;
             }
             else
             {
-                variableToSet.GetVariable().Value = null;
+                variableToSet.Value = null;
             }
         }
     }
