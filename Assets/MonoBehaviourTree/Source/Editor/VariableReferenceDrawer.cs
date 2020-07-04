@@ -29,11 +29,17 @@ namespace MBTEditor
                 Blackboard blackboard = inspectedComponent.GetComponent<Blackboard>();
                 if (blackboard != null)
                 {
-                    Rect togglePosition = position;
-                    togglePosition.width = 8;
-                    togglePosition.height = 16;
-                    useConstProperty.boolValue = EditorGUI.Toggle(togglePosition, useConstProperty.boolValue, constVarGUIStyle);
-                    position.xMin += 10;
+                    // Draw mode toggle if not disabled
+                    if (property.FindPropertyRelative("mode").enumValueIndex == 0)
+                    {
+                        Rect togglePosition = position;
+                        togglePosition.width = 8;
+                        togglePosition.height = 16;
+                        useConstProperty.boolValue = EditorGUI.Toggle(togglePosition, useConstProperty.boolValue, constVarGUIStyle);
+                        position.xMin += 10;
+                    }
+                    
+                    // Draw constant or dropdown
                     if (useConstProperty.boolValue)
                     {
                         // Use constant variable

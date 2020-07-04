@@ -13,7 +13,10 @@ namespace MBT
     [System.Serializable]
     public class FloatReference : VariableReference<FloatVariable, float>
     {
-        public FloatReference() {}
+        public FloatReference(VarRefMode mode = VarRefMode.EnableConstant)
+        {
+            SetMode(mode);
+        }
         
         public FloatReference(float defaultConstant)
         {

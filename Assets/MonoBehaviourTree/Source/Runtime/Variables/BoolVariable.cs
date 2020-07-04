@@ -13,7 +13,10 @@ namespace MBT
     [System.Serializable]
     public class BoolReference : VariableReference<BoolVariable, bool>
     {
-        public BoolReference() {}
+        public BoolReference(VarRefMode mode = VarRefMode.EnableConstant)
+        {
+            SetMode(mode);
+        }
         
         public BoolReference(bool defaultConstant)
         {
