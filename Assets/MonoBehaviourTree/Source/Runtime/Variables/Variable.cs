@@ -21,7 +21,8 @@ namespace MBT
             listeners -= listener;
         }
 
-        public T Value{
+        public T Value
+        {
             get
             {
                 return val;
@@ -46,12 +47,19 @@ namespace MBT
     }
 
     [System.Serializable]
-    public class VariableReference<T> : BaseVariableReference where T : BlackboardVariable
+    public class VariableReference<T, U> : BaseVariableReference where T : BlackboardVariable
     {
         // Cache
         private T value = null;
+        [SerializeField]
+        protected U constantValue = default(U);
+        [SerializeField]
+        protected bool useConstant = false;
 
-        public T Get()
+        /// <summary>
+        /// Returns observable Variable or null if it doesn't exists on blackboard.
+        /// </summary>
+        public T GetVariable()
         {
             if (value != null) {
                 return value;
@@ -67,6 +75,16 @@ namespace MBT
             }
             #endif
             return value;
+        }
+
+        public U GetConstant()
+        {
+            return constantValue;
+        }
+
+        public bool isConstant
+        {
+            get{ return useConstant; }
         }
     }
 
