@@ -13,6 +13,14 @@ namespace MBT
     [System.Serializable]
     public class FloatReference : VariableReference<FloatVariable, float>
     {
+        public FloatReference() {}
+        
+        public FloatReference(float defaultConstant)
+        {
+            useConstant = true;
+            constantValue = defaultConstant;
+        }
+        
         public float Value
         {
             get

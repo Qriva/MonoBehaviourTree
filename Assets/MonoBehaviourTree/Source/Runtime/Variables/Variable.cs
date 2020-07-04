@@ -84,7 +84,7 @@ namespace MBT
 
         public bool isConstant
         {
-            get{ return useConstant; }
+            get { return useConstant; }
         }
     }
 

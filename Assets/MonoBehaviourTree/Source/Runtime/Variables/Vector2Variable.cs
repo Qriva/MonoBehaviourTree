@@ -13,6 +13,14 @@ namespace MBT
     [System.Serializable]
     public class Vector2Reference : VariableReference<Vector2Variable, Vector2>
     {
+        public Vector2Reference() {}
+        
+        public Vector2Reference(Vector2 defaultConstant)
+        {
+            useConstant = true;
+            constantValue = defaultConstant;
+        }
+        
         public Vector2 Value
         {
             get

@@ -13,6 +13,14 @@ namespace MBT
     [System.Serializable]
     public class IntReference : VariableReference<IntVariable, int>
     {
+        public IntReference() {}
+        
+        public IntReference(int defaultConstant)
+        {
+            useConstant = true;
+            constantValue = defaultConstant;
+        }
+        
         public int Value
         {
             get

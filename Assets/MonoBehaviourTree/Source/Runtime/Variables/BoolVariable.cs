@@ -13,6 +13,14 @@ namespace MBT
     [System.Serializable]
     public class BoolReference : VariableReference<BoolVariable, bool>
     {
+        public BoolReference() {}
+        
+        public BoolReference(bool defaultConstant)
+        {
+            useConstant = true;
+            constantValue = defaultConstant;
+        }
+
         public bool Value
         {
             get
