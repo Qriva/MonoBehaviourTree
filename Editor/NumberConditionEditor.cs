@@ -12,8 +12,8 @@ namespace MBTEditor
         SerializedProperty abortProp;
         SerializedProperty floatReferenceProp;
         SerializedProperty intReferenceProp;
-        SerializedProperty floatValueProp;
-        SerializedProperty intValueProp;
+        SerializedProperty floatReference2Prop;
+        SerializedProperty intReference2Prop;
         SerializedProperty typeProp;
         SerializedProperty comparatorProp;
 
@@ -21,8 +21,8 @@ namespace MBTEditor
         {
             floatReferenceProp = serializedObject.FindProperty("floatReference");
             intReferenceProp = serializedObject.FindProperty("intReference");
-            floatValueProp = serializedObject.FindProperty("floatValue");
-            intValueProp = serializedObject.FindProperty("intValue");
+            floatReference2Prop = serializedObject.FindProperty("floatReference2");
+            intReference2Prop = serializedObject.FindProperty("intReference2");
             abortProp = serializedObject.FindProperty("abort");
             typeProp = serializedObject.FindProperty("type");
             comparatorProp = serializedObject.FindProperty("comparator");
@@ -42,7 +42,7 @@ namespace MBTEditor
                 EditorGUILayout.BeginHorizontal();
                     EditorGUILayout.PropertyField(floatReferenceProp, GUIContent.none);
                     EditorGUILayout.PropertyField(comparatorProp, GUIContent.none);
-                    EditorGUILayout.PropertyField(floatValueProp, GUIContent.none);
+                    EditorGUILayout.PropertyField(floatReference2Prop, GUIContent.none);
                 EditorGUILayout.EndHorizontal();
             }
             else
@@ -50,7 +50,7 @@ namespace MBTEditor
                 EditorGUILayout.BeginHorizontal();
                     EditorGUILayout.PropertyField(intReferenceProp, GUIContent.none);
                     EditorGUILayout.PropertyField(comparatorProp, GUIContent.none);
-                    EditorGUILayout.PropertyField(intValueProp, GUIContent.none);
+                    EditorGUILayout.PropertyField(intReference2Prop, GUIContent.none);
                 EditorGUILayout.EndHorizontal();
             }
 

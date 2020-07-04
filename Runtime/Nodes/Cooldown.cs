@@ -9,8 +9,8 @@ namespace MBT
     [MBTNode(name = "Decorators/Cooldown")]
     public class Cooldown : Decorator
     {
-        public float time = 1f;
         public Abort abort = Abort.None;
+        public FloatReference time = new FloatReference(1f);
 
         private Coroutine coroutine;
         private bool ready = true;
@@ -41,7 +41,7 @@ namespace MBT
             }
             if (ready) {
                 // Reset cooldown after given time
-                coroutine = StartCoroutine(ScheduleCooldown(time));
+                coroutine = StartCoroutine(ScheduleCooldown(time.Value));
                 ready = false;
                 return new NodeResult(Status.Running, node);
             } else {
