@@ -120,7 +120,10 @@ namespace MBTEditor
                         SerializedProperty serializedV = vars.GetArrayElementAtIndex(i);
                         SerializedObject serializedVariable = new SerializedObject(serializedV.objectReferenceValue);
                         EditorGUILayout.BeginHorizontal();
-                            EditorGUILayout.PrefixLabel(serializedVariable.FindProperty("key").stringValue);
+                            EditorGUILayout.PrefixLabel(
+                                new GUIContent(serializedVariable.FindProperty("key").stringValue, 
+                                serializedVariable.targetObject.GetType().Name)
+                            );
                             int v = EditorGUILayout.Popup(popupOption, varOptions, popupStyle, GUILayout.MaxWidth(20));
                             EditorGUILayout.PropertyField(serializedVariable.FindProperty("val"), GUIContent.none);
                         EditorGUILayout.EndHorizontal();
