@@ -33,6 +33,7 @@ namespace MBT
         {
             if (abort != Abort.None)
             {
+                StoreBTState();
                 switch (type)
                 {
                     case Type.Boolean:
@@ -52,6 +53,7 @@ namespace MBT
         {
             if (abort != Abort.None)
             {
+                DisposeBTState();
                 switch (type)
                 {
                     case Type.Boolean:

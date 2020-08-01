@@ -47,6 +47,7 @@ namespace MBT
 
         protected void StoreBTState()
         {
+            // IMPROVEMENT: In theory stack could be saved once as it cannot change path [?]
             stackState = behaviourTree.GetStack();
         }
 

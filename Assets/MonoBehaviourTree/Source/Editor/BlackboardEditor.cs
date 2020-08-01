@@ -155,7 +155,8 @@ namespace MBTEditor
 
         private void CreateVariableAndResetInput()
         {
-            if (string.IsNullOrEmpty(newVariableKey)) {
+            // Validate field. Key "None" is not allowed.
+            if (string.IsNullOrEmpty(newVariableKey) || newVariableKey.Equals("None")) {
                 return;
             }
             string k = new string( newVariableKey.ToCharArray().Where(c => !Char.IsWhiteSpace(c)).ToArray() );
