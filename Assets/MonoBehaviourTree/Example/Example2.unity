@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -440,7 +440,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b25af8627659c6949b60949c3aa8d91d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selectedEditorNode: {fileID: 632508383}
+  selectedEditorNode: {fileID: 0}
   description: Patrolling enemy
   repeatOnFinish: 1
   maxExecutionsPerTick: 1000
@@ -647,14 +647,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 632508372}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c2727cd6cfb0f9c4293e1c621a88913e, type: 3}
+  m_Script: {fileID: 11500000, guid: dc2659d9740e09744b583d40f78bde8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  title: Update Distance Service
+  title: Calculate Distance Service
   rect:
     serializedVersion: 2
     x: 100
-    y: 405
+    y: 404
     width: 200
     height: 57
   parent: {fileID: 632508380}
@@ -676,12 +676,12 @@ MonoBehaviour:
     constantValue: {fileID: 0}
     useConstant: 0
     mode: 0
-  distanceVariable:
+  variable:
     blackboard: {fileID: 632508378}
     key: distanceToTarget
     constantValue: 0
     useConstant: 0
-    mode: 0
+    mode: 1
 --- !u!114 &632508387
 MonoBehaviour:
   m_ObjectHideFlags: 2
