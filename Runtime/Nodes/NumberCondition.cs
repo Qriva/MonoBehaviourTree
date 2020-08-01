@@ -50,6 +50,7 @@ namespace MBT
         {
             if (abort != Abort.None)
             {
+                StoreBTState();
                 if (type == Type.Float) {
                     floatReference.GetVariable().AddListener(OnVariableChange);
                     if (!floatReference2.isConstant)
@@ -70,6 +71,7 @@ namespace MBT
         {
             if (abort != Abort.None)
             {
+                DisposeBTState();
                 if (type == Type.Float) {
                     floatReference.GetVariable().RemoveListener(OnVariableChange);
                     if (!floatReference2.isConstant)

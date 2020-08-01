@@ -144,7 +144,7 @@ namespace MBTEditor
             EditorGUILayout.BeginHorizontal(EditorStyles.toolbar);
                 EditorGUI.BeginDisabledGroup(currentMBT == null);
                 if (GUILayout.Button("Auto Layout", EditorStyles.toolbarButton)){
-                    Debug.Log("Go here");
+                    Debug.Log("Auto layout is not implemented.");
                 }
                 if (GUILayout.Button("Focus Root", EditorStyles.toolbarButton)){
                     FocusRoot();
