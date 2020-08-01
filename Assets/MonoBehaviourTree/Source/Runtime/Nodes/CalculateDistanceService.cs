@@ -1,18 +1,17 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using MBT;
 
-namespace MBTExample
+namespace MBT
 {
     [AddComponentMenu("")]
-    [MBTNode("Example/Update Distance Service")]
-    public class UpdateDistanceService : Service
+    [MBTNode("Services/Calculate Distance Service")]
+    public class CalculateDistanceService : Service
     {
         public TransformReference transform1;
         public TransformReference transform2;
-        public FloatReference distanceVariable = new FloatReference(VarRefMode.DisableConstant);
-
+        public FloatReference variable = new FloatReference(VarRefMode.DisableConstant);
+        
         public override void Task()
         {
             Transform t1 = transform1.Value;
@@ -21,7 +20,7 @@ namespace MBTExample
             {
                 return;
             }
-            distanceVariable.Value = Vector3.Distance(t1.position, t2.position);
+            variable.Value = Vector3.Distance(t1.position, t2.position);
         }
     }
 }
