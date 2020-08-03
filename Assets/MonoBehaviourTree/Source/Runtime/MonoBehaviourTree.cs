@@ -63,6 +63,24 @@ namespace MBT
             // Revert stack
             executionStack.Clear();
             executionStack.AddRange(abortingNode.GetStoredBTState());
+            // Restore flow of events in nodes after abort
+            for (int i = 0; i < executionStack.Count; i++)
+            {
+                Node node = executionStack[i];
+                if (node.status == Status.Running)
+                {
+                    // This node is still running and might need to restore the state
+                    node.OnBehaviourTreeAbort();
+                }
+                else if (node.status == Status.Success || node.status == Status.Failure)
+                {
+                    // This node returned failure or success, so reenter it and call OnEnter
+                    node.OnEnter();
+                }
+                // All nodes in execution stack should be in running state
+                node.status = Status.Running;
+            }
+            
             int nodeIndex = abortingNode.runtimePriority - 1;
             // Sanity check
             if (abortingNode != executionLog[nodeIndex]) {

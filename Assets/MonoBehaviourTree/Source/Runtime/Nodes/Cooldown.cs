@@ -9,25 +9,24 @@ namespace MBT
     [MBTNode(name = "Decorators/Cooldown")]
     public class Cooldown : Decorator
     {
-        public Abort abort = Abort.None;
+        public AbortTypes abort = AbortTypes.None;
+        [Space]
         public FloatReference time = new FloatReference(1f);
 
         private Coroutine coroutine;
-        private bool ready = true;
-        private bool canAbort = false;
+        private float lastExit = float.NegativeInfinity;
+        private bool entered = false;
+        public enum AbortTypes
+        {
+            None, LowerPriority
+        }
 
         public override void OnAllowInterrupt()
         {
-            if (abort != Abort.None) {
+            if (abort == AbortTypes.LowerPriority)
+            {
                 StoreBTState();
-                canAbort = true;
             }
-        }
-
-        public override void OnDisallowInterrupt()
-        {
-            canAbort = false;
-            DisposeBTState();
         }
 
         public override NodeResult Execute()
@@ -39,24 +38,43 @@ namespace MBT
             if (node.status == Status.Success || node.status == Status.Failure) {
                 return new NodeResult(node.status);
             }
-            if (ready) {
-                // Reset cooldown after given time
-                coroutine = StartCoroutine(ScheduleCooldown(time.Value));
-                ready = false;
+            if (Time.time - lastExit >= time.Value) {
+                entered = true;
                 return new NodeResult(Status.Running, node);
             } else {
                 return NodeResult.failure;
             }
         }
 
-        private IEnumerator ScheduleCooldown(float t)
+        public override void OnExit()
         {
-            yield return new WaitForSeconds(t);
-            ready = true;
-            coroutine = null;
-            if (canAbort) {
-                TryAbort(abort);
+            // Record exit time when there was no failure
+            if (entered)
+            {
+                entered = false;
+                lastExit = Time.time;
+                // For LowerPriority try to abort after given time
+                if (abort == AbortTypes.LowerPriority && coroutine == null)
+                {
+                    coroutine = StartCoroutine(ScheduleCooldown());
+                }
             }
+        }
+
+        public override void OnDisallowInterrupt()
+        {
+            if (coroutine != null)
+            {
+                StopCoroutine(coroutine);
+                coroutine = null;
+            }
+        }
+
+        private IEnumerator ScheduleCooldown()
+        {
+            yield return new WaitForSeconds(time.Value);
+            coroutine = null;
+            TryAbort(Abort.LowerPriority);
         }
     }
 }
