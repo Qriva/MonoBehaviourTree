@@ -8,8 +8,15 @@ namespace MBT
     [MBTNode("Decorators/Random Chance")]
     public class RandomChance : Decorator
     {
+        // IMPROVEMENT: Probability can be FloatReference
         [Range(0f, 1f)]
         public float probability = 0.5f;
+        private float roll;
+
+        public override void OnAllowInterrupt()
+        {
+            roll = Random.Range(0f, 1f);
+        }
 
         public override NodeResult Execute()
         {
@@ -20,7 +27,6 @@ namespace MBT
             if (node.status == Status.Success || node.status == Status.Failure) {
                 return new NodeResult(node.status);
             }
-            float roll = Random.Range(0f, 1f);
             if (roll > probability) {
                 return NodeResult.failure;
             }

@@ -34,6 +34,8 @@ namespace MBT
         public virtual void OnExit() {}
         public virtual void OnDisallowInterrupt() {}
 
+        public virtual void OnBehaviourTreeAbort() {}
+
         public abstract void AddChild(Node node);
         public abstract void RemoveChild(Node node);
 

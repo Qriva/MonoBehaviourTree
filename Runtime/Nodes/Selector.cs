@@ -9,14 +9,24 @@ namespace MBT
     public class Selector : Composite
     {
         private int index;
-        
-        public override void OnEnter()
+
+        public override void OnAllowInterrupt()
         {
-            index = 0;
             if (random)
             {
                 ShuffleList(children);
             }
+        }
+        
+        public override void OnEnter()
+        {
+            index = 0;
+        }
+
+        public override void OnBehaviourTreeAbort()
+        {
+            // Do not continue from last index
+            index = 0;
         }
 
         public override NodeResult Execute()
