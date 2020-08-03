@@ -71,7 +71,6 @@ namespace MBT
         {
             if (abort != Abort.None)
             {
-                DisposeBTState();
                 if (type == Type.Float) {
                     floatReference.GetVariable().RemoveListener(OnVariableChange);
                     if (!floatReference2.isConstant)

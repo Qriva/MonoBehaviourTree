@@ -53,7 +53,6 @@ namespace MBT
         {
             if (abort != Abort.None)
             {
-                DisposeBTState();
                 switch (type)
                 {
                     case Type.Boolean:
