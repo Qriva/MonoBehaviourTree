@@ -47,6 +47,7 @@ namespace MBT
                 return;
             }
             StopCoroutine(coroutine);
+            coroutine = null;
         }
 
         private IEnumerator ScheduleTask()

@@ -45,10 +45,15 @@ namespace MBT
             }
         }
 
+        /// <summary>
+        /// Copy and store current state of execution stack if it was not saved before.
+        /// </summary>
         protected void StoreBTState()
         {
-            // IMPROVEMENT: In theory stack could be saved once as it cannot change path [?]
-            stackState = behaviourTree.GetStack();
+            if (stackState.Length == 0)
+            {
+                stackState = behaviourTree.GetStack();
+            }
         }
 
         protected void DisposeBTState()
