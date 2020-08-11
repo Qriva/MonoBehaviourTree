@@ -399,6 +399,7 @@ MonoBehaviour:
   - {fileID: 464764227}
   behaviourTree: {fileID: 0}
   runtimePriority: 0
+  breakpoint: 0
 --- !u!114 &464764225
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -436,6 +437,7 @@ MonoBehaviour:
   children: []
   behaviourTree: {fileID: 0}
   runtimePriority: 0
+  breakpoint: 0
   time:
     blackboard: {fileID: 0}
     key: 
@@ -471,6 +473,7 @@ MonoBehaviour:
   - {fileID: 464764231}
   behaviourTree: {fileID: 0}
   runtimePriority: 0
+  breakpoint: 0
   random: 0
 --- !u!114 &464764228
 MonoBehaviour:
@@ -495,6 +498,7 @@ MonoBehaviour:
   children: []
   behaviourTree: {fileID: 0}
   runtimePriority: 0
+  breakpoint: 0
   time:
     blackboard: {fileID: 0}
     key: 
@@ -539,6 +543,7 @@ MonoBehaviour:
   children: []
   behaviourTree: {fileID: 0}
   runtimePriority: 0
+  breakpoint: 0
   time:
     blackboard: {fileID: 0}
     key: 
@@ -569,6 +574,7 @@ MonoBehaviour:
   children: []
   behaviourTree: {fileID: 0}
   runtimePriority: 0
+  breakpoint: 0
   time:
     blackboard: {fileID: 0}
     key: 
@@ -599,6 +605,7 @@ MonoBehaviour:
   children: []
   behaviourTree: {fileID: 0}
   runtimePriority: 0
+  breakpoint: 0
   time:
     blackboard: {fileID: 0}
     key: 
@@ -632,6 +639,7 @@ MonoBehaviour:
   - {fileID: 464764228}
   behaviourTree: {fileID: 0}
   runtimePriority: 0
+  breakpoint: 0
   random: 0
 --- !u!114 &464764234
 MonoBehaviour:
@@ -669,6 +677,7 @@ MonoBehaviour:
   children: []
   behaviourTree: {fileID: 0}
   runtimePriority: 0
+  breakpoint: 0
   time:
     blackboard: {fileID: 0}
     key: 
@@ -700,6 +709,7 @@ MonoBehaviour:
   - {fileID: 464764232}
   behaviourTree: {fileID: 0}
   runtimePriority: 0
+  breakpoint: 0
   abort: 1
   time:
     blackboard: {fileID: 0}
@@ -731,6 +741,7 @@ MonoBehaviour:
   - {fileID: 464764239}
   behaviourTree: {fileID: 0}
   runtimePriority: 0
+  breakpoint: 0
 --- !u!114 &464764238
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -754,6 +765,7 @@ MonoBehaviour:
   children: []
   behaviourTree: {fileID: 0}
   runtimePriority: 0
+  breakpoint: 0
   time:
     blackboard: {fileID: 0}
     key: 
@@ -785,6 +797,7 @@ MonoBehaviour:
   - {fileID: 464764236}
   behaviourTree: {fileID: 0}
   runtimePriority: 0
+  breakpoint: 0
   abort: 0
   invert: 0
   type: 0
@@ -830,6 +843,7 @@ MonoBehaviour:
   - {fileID: 464764235}
   behaviourTree: {fileID: 0}
   runtimePriority: 0
+  breakpoint: 0
   time: 5
 --- !u!114 &464764241
 MonoBehaviour:
@@ -855,6 +869,7 @@ MonoBehaviour:
   - {fileID: 464764240}
   behaviourTree: {fileID: 0}
   runtimePriority: 0
+  breakpoint: 0
 --- !u!1 &813137704
 GameObject:
   m_ObjectHideFlags: 0
@@ -1177,6 +1192,8 @@ GameObject:
   - component: {fileID: 1794967354}
   - component: {fileID: 1794967356}
   - component: {fileID: 1794967353}
+  - component: {fileID: 1794967358}
+  - component: {fileID: 1794967357}
   m_Layer: 0
   m_Name: GameObject
   m_TagString: Untagged
@@ -1251,6 +1268,7 @@ MonoBehaviour:
   children: []
   behaviourTree: {fileID: 0}
   runtimePriority: 0
+  breakpoint: 0
   time:
     blackboard: {fileID: 0}
     key: 
@@ -1281,6 +1299,7 @@ MonoBehaviour:
   children: []
   behaviourTree: {fileID: 0}
   runtimePriority: 0
+  breakpoint: 0
   time:
     blackboard: {fileID: 0}
     key: 
@@ -1311,6 +1330,7 @@ MonoBehaviour:
   children: []
   behaviourTree: {fileID: 0}
   runtimePriority: 0
+  breakpoint: 0
   time:
     blackboard: {fileID: 0}
     key: 
@@ -1333,7 +1353,7 @@ MonoBehaviour:
   title: Wait
   rect:
     serializedVersion: 2
-    x: 69
+    x: 70
     y: 352
     width: 200
     height: 57
@@ -1341,6 +1361,7 @@ MonoBehaviour:
   children: []
   behaviourTree: {fileID: 0}
   runtimePriority: 0
+  breakpoint: 0
   time:
     blackboard: {fileID: 0}
     key: 
@@ -1375,7 +1396,8 @@ MonoBehaviour:
   - {fileID: 1794967347}
   behaviourTree: {fileID: 0}
   runtimePriority: 0
-  random: 1
+  breakpoint: 0
+  random: 0
 --- !u!114 &1794967352
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -1400,6 +1422,7 @@ MonoBehaviour:
   - {fileID: 1794967351}
   behaviourTree: {fileID: 0}
   runtimePriority: 0
+  breakpoint: 0
 --- !u!114 &1794967353
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -1444,6 +1467,8 @@ MonoBehaviour:
   - {fileID: 1794967354}
   - {fileID: 1794967356}
   - {fileID: 1794967353}
+  - {fileID: 1794967358}
+  - {fileID: 1794967357}
 --- !u!114 &1794967356
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -1458,3 +1483,31 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   key: dfgf
   val: {fileID: 0}
+--- !u!114 &1794967357
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1794967343}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51272808e3662eb4286c82f38f91fae9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  key: targetPosition
+  val: {x: 0, y: 0, z: 0}
+--- !u!114 &1794967358
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1794967343}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dbc98ff6538275b4c9a8383882546ee9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  key: target
+  val: {fileID: 813137708}
