@@ -56,10 +56,8 @@ namespace MBT
         [SerializeField]
         protected bool useConstant = false;
         // Additional editor feature to lock switch
-        #if UNITY_EDITOR
         [SerializeField]
         protected VarRefMode mode = VarRefMode.EnableConstant;
-        #endif
 
         /// <summary>
         /// Returns observable Variable or null if it doesn't exists on blackboard.

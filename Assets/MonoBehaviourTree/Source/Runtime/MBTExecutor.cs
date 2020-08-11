@@ -21,7 +21,6 @@ namespace MBT
             monoBehaviourTree.Tick();
         }
 
-        #if UNITY_EDITOR
         void OnValidate()
         {
             if (monoBehaviourTree != null && monoBehaviourTree.parent != null)
@@ -30,6 +29,5 @@ namespace MBT
                 Debug.LogWarning("Subtree should not be target of update. Select parent tree instead.", this.gameObject);
             }
         }
-        #endif
     }
 }
