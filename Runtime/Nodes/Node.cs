@@ -21,6 +21,8 @@ namespace MBT
         public MonoBehaviourTree behaviourTree;
         [HideInInspector]
         public int runtimePriority = 0;
+        [HideInInspector]
+        public bool breakpoint = false;
         private bool _selected = false;
         public bool selected
         {

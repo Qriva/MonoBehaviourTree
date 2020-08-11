@@ -131,6 +131,16 @@ namespace MBT
                         child.runtimePriority = executionLog.Count;
                         child.OnAllowInterrupt();
                         child.OnEnter();
+                        #if UNITY_EDITOR
+                        // Stop execution if breakpoint is set on this node
+                        if (child.breakpoint)
+                        {
+                            Debug.Break();
+                            UnityEditor.Selection.activeGameObject = this.gameObject;
+                            Debug.Log("MBT Breakpoint: " + child.title, this);
+                            return;
+                        }
+                        #endif
                         continue;
                     }
                 } else {

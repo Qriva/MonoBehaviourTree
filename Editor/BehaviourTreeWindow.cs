@@ -30,6 +30,7 @@ namespace MBTEditor
         private GUIStyle _runningNodeStyle;
         private GUIStyle _nodeContentBoxStyle;
         private GUIStyle _nodeLabelStyle;
+        private GUIStyle _nodeBreakpointLabelStyle;
 
         private void OnEnable()
         {
@@ -70,7 +71,9 @@ namespace MBTEditor
             _nodeLabelStyle.margin = new RectOffset(10,10,10,10);
             _nodeLabelStyle.font = Resources.Load("mbt_Lato-Regular", typeof(Font)) as Font;
             _nodeLabelStyle.fontSize = 14;
-            
+            // Node label when breakpoint is set to true
+            _nodeBreakpointLabelStyle = new GUIStyle(_nodeLabelStyle);
+            _nodeBreakpointLabelStyle.normal.textColor = new Color(1f, 0.35f, 0.18f);
         }
     
         private void OnDisable()
@@ -424,7 +427,14 @@ namespace MBTEditor
                 // Draw node content
                 GUILayout.BeginArea(targetRect, GetNodeStyle(node));
                     GUILayout.BeginVertical(_nodeContentBoxStyle);
-                        GUILayout.Label(node.title, _nodeLabelStyle);
+                    if (node.breakpoint)
+                    {
+                        GUILayout.Label(node.title, _nodeBreakpointLabelStyle);
+                    }
+                    else
+                    {
+                        GUILayout.Label(node.title, _nodeLabelStyle);  
+                    }
                     GUILayout.EndVertical();
                     if (Event.current.type == EventType.Repaint)
                     {
@@ -496,9 +506,10 @@ namespace MBTEditor
         private void OpenNodeMenu(Vector2 mousePosition, Node node)
         {
             GenericMenu genericMenu = new GenericMenu();
-            genericMenu.AddItem(new GUIContent("Disconnect children"), false, () => DisconnectNodeChildren(node)); 
-            genericMenu.AddItem(new GUIContent("Disconnect parent"), false, () => DisconnectNodeParent(node)); 
-            genericMenu.AddItem(new GUIContent("Delete node"), false, () => DeleteNode(node)); 
+            genericMenu.AddItem(new GUIContent("Breakpoint"), node.breakpoint, () => ToggleNodeBreakpoint(node));
+            genericMenu.AddItem(new GUIContent("Disconnect Children"), false, () => DisconnectNodeChildren(node)); 
+            genericMenu.AddItem(new GUIContent("Disconnect Parent"), false, () => DisconnectNodeParent(node)); 
+            genericMenu.AddItem(new GUIContent("Delete Node"), false, () => DeleteNode(node)); 
             genericMenu.ShowAsContext();
         }
 
@@ -523,6 +534,12 @@ namespace MBTEditor
                 // Add additonal offset (3,3) to be sure that point is inside rect
                 TryConnectNodes(dropdownHandleCache, nodeDropdownTargetPosition + workspaceOffset + new Vector2(3,3));
             }
+        }
+
+        private void ToggleNodeBreakpoint(Node node)
+        {
+            // Toggle breakpoint flag
+            node.breakpoint = !node.breakpoint;
         }
 
         private void DeleteNode(Node node)
