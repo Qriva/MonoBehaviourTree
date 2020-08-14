@@ -1,7 +1,7 @@
 # MonoBehaviourTree — Simple behaviour tree for Unity
 This project is simple event driven behaviour tree based on Unity engine component system. This asset comes with minimal node library and tree visual editor.
 
-**Important:** This is not visual scripting tool and requires you to implement some of your own nodes.
+**Important:** This is not visual scripting tool and requires you to implement your own nodes.
 
 ## Contribute
 // TODO
@@ -13,10 +13,18 @@ If you need some usage examples you might want to check folder **Example** conta
 or [Unreal Engine documentation](https://docs.unrealengine.com/en-US/Engine/ArtificialIntelligence/BehaviorTrees/BehaviorTreesOverview/index.html).
 
 ## Event Driven Behaviour Tree Overview
-Standard behaviour tree design assumes three types of nodes: composites, decorators and leafs. Composites are used to define the flow in the tree, decorators can modify node results and leafs perform tasks or check conditions. This design has one major flaw - tree must be traversed from the beginning every single tick, otherwise it will not be possible to react to changes in state or data. Event driven tree is the fix to that problem. When tree gets update it continues from the last executed running node. Normally it would mean, that executed higher priority nodes will not be reevaluated immediately, but event driven BT introduces **abort system** to give possibility to reset tree to some state, when certain event occur. Implementation used in this project is very similar to the one used in Unreal engine - leaf nodes are not used as conditions, instead they are in form of decorators. Additionally it is possible to create Service nodes which can perform task periodically.
+Standard behaviour tree design assumes three types of nodes: composites, decorators and leafs. Composites are used to define the flow in the tree, decorators can modify node results and leafs perform tasks or check conditions. This design has one major flaw - tree must be traversed from the beginning every single tick, otherwise it will not be possible to react to changes in state or data. Event driven tree is the fix to that problem. When tree gets update it continues from the last executed running node. Normally it would mean, that executed higher priority nodes will not be reevaluated immediately, but event driven BT introduces **abort system** to give possibility to reset tree to previous state, when certain event occur. Implementation used in this project is very similar to the one used in Unreal engine - leaf nodes are not used as conditions, instead they are in form of decorators. Additionally it is possible to create Service nodes which can perform task periodically.
 
-### Abort
-// TODO
+### Node Abort
+When the tree is updated, the first evaluated thing are aborting nodes. If there is any aborting node, the tree will be reset to that position and execution will be continued from this node.
+In case there are multiple aborting nodes, the one closest to root will be selected.
+There are four abort types:
+- **None** - don't do anything when change occurs
+- **Self** - abort children running below
+- **Lower Priority** - abort running nodes with lower priority (nodes to the right)
+- **Both** - abort self and lower priority nodes
+
+>Execution order (priority) of nodes with common ancestor is defined by position on X axis, nodes to the left has higher priority.
 
 ## Basic Usage
 The main core of behaviour tree is **MonoBehaviourTree** component. It contains most of tree state during runtime. It is important to note, that tree does not run automatically and must be updated by other script. This design gives you possibility to tick the tree in Update, FixedUpdate or custom interval. However, most of the time Update event will be used, so you can use component **MBT Executor** to do that.
@@ -59,7 +67,7 @@ Blackboard component displays all available variables in list and allows to set 
 
 ## Variables and Events
 In most of situations nodes need to share some state data between each other, it can be done by Blackboard, Variable and VariableReference system. Variables are observale data containers, that can be accesed via Blackboard. To get variable you need to know its key, but inputting key manually to every node is not handy and very error prone. To avoid this you can use helper class VariableReference. This class allows you to automaticaly get and cache reference to blackboard variable.
-VariableReference has also constant value mode in case you don't need to retrive values from blackboard. Code samples:
+VariableReference has also constant value mode in case you don't need to retrive values from blackboard. You can toggle VarRef mode in editor by clicking small button to the left.
 ```
 // Get variable from blackboard by key
 FloatVariable floatVar = blackboard.GetVariable<FloatVariable>("myKey");
@@ -105,24 +113,40 @@ public class CustomReference : VariableReference<CustomVariable, CustomType>
 ```
 
 ## Node Reference
-// TODO
+
 ### Root
+Entry node of behaviour tree.
 ### Sequence
+Executes children from left to right as long as each subsequent child returns success. Returns success when all children succeeded. Failure if one of them failed. When Random option is enabled, then execution goes in random order.
 ### Selector
+Executes children from left to right until one of them return failure. Returns success if any children succeed. Failure if all of them failed. When Random option is enabled, then execution goes in random order.
 ### Is Set Condition
+Checks if blackboard variable is set. Node supports Bollean, Object and Transform variables. Selecting Invert option will produce "If not set" effect.
 ### Number Condition
+Checks if blackboard number variable meets requirement. Node supports Float and Int variables.
 ### Cooldown
+Blocks execition until the specified amount of time has elapsed.
+Time starts counting after branch is exited. If abort is enabled, the execution will be moved back to this node after time has elapsed.
 ### Inverter
+Inverts node result. Failure becomes Success and vice versa.
 ### Random Chance
+There is fixed chance that node will be executed. Returns Failure if roll is not favorable.
 ### Repeat Until Fail
+Repeats branch as long as Success is returned from child.
 ### Repeater
+Repeat branch specified amount of times or infinitely.
 ### Succeeder
+Always returns Success.
 ### Time Limit
+Determines how long branch can be executed. After given time elapses branch is aborted and Failure is returned.
 ### Calculate Distance Service
+Calculates distance between two transforms and updates blackboard flaot variable with the result.
 ### Update Position Service
+Updates blackboard Vector3 variable with position of given source transform.
 ### Wait
+Waits specifie time, then returns Success.
 ### Subtree
-Subtree node allows connection of other tree as child. Parent of (sub)tree must be specified to work properly.
+Subtree node allows connection of other behaviour tree as child, this gives you possibility to create reusable blocks of nodes. Such a tree must be created in separate game object and attached as children. Child tree is updated by its parent. **Parent of subtree must be specified in MonoBehaviourTree component to work properly.** 
 
 ## Creating custom nodes
 // TODO
