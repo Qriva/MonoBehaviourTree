@@ -16,6 +16,7 @@ namespace MBTEditor
         private Vector2 workspaceOffset;
         private NodeHandle currentHandle;
         private NodeHandle dropdownHandleCache;
+        private bool snapNodesToGrid;
 
         private Rect nodeFinderActivatorRect;
         private NodeDropdown nodeDropdown;
@@ -34,6 +35,9 @@ namespace MBTEditor
 
         private void OnEnable()
         {
+            // Read snap option
+            snapNodesToGrid = EditorPrefs.GetBool("snapNodesToGrid", true);
+            // Setup events
             EditorApplication.playModeStateChanged -= OnPlayModeStateChanged;
             EditorApplication.playModeStateChanged += OnPlayModeStateChanged;
             Undo.undoRedoPerformed -= UpdateSelection;
@@ -146,9 +150,16 @@ namespace MBTEditor
         {
             EditorGUILayout.BeginHorizontal(EditorStyles.toolbar);
                 EditorGUI.BeginDisabledGroup(currentMBT == null);
+                if (GUILayout.Toggle(snapNodesToGrid, "Snap Nodes", EditorStyles.toolbarButton) != snapNodesToGrid)
+                {
+                    snapNodesToGrid = !snapNodesToGrid;
+                    // Store this setting
+                    EditorPrefs.SetBool("snapNodesToGrid", snapNodesToGrid);
+                }
                 if (GUILayout.Button("Auto Layout", EditorStyles.toolbarButton)){
                     Debug.Log("Auto layout is not implemented.");
                 }
+                EditorGUILayout.Space();
                 if (GUILayout.Button("Focus Root", EditorStyles.toolbarButton)){
                     FocusRoot();
                 }
@@ -280,7 +291,7 @@ namespace MBTEditor
                             Undo.RecordObject(selectedNode, "Move Node");
                             selectedNode.rect.position += Event.current.delta;
                             // Move whole branch when Ctrl is pressed
-                            if(e.control) {
+                            if (e.control) {
                                 List<Node> movedNodes = selectedNode.GetAllSuccessors();
                                 for (int i = 0; i < movedNodes.Count; i++)
                                 {
@@ -300,16 +311,43 @@ namespace MBTEditor
                     if (currentHandle != null) {
                         TryConnectNodes(currentHandle, e.mousePosition);
                     }
-                    // Reorder nodes in case any of them was moved
-                    if (nodeMoved && selectedNode != null && selectedNode.parent != null) {
-                        Undo.RecordObject(selectedNode.parent, "Move Node");
-                        selectedNode.parent.SortChildren();
+                    // Reorder or snap nodes in case any of them was moved
+                    if (nodeMoved && selectedNode != null) {
+                        // Snap nodes if option is enabled
+                        if (snapNodesToGrid)
+                        {
+                            Undo.RecordObject(selectedNode, "Move Node");
+                            selectedNode.rect.position = SnapPositionToGrid(selectedNode.rect.position);
+                            // When control is pressed snap successors too
+                            if (e.control) {
+                                List<Node> movedNodes = selectedNode.GetAllSuccessors();
+                                for (int i = 0; i < movedNodes.Count; i++)
+                                {
+                                    Undo.RecordObject(movedNodes[i], "Move Node");
+                                    movedNodes[i].rect.position = SnapPositionToGrid(movedNodes[i].rect.position);
+                                }
+                            }
+                        }
+                        // Reorder siblings if selected node has parent
+                        if (selectedNode.parent != null)
+                        {
+                            Undo.RecordObject(selectedNode.parent, "Move Node");
+                            selectedNode.parent.SortChildren();
+                        }
                     }
                     nodeMoved = false;
                     currentHandle = null;
                     GUI.changed = true;
                     break;
             }
+        }
+
+        Vector2 SnapPositionToGrid(Vector2 position)
+        {
+            return new Vector2(
+                Mathf.Round(position.x / 20f) * 20f, 
+                Mathf.Round(position.y / 20f) * 20f
+            );
         }
 
         private void TryConnectNodes(NodeHandle handle, Vector2 mousePosition)
