@@ -6,7 +6,7 @@ namespace MBT
 { 
     public abstract class Node : MonoBehaviour
     {
-        public static readonly float NODE_DEFAULT_WIDTH = 200f;
+        public const float NODE_DEFAULT_WIDTH = 160f;
 
         public string title;
         [HideInInspector]

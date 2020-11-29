@@ -62,7 +62,7 @@ namespace MBTEditor
             _runningNodeStyle.normal.background = Resources.Load("mbt_node_running", typeof(Texture2D)) as Texture2D;
             // Node content box
             _nodeContentBoxStyle = new GUIStyle();
-            _nodeContentBoxStyle.padding = new RectOffset(0,0,20,20);
+            _nodeContentBoxStyle.padding = new RectOffset(0,0,15,15);
             // Node label
             _nodeLabelStyle = new GUIStyle();
             _nodeLabelStyle.normal.textColor = Color.white;
@@ -70,7 +70,7 @@ namespace MBTEditor
             _nodeLabelStyle.wordWrap = true;
             _nodeLabelStyle.margin = new RectOffset(10,10,10,10);
             _nodeLabelStyle.font = Resources.Load("mbt_Lato-Regular", typeof(Font)) as Font;
-            _nodeLabelStyle.fontSize = 14;
+            _nodeLabelStyle.fontSize = 12;
             // Node label when breakpoint is set to true
             _nodeBreakpointLabelStyle = new GUIStyle(_nodeLabelStyle);
             _nodeBreakpointLabelStyle.normal.textColor = new Color(1f, 0.35f, 0.18f);
