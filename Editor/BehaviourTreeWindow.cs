@@ -577,6 +577,7 @@ namespace MBTEditor
         private void ToggleNodeBreakpoint(Node node)
         {
             // Toggle breakpoint flag
+            // Undo.RecordObject(node, "Toggle Breakpoint");
             node.breakpoint = !node.breakpoint;
         }
 

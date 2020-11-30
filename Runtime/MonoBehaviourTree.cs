@@ -17,27 +17,31 @@ namespace MBT
         public MonoBehaviourTree parent;
         
         private Root rootNode;
-        private List<Node> executionStack = new List<Node>();
-        private List<Node> executionLog = new List<Node>();
+        private List<Node> executionStack;
+        private List<Node> executionLog;
         private List<Decorator> interruptingNodes = new List<Decorator>();
         
         void Awake()
-        {
+        {   
             rootNode = GetComponent<Root>();
             if (rootNode == null) {
                 Debug.LogWarning("Missing Root node in behaviour tree.", this);
             }
             
-            // Find for master parent tree
+            // Find master parent tree and all nodes
             MonoBehaviourTree masterTree = this.GetMasterTree();
+            Node[] nodes = GetComponents<Node>();
             if(masterTree == this)
             {
+                // Create lists with capicity
+                executionStack = new List<Node>(8);
+                executionLog = new List<Node>(nodes.Length);
                 // Set start node when tree is created first time
                 executionStack.Add(rootNode);
                 executionLog.Add(rootNode);
             }
             // Initialize nodes of tree/subtree
-            Node[] nodes = GetComponents<Node>();
+
             for (int i = 0; i < nodes.Length; i++)
             {
                 nodes[i].behaviourTree = masterTree;
