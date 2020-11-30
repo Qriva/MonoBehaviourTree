@@ -9,6 +9,7 @@ namespace MBTEditor
     [CustomEditor(typeof(NumberCondition))]
     public class NumberConditionEditor : Editor
     {
+        SerializedProperty titleProp;
         SerializedProperty abortProp;
         SerializedProperty floatReferenceProp;
         SerializedProperty intReferenceProp;
@@ -19,6 +20,7 @@ namespace MBTEditor
 
         void OnEnable()
         {
+            titleProp = serializedObject.FindProperty("title");
             floatReferenceProp = serializedObject.FindProperty("floatReference");
             intReferenceProp = serializedObject.FindProperty("intReference");
             floatReference2Prop = serializedObject.FindProperty("floatReference2");
@@ -33,6 +35,7 @@ namespace MBTEditor
             serializedObject.Update();
             EditorGUI.BeginChangeCheck();
 
+            EditorGUILayout.PropertyField(titleProp);
             EditorGUILayout.PropertyField(abortProp);
             EditorGUILayout.Space();
             EditorGUILayout.PropertyField(typeProp);

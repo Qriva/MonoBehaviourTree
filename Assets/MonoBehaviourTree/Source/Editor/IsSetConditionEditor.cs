@@ -9,6 +9,7 @@ namespace MBTEditor
     [CustomEditor(typeof(IsSetCondition))]
     public class IsSetConditionEditor : Editor
     {
+        SerializedProperty titleProp;
         SerializedProperty abortProp;
         SerializedProperty boolReferenceProp;
         SerializedProperty objectReferenceProp;
@@ -18,6 +19,7 @@ namespace MBTEditor
 
         void OnEnable()
         {
+            titleProp = serializedObject.FindProperty("title");
             boolReferenceProp = serializedObject.FindProperty("boolReference");
             objectReferenceProp = serializedObject.FindProperty("objectReference");
             transformReferenceProp = serializedObject.FindProperty("transformReference");
@@ -31,6 +33,7 @@ namespace MBTEditor
             serializedObject.Update();
             EditorGUI.BeginChangeCheck();
 
+            EditorGUILayout.PropertyField(titleProp);
             EditorGUILayout.PropertyField(abortProp);
             EditorGUILayout.PropertyField(invertProp);
             EditorGUILayout.Space();

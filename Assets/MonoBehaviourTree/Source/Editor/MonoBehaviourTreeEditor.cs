@@ -10,13 +10,16 @@ namespace MBTEditor
     public class MonoBehaviourTreeEditor : Editor
     {
         private GUIStyle boxStyle;
+        private GUIStyle foldStyle;
         private Editor nodeEditor;
         
         void InitStyle()
         {
-            if (boxStyle == null)
+            if (foldStyle == null)
             {
                 boxStyle = new GUIStyle(EditorStyles.helpBox);
+                foldStyle = new GUIStyle(EditorStyles.foldoutHeader);
+                foldStyle.onNormal = foldStyle.onFocused;
             }
         }
 
@@ -66,22 +69,26 @@ namespace MBTEditor
             }
 
             EditorGUILayout.Space();
-
+            
             MonoBehaviourTree mbt = ((MonoBehaviourTree) target);
-            if (mbt.selectedEditorNode != null)
-            {
-                EditorGUILayout.LabelField("Node inspector", EditorStyles.boldLabel);
-                
-                EditorGUILayout.BeginHorizontal(boxStyle);
-                    GUILayout.Space(3);
-                    EditorGUILayout.BeginVertical();
-                        GUILayout.Space(5);
-                        nodeEditor = Editor.CreateEditor(mbt.selectedEditorNode);
-                        nodeEditor.OnInspectorGUI();
-                        GUILayout.Space(5);
-                    EditorGUILayout.EndVertical();
-                EditorGUILayout.EndHorizontal();
-            }
+            bool renderNodeInspector = mbt.selectedEditorNode != null;
+
+            EditorGUILayout.BeginFoldoutHeaderGroup(renderNodeInspector, "Node inspector", foldStyle);
+                EditorGUILayout.Space(1);
+                if (renderNodeInspector)
+                {
+                    EditorGUILayout.BeginHorizontal(boxStyle);
+                        GUILayout.Space(3);
+                        EditorGUILayout.BeginVertical();
+                            GUILayout.Space(5);
+                            nodeEditor = Editor.CreateEditor(mbt.selectedEditorNode);
+                            nodeEditor.OnInspectorGUI();
+                            GUILayout.Space(5);
+                        EditorGUILayout.EndVertical();
+                    EditorGUILayout.EndHorizontal();
+                }
+            EditorGUILayout.EndFoldoutHeaderGroup();
+            EditorGUILayout.Space();
         }
     }
 }
