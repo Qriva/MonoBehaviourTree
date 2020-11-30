@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -373,14 +373,15 @@ MonoBehaviour:
   title: Move Navmesh Agent
   rect:
     serializedVersion: 2
-    x: 99
-    y: 563
+    x: 100
+    y: 560
     width: 200
-    height: 57
+    height: 45
   parent: {fileID: 632508383}
   children: []
   behaviourTree: {fileID: 0}
   runtimePriority: 0
+  breakpoint: 0
   destination:
     blackboard: {fileID: 632508378}
     key: target
@@ -406,14 +407,15 @@ MonoBehaviour:
   rect:
     serializedVersion: 2
     x: 300
-    y: 2
+    y: 0
     width: 200
-    height: 57
+    height: 45
   parent: {fileID: 0}
   children:
   - {fileID: 632508393}
   behaviourTree: {fileID: 0}
   runtimePriority: 0
+  breakpoint: 0
 --- !u!114 &632508376
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -491,14 +493,15 @@ MonoBehaviour:
   rect:
     serializedVersion: 2
     x: 100
-    y: 325
+    y: 320
     width: 200
-    height: 57
+    height: 45
   parent: {fileID: 632508382}
   children:
   - {fileID: 632508385}
   behaviourTree: {fileID: 0}
   runtimePriority: 0
+  breakpoint: 0
   loops: 1
   infinite: 1
 --- !u!114 &632508381
@@ -516,10 +519,10 @@ MonoBehaviour:
   title: Sequence
   rect:
     serializedVersion: 2
-    x: 548
-    y: 242
+    x: 540
+    y: 240
     width: 200
-    height: 57
+    height: 45
   parent: {fileID: 632508388}
   children:
   - {fileID: 632508390}
@@ -527,6 +530,7 @@ MonoBehaviour:
   - {fileID: 632508392}
   behaviourTree: {fileID: 0}
   runtimePriority: 0
+  breakpoint: 0
   random: 0
 --- !u!114 &632508382
 MonoBehaviour:
@@ -543,15 +547,16 @@ MonoBehaviour:
   title: Is Set Condition
   rect:
     serializedVersion: 2
-    x: 99
-    y: 244
+    x: 100
+    y: 240
     width: 200
-    height: 57
+    height: 45
   parent: {fileID: 632508388}
   children:
   - {fileID: 632508380}
   behaviourTree: {fileID: 0}
   runtimePriority: 0
+  breakpoint: 0
   abort: 3
   invert: 0
   type: 2
@@ -588,15 +593,16 @@ MonoBehaviour:
   title: Number Condition
   rect:
     serializedVersion: 2
-    x: 99
-    y: 485
+    x: 100
+    y: 480
     width: 200
-    height: 57
+    height: 45
   parent: {fileID: 632508385}
   children:
   - {fileID: 632508374}
   behaviourTree: {fileID: 0}
   runtimePriority: 0
+  breakpoint: 0
   abort: 0
   type: 0
   floatReference:
@@ -654,14 +660,15 @@ MonoBehaviour:
   rect:
     serializedVersion: 2
     x: 100
-    y: 404
+    y: 400
     width: 200
-    height: 57
+    height: 45
   parent: {fileID: 632508380}
   children:
   - {fileID: 632508383}
   behaviourTree: {fileID: 0}
   runtimePriority: 0
+  breakpoint: 0
   interval: 1
   callOnEnter: 1
   transform1:
@@ -712,15 +719,16 @@ MonoBehaviour:
   rect:
     serializedVersion: 2
     x: 300
-    y: 161
+    y: 160
     width: 200
-    height: 57
+    height: 45
   parent: {fileID: 632508393}
   children:
   - {fileID: 632508382}
   - {fileID: 632508381}
   behaviourTree: {fileID: 0}
   runtimePriority: 0
+  breakpoint: 0
   random: 0
 --- !u!114 &632508389
 MonoBehaviour:
@@ -737,14 +745,15 @@ MonoBehaviour:
   title: Wait
   rect:
     serializedVersion: 2
-    x: 550
-    y: 325
+    x: 540
+    y: 320
     width: 200
-    height: 57
+    height: 45
   parent: {fileID: 632508381}
   children: []
   behaviourTree: {fileID: 0}
   runtimePriority: 0
+  breakpoint: 0
   time:
     blackboard: {fileID: 0}
     key: 
@@ -767,14 +776,15 @@ MonoBehaviour:
   title: Set Patrol Point
   rect:
     serializedVersion: 2
-    x: 337
-    y: 324
+    x: 320
+    y: 320
     width: 200
-    height: 57
+    height: 45
   parent: {fileID: 632508381}
   children: []
   behaviourTree: {fileID: 0}
   runtimePriority: 0
+  breakpoint: 0
   variableToSet:
     blackboard: {fileID: 632508378}
     key: patrolTarget
@@ -814,14 +824,15 @@ MonoBehaviour:
   title: Move Navmesh Agent
   rect:
     serializedVersion: 2
-    x: 762
-    y: 325.5
+    x: 760
+    y: 320
     width: 200
-    height: 57
+    height: 45
   parent: {fileID: 632508381}
   children: []
   behaviourTree: {fileID: 0}
   runtimePriority: 0
+  breakpoint: 0
   destination:
     blackboard: {fileID: 632508378}
     key: patrolTarget
@@ -847,14 +858,15 @@ MonoBehaviour:
   rect:
     serializedVersion: 2
     x: 300
-    y: 82
+    y: 80
     width: 200
-    height: 57
+    height: 45
   parent: {fileID: 632508375}
   children:
   - {fileID: 632508388}
   behaviourTree: {fileID: 0}
   runtimePriority: 0
+  breakpoint: 0
   interval: 1
   callOnEnter: 1
   mask:
