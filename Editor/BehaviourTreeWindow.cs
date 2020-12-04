@@ -479,7 +479,13 @@ namespace MBTEditor
                         node.rect.height = GUILayoutUtility.GetLastRect().height;
                     }
                 GUILayout.EndArea();
-                
+
+                // Paint warning icon
+                if (!Application.isPlaying && !node.IsValid())
+                {
+                    GUI.Label(GetWarningIconRect(targetRect), EditorGUIUtility.IconContent("CollabConflict Icon"));
+                }
+
                 // Draw connection handles if needed
                 if (node is IChildrenNode)
                 {
@@ -525,6 +531,12 @@ namespace MBTEditor
         private Vector2 GetBottomHandlePosition(Rect rect)
         {
             return new Vector2(rect.x + rect.width/2, rect.y + rect.height);
+        }
+
+        private Rect GetWarningIconRect(Rect rect)
+        {
+            // return new Rect(rect.x - 10, rect.y + rect.height/2 - 10 , 20, 20);
+            return new Rect(rect.x + rect.width - 2, rect.y - 1, 20, 20);
         }
 
         private void OpenNodeFinder(Rect rect, bool useRectPosition = true, NodeHandle handle = null)

@@ -76,6 +76,29 @@ namespace MBT
         {
             this.children.Sort((c, d) => c.rect.x.CompareTo(d.rect.x));
         }
+
+        /// <summary>
+        /// Check if node setup is valid
+        /// </summary>
+        /// <returns>Returns true if node is configured correctly</returns>
+        public virtual bool IsValid()
+        {
+            #if UNITY_EDITOR
+            System.Reflection.FieldInfo[] propertyInfos = this.GetType().GetFields();
+            for (int i = 0; i < propertyInfos.Length; i++)
+            {
+                if (propertyInfos[i].FieldType.IsSubclassOf(typeof(BaseVariableReference)))
+                {
+                    BaseVariableReference varReference = propertyInfos[i].GetValue(this) as BaseVariableReference;
+                    if (varReference != null && varReference.isInvalid)
+                    {
+                        return false;
+                    }
+                }
+            }
+            #endif
+            return true;
+        }
     }
 
     public enum Status
