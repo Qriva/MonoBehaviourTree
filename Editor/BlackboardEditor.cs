@@ -13,6 +13,7 @@ namespace MBTEditor
     {
         readonly string[] varOptions = new string[]{"Delete"};
         SerializedProperty variables;
+        SerializedProperty masterBlackboardProperty;
         GUIStyle popupStyle;
         string newVariableKey = "";
         string[] variableTypesNames = new string[0];
@@ -40,6 +41,7 @@ namespace MBTEditor
             }
             // Init
             variables = serializedObject.FindProperty("variables");
+            masterBlackboardProperty = serializedObject.FindProperty("masterBlackboard");
             blackboard = target as Blackboard;
             blackboardGameObject = blackboard.gameObject;
             SetupVariableTypes();
@@ -86,7 +88,16 @@ namespace MBTEditor
                 popupStyle.margin.top += 3;
             }
 
+
+            EditorGUI.BeginChangeCheck();
+                EditorGUILayout.PropertyField(masterBlackboardProperty);
+                EditorGUILayout.Space();
+            if (EditorGUI.EndChangeCheck()) {
+                serializedObject.ApplyModifiedProperties();
+            }
+            
             // Fields used to add variables
+            EditorGUILayout.LabelField("Create Variable", EditorStyles.boldLabel);
             EditorGUILayout.Space();
             EditorGUILayout.BeginHorizontal();
                 GUILayout.Label("Key", GUILayout.MaxWidth(80));
