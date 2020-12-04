@@ -53,11 +53,6 @@ namespace MBT
         protected T value = null;
         [SerializeField]
         protected U constantValue = default(U);
-        [SerializeField]
-        protected bool useConstant = false;
-        // Additional editor feature to lock switch
-        [SerializeField]
-        protected VarRefMode mode = VarRefMode.EnableConstant;
 
         /// <summary>
         /// Returns observable Variable or null if it doesn't exists on blackboard.
@@ -84,17 +79,6 @@ namespace MBT
         {
             return constantValue;
         }
-
-        public bool isConstant
-        {
-            get { return useConstant; }
-        }
-
-        protected void SetMode(VarRefMode mode)
-        {
-            this.mode = mode;
-            useConstant = (mode == VarRefMode.DisableConstant)? false : useConstant;
-        }
     }
 
     public enum VarRefMode { EnableConstant, DisableConstant }
@@ -102,7 +86,32 @@ namespace MBT
     [System.Serializable]
     public abstract class BaseVariableReference
     {
+        [SerializeField]
+        protected bool useConstant = false;
+        // Additional editor feature to lock switch
+        [SerializeField]
+        protected VarRefMode mode = VarRefMode.EnableConstant;
         public Blackboard blackboard;
         public string key;
+
+        public virtual bool isConstant
+        {
+            get { return useConstant; }
+        }
+
+        /// <summary>
+        /// Returns true when variable setup is invalid
+        /// </summary>
+        /// <value></value>
+        public bool isInvalid
+        {
+            get { return (!isConstant) && (blackboard == null || string.IsNullOrEmpty(key)); }
+        }
+
+        protected void SetMode(VarRefMode mode)
+        {
+            this.mode = mode;
+            useConstant = (mode == VarRefMode.DisableConstant)? false : useConstant;
+        }
     }
 }

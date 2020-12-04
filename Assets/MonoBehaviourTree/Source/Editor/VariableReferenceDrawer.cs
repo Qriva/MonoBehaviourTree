@@ -26,7 +26,8 @@ namespace MBTEditor
             // search only in the same game object
             if (inspectedComponent != null)
             {
-                Blackboard blackboard = inspectedComponent.GetComponent<Blackboard>();
+                // Blackboard blackboard = inspectedComponent.GetComponent<Blackboard>();
+                Blackboard blackboard = inspectedComponent.GetComponentInParent<Blackboard>();
                 if (blackboard != null)
                 {
                     // Draw mode toggle if not disabled
@@ -103,7 +104,7 @@ namespace MBTEditor
         public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
         {
             MonoBehaviour monoBehaviour = property.serializedObject.targetObject as MonoBehaviour;
-            if (monoBehaviour != null && monoBehaviour.GetComponent<Blackboard>() == null) {
+            if (monoBehaviour != null && monoBehaviour.GetComponentInParent<Blackboard>() == null) {
                 return 3 * (EditorGUIUtility.standardVerticalSpacing + 16);
             }
             return 16 + EditorGUIUtility.standardVerticalSpacing;
