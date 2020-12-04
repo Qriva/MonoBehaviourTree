@@ -8,9 +8,8 @@ namespace MBT
     [MBTNode("Decorators/Random Chance")]
     public class RandomChance : Decorator
     {
-        // IMPROVEMENT: Probability can be FloatReference
-        [Range(0f, 1f)]
-        public float probability = 0.5f;
+        [Tooltip("Probability should be between 0 and 1")]
+        public FloatReference probability = new FloatReference(0.5f);
         private float roll;
 
         public override void OnAllowInterrupt()
@@ -27,10 +26,18 @@ namespace MBT
             if (node.status == Status.Success || node.status == Status.Failure) {
                 return new NodeResult(node.status);
             }
-            if (roll > probability) {
+            if (roll > probability.Value) {
                 return NodeResult.failure;
             }
             return new NodeResult(Status.Running, node);
+        }
+
+        void OnValidate()
+        {
+            if (probability.isConstant)
+            {
+                probability.Value = Mathf.Clamp(probability.GetConstant(), 0f, 1f);
+            }
         }
     }
 }

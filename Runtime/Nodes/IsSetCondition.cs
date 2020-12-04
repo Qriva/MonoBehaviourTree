@@ -83,6 +83,17 @@ namespace MBT
             EvaluateConditionAndTryAbort(abort);
         }
 
+        public override bool IsValid()
+        {
+            switch (type)
+            {
+                case Type.Boolean: return !boolReference.isInvalid;
+                case Type.Object: return !objectReference.isInvalid;
+                case Type.Transform: return !transformReference.isInvalid;
+                default: return true;
+            }
+        }
+
         public enum Type
         {
             Boolean, Object, Transform

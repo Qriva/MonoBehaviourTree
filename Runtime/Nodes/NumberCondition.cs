@@ -97,6 +97,16 @@ namespace MBT
             EvaluateConditionAndTryAbort(abort);
         }
 
+        public override bool IsValid()
+        {
+            switch (type)
+            {
+                case Type.Float: return !(floatReference.isInvalid || floatReference2.isInvalid);
+                case Type.Int: return !(intReference.isInvalid || intReference2.isInvalid);
+                default: return true;
+            }
+        }
+
         public enum Type
         {
             Float, Int
