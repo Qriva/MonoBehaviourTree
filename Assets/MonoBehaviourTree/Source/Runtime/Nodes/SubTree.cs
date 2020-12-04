@@ -33,12 +33,9 @@ namespace MBT
             return;
         }
 
-        // void OnValidate()
-        // {
-        //     if (tree = null)
-        //     {
-                
-        //     }
-        // }
+        public override bool IsValid()
+        {
+            return tree != null;
+        }
     }
 }

@@ -55,5 +55,10 @@ namespace MBTExample
             agent.isStopped = true;
             // agent.ResetPath();
         }
+
+        public override bool IsValid()
+        {
+            return !(destination.isInvalid || agent == null);
+        }
     }
 }

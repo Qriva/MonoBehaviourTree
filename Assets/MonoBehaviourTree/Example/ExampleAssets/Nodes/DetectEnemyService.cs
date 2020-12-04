@@ -11,7 +11,7 @@ namespace MBTExample
     {
         public LayerMask mask = -1;
         public float range = 15;
-        public TransformReference variableToSet;
+        public TransformReference variableToSet = new TransformReference(VarRefMode.DisableConstant);
 
         public override void Task()
         {

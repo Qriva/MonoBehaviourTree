@@ -64,6 +64,7 @@ namespace MBT
 
         void OnValidate()
         {
+            time = Mathf.Max(0f, time);
             waitForSeconds = new WaitForSeconds(time);
         }
     }
