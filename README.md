@@ -31,7 +31,7 @@ Aborts can be performed only by ```Decorator``` nodes. See example abort impleme
 ## Basic Usage
 The main core of behaviour tree is **MonoBehaviourTree** component. It contains most of tree state during runtime. It is important to note, that tree does not run automatically and must be updated by other script. This design gives you possibility to tick the tree in Update, FixedUpdate or custom interval. However, most of the time Update event will be used, so you can use component **MBT Executor** to do that.
 
-In most of cases you will need some place to store shared data for nodes. You can implement your own component to do that, but you can use **Blackboard** component. Blackboard allows you to create observable variables of predefined types that are compatible with default nodes.
+In most of cases you will need some place to store shared data for nodes. You could implement your own component to do that, but instead it's better to use built in **Blackboard** component. Blackboard allows you to create observable variables of predefined types that are compatible with default nodes.
 
 ## Node editor
 To open tree editor window click "Open editor" button of MonoBehaviourTree component or click Unity menu: Window / Mono Behaviour Tree. In visual editor you can create, connect, delete and setup nodes. 
@@ -41,7 +41,7 @@ Every behaviour tree needs an entry point called **Root**. To add it right click
 > **Implementation note:** All nodes and variables are in fact components, but they are invisible in inspector window.
 > It is recommended to use separate empty game object to build the tree - this make it easier to create prefabs and avoid unnecessary unknown problems.
 
-Most of nodes has additional properties that you can change. To do this select the node and list of options will show up in **MonoBehaviourTree component inspector** section (standard component inspector).
+Most of nodes has additional properties that you can change. To do this select the node and list of options will show up in **MonoBehaviourTree component inspector** section (standard component inspector). When node setup is not valid, error icon will be shown next to the node. By default error is displayed if one of variable references is set to "None". You can create custom validation rules in your own nodes, see [Node API section](#node-api).
 
 ### Editor Window Features
 Right click on empty space to create new node. To connect nodes click on in/out handler (black dot on top and bottom of node), then drag and drop it above another node. In case node cannot have more than one child (decorator) the connection will be overridden by the new one.
@@ -69,9 +69,14 @@ Blackboard component displays all available variables in list and allows to set 
 
 **Built In variable types:** Bool, Float, Int, Object, Quaternion, String, Transform, Vector2, Vector3. If you need to add your own custom type read [Custom Variable section](#custom-variable).
 
+**Master Blackboard** option allows to make synchronisation effect between variables. When set, blackboard will replace variables during initialization, but only when their keys match. Replacement is not hierarhical and only variables from given parent blackboard are matched. It is recommended to create one master blackboard on top of the tree and keep all other subtrees blackboards synchronized with the top one.
+
 ## Variables and Events
-In most of situations nodes need to share some state data between each other, it can be done by Blackboard, Variable and VariableReference system. Variables are observale data containers, that can be accesed via Blackboard. To get variable you need to know its key, but inputting key manually to every node is not handy and very error prone. To avoid this you can use helper class VariableReference. This class allows you to automaticaly get and cache reference to blackboard variable.
-VariableReference has also constant value mode in case you don't need to retrive values from blackboard. You can toggle VarRef mode in editor by clicking small button to the left.
+In most of situations nodes need to share some state data between each other, it can be done by Blackboard, Variable and VariableReference system. Variables are observale data containers, that can be accesed via Blackboard. To get variable you need to know its key, but inputting key manually to every node is not handy and very error prone. 
+
+To avoid this you can use helper class VariableReference. 
+This class allows you to automaticaly get and cache reference to blackboard variable.
+VariableReference has also constant value mode in case you don't need to retrive values from blackboard. You can toggle VarRef mode in editor by clicking small button to the left. Keys displayed in dropdown will be loaded from blackboard on the same object or if there is none it will look upwards the hierarchy to find one.
 ```csharp
 // Get variable from blackboard by key
 FloatVariable floatVar = blackboard.GetVariable<FloatVariable>("myKey");
@@ -157,20 +162,24 @@ Subtree node allows connection of other behaviour tree as child, this gives you 
 
 ## Creating custom nodes
 It is possible to create custom nodes by extending one of base classes provided by library. Each node **must** be in separate file with the name corresponding to class name. MBTNode attribute is required to register node in editor finder, it accepts two parameters: name and order. Name allows use of up to one folder, so "Custom Node" and "Example/Custom Node" is valid, but "Fruits/Bananas/Custom Node" is not.
+Order parameter is used to position node higher in finder. Nodes are sorted first by order and then by name. Default order is 1000 and lower values get higher priority. For example Selector, Sequence, Root and SubTree nodes have following values: 100, 150, 200, 250.
+
+### Node API
+There are several event methods that can be implemented to control Node execution flow, but the only required one is ```Execute``` used to return state when node is running. 
+```OnEnter``` and ```OnExit``` primary function is to setup before or cleanup after execution.
+```OnAllowInterrupt``` and ```OnDisallowInterrupt``` can be used to detect when its allowed to abort or listen to some events. 
+Additionally there is ```IsValid``` method used in editor window to determine if Node setup is correct. By default it uses reflection to find variable references with empty keys and in most of cases there is no need to override this method, unless you want to include other fields during validation or custom setup requires it.
 
 ### Execution Flow
 During runtime node can be in one of following states:
 - **Ready** - Default state 
-- **Running** - Node is currently executed
+- **Running** - Node is currently executed or one of its successors
 - **Success** - Node finished execution and returned success
 - **Failure** - Node finished execution and returned failure
 
-When node is ready and parent decide to "enter" the node, then OnAllowInterrupt and OnEnter is called. After that Execute method is called which always must return some state. 
+When node is ready and parent decide to "enter" the node, then ```OnAllowInterrupt``` and ```OnEnter``` is called. After that ```Execute``` method is called which always must return some state. 
 If running state is returned, then execution will be paused and resumed in next tick, but if running with children node is returned, then execution is "passed down" and continued in that node. 
-When success or failure is returned, then this result is passed to the parent and OnExit is called. OnDisallowInterrupt is not called until the cycle ends or tree is aborted to higher priority node.
-
-OnEnter and OnExit primary function is to setup before or cleanup after execution.
-OnAllowInterrupt and OnDisallowInterrupt can be used to detect when its allowed to abort or listen to some events.
+When success or failure is returned, then this result is passed to the parent and ```OnExit``` is called. ```OnDisallowInterrupt``` is not called until the cycle ends or tree is aborted to higher priority node.
 
 ### Custom Leaf
 Leaf nodes are used to do designated task. It can be something simple as setting variable or very complex like enemy navigation along the path.
@@ -186,9 +195,9 @@ public class CustomTask : Leaf
 {
     public BoolReference somePropertyRef = new BoolReference();
     
-    // These two methods are optional
-    public override void OnAllowInterrupt() {}
-    public override void OnEnter() {}
+    // These two methods are optional, override only when needed
+    // public override void OnAllowInterrupt() {}
+    // public override void OnEnter() {}
 
     // This is called every tick as long as node is executed
     public override NodeResult Execute()
@@ -200,9 +209,16 @@ public class CustomTask : Leaf
         return NodeResult.failure;
     }
 
-    // These two methods are optional
-    public override void OnExit() {}
-    public override void OnDisallowInterrupt() {}
+    // These two methods are optional, override only when needed
+    // public override void OnExit() {}
+    // public override void OnDisallowInterrupt() {}
+
+    // Usually there is no needed to override this method
+    public override bool IsValid()
+    {
+        // You can do some custom validation here
+        return !somePropertyRef.isInvalid;
+    }
 }
 ```
 ### Custom Decorator / Condition
@@ -279,5 +295,7 @@ During playmode you can preview tree execution flow in editor window. Nodes are 
 - Success - green
 - Failure - orange
 - Running - purple
+
+When the node is invalid, an error icon will be displayed in the upper right corner. You should not run the tree when there are any errors in connected nodes.
 
 Except that, you can set breakpoints on multiple nodes. Breakpoint will stop execution and pause play mode after node is entered, but before it get executed. Nodes with breakpoint enabled will have red node names.
