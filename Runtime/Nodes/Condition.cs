@@ -15,13 +15,13 @@ namespace MBT
                 return NodeResult.failure;
             }
             if (node.status == Status.Success || node.status == Status.Failure) {
-                return new NodeResult(node.status);
+                return NodeResult.From(node.status);
             }
             lastConditionCheckResult = Check();
             if (lastConditionCheckResult == false) {
                 return NodeResult.failure;
             }
-            return new NodeResult(Status.Running, node);
+            return node.runningNodeResult;
         }
 
         /// <summary>

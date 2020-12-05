@@ -23,9 +23,9 @@ namespace MBT
             }
             Node root = tree.GetRoot();
             if (root.status == Status.Success || root.status == Status.Failure) {
-                return new NodeResult(root.status);
+                return NodeResult.From(root.status);
             }
-            return new NodeResult(Status.Running, root);
+            return root.runningNodeResult;
         }
 
         public override void RemoveChild(Node node)

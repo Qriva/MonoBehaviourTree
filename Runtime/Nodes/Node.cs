@@ -20,6 +20,8 @@ namespace MBT
         [HideInInspector]
         public MonoBehaviourTree behaviourTree;
         [HideInInspector]
+        public NodeResult runningNodeResult;
+        [HideInInspector]
         public int runtimePriority = 0;
         [HideInInspector]
         public bool breakpoint = false;
@@ -120,6 +122,16 @@ namespace MBT
         {
             this.status = status;
             this.child = child;
+        }
+
+        public static NodeResult From(Status s)
+        {
+            switch (s)
+            {
+                case Status.Success: return success;
+                case Status.Failure: return failure;
+                default: return running;
+            }
         }
 
         public static readonly NodeResult success = new NodeResult(Status.Success);

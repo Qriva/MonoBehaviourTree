@@ -41,10 +41,11 @@ namespace MBT
                 executionLog.Add(rootNode);
             }
             // Initialize nodes of tree/subtree
-
             for (int i = 0; i < nodes.Length; i++)
             {
-                nodes[i].behaviourTree = masterTree;
+                Node n = nodes[i];
+                n.behaviourTree = masterTree;
+                n.runningNodeResult = new NodeResult(Status.Running, n);
             }
         }
 

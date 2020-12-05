@@ -38,9 +38,9 @@ namespace MBT
                 return NodeResult.failure;
             }
             if (node.status == Status.Success || node.status == Status.Failure) {
-                return new NodeResult(node.status);
+                return NodeResult.From(node.status);
             }
-            return new NodeResult(Status.Running, node);
+            return node.runningNodeResult;
         }
 
         public override void OnExit()

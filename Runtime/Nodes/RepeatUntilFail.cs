@@ -16,7 +16,7 @@ namespace MBT
             }
             // Repeat children
             behaviourTree.ResetNodesTo(this);
-            return new NodeResult(Status.Running, node);   
+            return node.runningNodeResult; 
         }
     }
 }

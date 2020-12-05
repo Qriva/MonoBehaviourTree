@@ -42,7 +42,7 @@ namespace MBT
                         index += 1;
                         continue;
                 }
-                return new NodeResult(Status.Running, child);
+                return child.runningNodeResult;
             }
             return NodeResult.failure;
         }

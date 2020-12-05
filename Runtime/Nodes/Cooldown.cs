@@ -36,11 +36,11 @@ namespace MBT
                 return NodeResult.failure;
             }
             if (node.status == Status.Success || node.status == Status.Failure) {
-                return new NodeResult(node.status);
+                return NodeResult.From(node.status);
             }
             if (Time.time - lastExit >= time.Value) {
                 entered = true;
-                return new NodeResult(Status.Running, node);
+                return node.runningNodeResult;
             } else {
                 return NodeResult.failure;
             }
