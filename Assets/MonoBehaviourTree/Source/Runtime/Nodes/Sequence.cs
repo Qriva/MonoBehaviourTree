@@ -42,7 +42,7 @@ namespace MBT
                     case Status.Failure:
                         return NodeResult.failure; 
                 }
-                return new NodeResult(Status.Running, child);
+                return child.runningNodeResult;
             }
             return NodeResult.success;
         }

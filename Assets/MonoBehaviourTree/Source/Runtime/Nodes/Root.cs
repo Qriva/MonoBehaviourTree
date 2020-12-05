@@ -33,9 +33,9 @@ namespace MBT
             if (children.Count == 1) {
                 Node child = children[0];
                 if (child.status == Status.Success || child.status == Status.Failure) {
-                    return new NodeResult(child.status);
+                    return NodeResult.From(child.status);
                 }
-                return new NodeResult(Status.Running, child);
+                return child.runningNodeResult;
             }
             return NodeResult.failure;
         }

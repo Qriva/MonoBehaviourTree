@@ -19,7 +19,7 @@ namespace MBT
             } else if (node.status == Status.Failure) {
                 return NodeResult.success;
             }
-            return new NodeResult(Status.Running, node);
+            return node.runningNodeResult;
         }
     }
 }
