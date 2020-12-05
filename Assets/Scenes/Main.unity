@@ -361,6 +361,7 @@ MonoBehaviour:
   - {fileID: 464764220}
   - {fileID: 464764225}
   - {fileID: 464764229}
+  masterBlackboard: {fileID: 0}
 --- !u!4 &464764223
 Transform:
   m_ObjectHideFlags: 0
@@ -393,7 +394,7 @@ MonoBehaviour:
     x: 265
     y: 111
     width: 200
-    height: 57
+    height: 45
   parent: {fileID: 0}
   children:
   - {fileID: 464764227}
@@ -432,18 +433,19 @@ MonoBehaviour:
     x: 579
     y: 406
     width: 200
-    height: 57
+    height: 45
   parent: {fileID: 464764227}
   children: []
   behaviourTree: {fileID: 0}
   runtimePriority: 0
   breakpoint: 0
   time:
+    useConstant: 1
+    mode: 0
     blackboard: {fileID: 0}
     key: 
     constantValue: 2
-    useConstant: 1
-    mode: 0
+  randomDeviation: 0
   continueOnRestart: 0
 --- !u!114 &464764227
 MonoBehaviour:
@@ -463,7 +465,7 @@ MonoBehaviour:
     x: 263
     y: 196
     width: 200
-    height: 57
+    height: 45
   parent: {fileID: 464764224}
   children:
   - {fileID: 464764241}
@@ -493,18 +495,19 @@ MonoBehaviour:
     x: 340
     y: 499
     width: 200
-    height: 57
+    height: 45
   parent: {fileID: 464764233}
   children: []
   behaviourTree: {fileID: 0}
   runtimePriority: 0
   breakpoint: 0
   time:
+    useConstant: 1
+    mode: 0
     blackboard: {fileID: 0}
     key: 
     constantValue: 1
-    useConstant: 1
-    mode: 0
+  randomDeviation: 0
   continueOnRestart: 0
 --- !u!114 &464764229
 MonoBehaviour:
@@ -538,18 +541,19 @@ MonoBehaviour:
     x: -91
     y: 496
     width: 200
-    height: 57
+    height: 45
   parent: {fileID: 464764233}
   children: []
   behaviourTree: {fileID: 0}
   runtimePriority: 0
   breakpoint: 0
   time:
+    useConstant: 1
+    mode: 0
     blackboard: {fileID: 0}
     key: 
     constantValue: 1
-    useConstant: 1
-    mode: 0
+  randomDeviation: 0
   continueOnRestart: 0
 --- !u!114 &464764231
 MonoBehaviour:
@@ -569,18 +573,19 @@ MonoBehaviour:
     x: 671
     y: 332
     width: 200
-    height: 57
+    height: 45
   parent: {fileID: 464764227}
   children: []
   behaviourTree: {fileID: 0}
   runtimePriority: 0
   breakpoint: 0
   time:
+    useConstant: 1
+    mode: 0
     blackboard: {fileID: 0}
     key: 
     constantValue: 4
-    useConstant: 1
-    mode: 0
+  randomDeviation: 0
   continueOnRestart: 0
 --- !u!114 &464764232
 MonoBehaviour:
@@ -600,18 +605,19 @@ MonoBehaviour:
     x: 129
     y: 732
     width: 200
-    height: 57
+    height: 45
   parent: {fileID: 464764236}
   children: []
   behaviourTree: {fileID: 0}
   runtimePriority: 0
   breakpoint: 0
   time:
+    useConstant: 1
+    mode: 0
     blackboard: {fileID: 0}
     key: 
     constantValue: 1
-    useConstant: 1
-    mode: 0
+  randomDeviation: 0
   continueOnRestart: 0
 --- !u!114 &464764233
 MonoBehaviour:
@@ -631,7 +637,7 @@ MonoBehaviour:
     x: 131
     y: 413
     width: 200
-    height: 57
+    height: 45
   parent: {fileID: 464764227}
   children:
   - {fileID: 464764230}
@@ -672,18 +678,19 @@ MonoBehaviour:
     x: -142
     y: 408
     width: 200
-    height: 57
+    height: 45
   parent: {fileID: 464764240}
   children: []
   behaviourTree: {fileID: 0}
   runtimePriority: 0
   breakpoint: 0
   time:
+    useConstant: 1
+    mode: 0
     blackboard: {fileID: 0}
     key: 
     constantValue: 10
-    useConstant: 1
-    mode: 0
+  randomDeviation: 0
   continueOnRestart: 0
 --- !u!114 &464764236
 MonoBehaviour:
@@ -703,7 +710,7 @@ MonoBehaviour:
     x: 130
     y: 652
     width: 200
-    height: 57
+    height: 45
   parent: {fileID: 464764239}
   children:
   - {fileID: 464764232}
@@ -712,11 +719,11 @@ MonoBehaviour:
   breakpoint: 0
   abort: 1
   time:
+    useConstant: 1
+    mode: 0
     blackboard: {fileID: 0}
     key: 
     constantValue: 5
-    useConstant: 1
-    mode: 0
 --- !u!114 &464764237
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -735,7 +742,7 @@ MonoBehaviour:
     x: 132
     y: 496
     width: 200
-    height: 57
+    height: 45
   parent: {fileID: 464764233}
   children:
   - {fileID: 464764239}
@@ -760,18 +767,19 @@ MonoBehaviour:
     x: 378
     y: 408
     width: 200
-    height: 57
+    height: 45
   parent: {fileID: 464764227}
   children: []
   behaviourTree: {fileID: 0}
   runtimePriority: 0
   breakpoint: 0
   time:
+    useConstant: 1
+    mode: 0
     blackboard: {fileID: 0}
     key: 
     constantValue: 2
-    useConstant: 1
-    mode: 0
+  randomDeviation: 0
   continueOnRestart: 0
 --- !u!114 &464764239
 MonoBehaviour:
@@ -791,7 +799,7 @@ MonoBehaviour:
     x: 130
     y: 570
     width: 200
-    height: 57
+    height: 45
   parent: {fileID: 464764237}
   children:
   - {fileID: 464764236}
@@ -802,23 +810,23 @@ MonoBehaviour:
   invert: 0
   type: 0
   boolReference:
+    useConstant: 0
+    mode: 1
     blackboard: {fileID: 464764222}
     key: test
     constantValue: 0
-    useConstant: 0
-    mode: 1
   objectReference:
+    useConstant: 0
+    mode: 1
     blackboard: {fileID: 0}
     key: 
     constantValue: {fileID: 0}
-    useConstant: 0
-    mode: 1
   transformReference:
+    useConstant: 0
+    mode: 1
     blackboard: {fileID: 0}
     key: 
     constantValue: {fileID: 0}
-    useConstant: 0
-    mode: 1
 --- !u!114 &464764240
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -837,7 +845,7 @@ MonoBehaviour:
     x: -143
     y: 339
     width: 200
-    height: 57
+    height: 45
   parent: {fileID: 464764241}
   children:
   - {fileID: 464764235}
@@ -863,7 +871,7 @@ MonoBehaviour:
     x: -143
     y: 265
     width: 200
-    height: 57
+    height: 45
   parent: {fileID: 464764227}
   children:
   - {fileID: 464764240}
@@ -1078,6 +1086,160 @@ MonoBehaviour:
   m_RequiresDepthTexture: 0
   m_RequiresColorTexture: 0
   m_Version: 2
+--- !u!1 &1690907700
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1690907707}
+  - component: {fileID: 1690907701}
+  - component: {fileID: 1690907706}
+  - component: {fileID: 1690907705}
+  - component: {fileID: 1690907702}
+  m_Layer: 0
+  m_Name: SubTree
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1690907701
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1690907700}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b25af8627659c6949b60949c3aa8d91d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  selectedEditorNode: {fileID: 1690907702}
+  description: 
+  repeatOnFinish: 0
+  maxExecutionsPerTick: 1000
+  parent: {fileID: 1749893371}
+--- !u!114 &1690907702
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1690907700}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 534e3ec7de6cd444e984c2e7f68e42e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  title: Is Set Condition
+  rect:
+    serializedVersion: 2
+    x: 240
+    y: 280
+    width: 160
+    height: 45
+  parent: {fileID: 1690907706}
+  children:
+  - {fileID: 1690907705}
+  behaviourTree: {fileID: 0}
+  runtimePriority: 0
+  breakpoint: 0
+  abort: 0
+  invert: 0
+  type: 0
+  boolReference:
+    useConstant: 0
+    mode: 1
+    blackboard: {fileID: 1749893372}
+    key: ParentVar
+    constantValue: 0
+  objectReference:
+    useConstant: 0
+    mode: 1
+    blackboard: {fileID: 0}
+    key: 
+    constantValue: {fileID: 0}
+  transformReference:
+    useConstant: 0
+    mode: 1
+    blackboard: {fileID: 0}
+    key: 
+    constantValue: {fileID: 0}
+--- !u!114 &1690907705
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1690907700}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58fe7bc6a9b18e148b82820c7c1c0a90, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  title: Wait
+  rect:
+    serializedVersion: 2
+    x: 241
+    y: 357
+    width: 160
+    height: 45
+  parent: {fileID: 1690907702}
+  children: []
+  behaviourTree: {fileID: 0}
+  runtimePriority: 0
+  breakpoint: 0
+  time:
+    useConstant: 0
+    mode: 0
+    blackboard: {fileID: 1749893372}
+    key: timer
+    constantValue: 10
+  randomDeviation: 0
+  continueOnRestart: 0
+--- !u!114 &1690907706
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1690907700}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 538645f2f9090fd43bc6154b2e89e2d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  title: Root
+  rect:
+    serializedVersion: 2
+    x: 240
+    y: 200
+    width: 160
+    height: 45
+  parent: {fileID: 0}
+  children:
+  - {fileID: 1690907702}
+  behaviourTree: {fileID: 0}
+  runtimePriority: 0
+  breakpoint: 0
+--- !u!4 &1690907707
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1690907700}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1749893373}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1742213436
 GameObject:
   m_ObjectHideFlags: 0
@@ -1171,6 +1333,381 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1749893362
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1749893373}
+  - component: {fileID: 1749893372}
+  - component: {fileID: 1749893371}
+  - component: {fileID: 1749893370}
+  - component: {fileID: 1749893368}
+  - component: {fileID: 1749893367}
+  - component: {fileID: 1749893366}
+  - component: {fileID: 1749893365}
+  - component: {fileID: 1749893364}
+  - component: {fileID: 1749893363}
+  - component: {fileID: 1749893374}
+  - component: {fileID: 1749893369}
+  - component: {fileID: 1749893376}
+  - component: {fileID: 1749893375}
+  - component: {fileID: 1749893377}
+  m_Layer: 0
+  m_Name: ParentTreeDemo
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1749893363
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1749893362}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: efee2c6abc08f1d42acf5b1a33db992c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  title: SubTree
+  rect:
+    serializedVersion: 2
+    x: 480
+    y: 420
+    width: 160
+    height: 45
+  parent: {fileID: 1749893367}
+  children: []
+  behaviourTree: {fileID: 0}
+  runtimePriority: 0
+  breakpoint: 0
+  tree: {fileID: 1690907701}
+--- !u!114 &1749893364
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1749893362}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58fe7bc6a9b18e148b82820c7c1c0a90, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  title: Wait
+  rect:
+    serializedVersion: 2
+    x: 80
+    y: 500
+    width: 160
+    height: 45
+  parent: {fileID: 1749893365}
+  children: []
+  behaviourTree: {fileID: 0}
+  runtimePriority: 0
+  breakpoint: 0
+  time:
+    useConstant: 1
+    mode: 0
+    blackboard: {fileID: 0}
+    key: 
+    constantValue: 5
+  randomDeviation: 0
+  continueOnRestart: 0
+--- !u!114 &1749893365
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1749893362}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2370820ab6f42c8449d09456ac02d66d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  title: Cooldown
+  rect:
+    serializedVersion: 2
+    x: 80
+    y: 420
+    width: 160
+    height: 45
+  parent: {fileID: 1749893368}
+  children:
+  - {fileID: 1749893364}
+  behaviourTree: {fileID: 0}
+  runtimePriority: 0
+  breakpoint: 0
+  abort: 0
+  time:
+    useConstant: 1
+    mode: 0
+    blackboard: {fileID: 0}
+    key: 
+    constantValue: 1
+--- !u!114 &1749893366
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1749893362}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58fe7bc6a9b18e148b82820c7c1c0a90, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  title: Wait
+  rect:
+    serializedVersion: 2
+    x: 280
+    y: 420
+    width: 160
+    height: 45
+  parent: {fileID: 1749893367}
+  children: []
+  behaviourTree: {fileID: 0}
+  runtimePriority: 0
+  breakpoint: 0
+  time:
+    useConstant: 1
+    mode: 0
+    blackboard: {fileID: 0}
+    key: 
+    constantValue: 1
+  randomDeviation: 0
+  continueOnRestart: 0
+--- !u!114 &1749893367
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1749893362}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c78c7da6b00e1b46bad07949050f82f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  title: Sequence
+  rect:
+    serializedVersion: 2
+    x: 380
+    y: 340
+    width: 160
+    height: 45
+  parent: {fileID: 1749893369}
+  children:
+  - {fileID: 1749893366}
+  - {fileID: 1749893363}
+  behaviourTree: {fileID: 0}
+  runtimePriority: 0
+  breakpoint: 0
+  random: 0
+--- !u!114 &1749893368
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1749893362}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08540605df275034fafc8e05c6704214, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  title: Selector
+  rect:
+    serializedVersion: 2
+    x: 80
+    y: 340
+    width: 160
+    height: 45
+  parent: {fileID: 1749893369}
+  children:
+  - {fileID: 1749893365}
+  behaviourTree: {fileID: 0}
+  runtimePriority: 0
+  breakpoint: 0
+  random: 0
+--- !u!114 &1749893369
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1749893362}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c78c7da6b00e1b46bad07949050f82f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  title: Sequence
+  rect:
+    serializedVersion: 2
+    x: 220
+    y: 240
+    width: 160
+    height: 45
+  parent: {fileID: 1749893370}
+  children:
+  - {fileID: 1749893368}
+  - {fileID: 1749893367}
+  behaviourTree: {fileID: 0}
+  runtimePriority: 0
+  breakpoint: 0
+  random: 0
+--- !u!114 &1749893370
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1749893362}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 538645f2f9090fd43bc6154b2e89e2d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  title: Root
+  rect:
+    serializedVersion: 2
+    x: 220
+    y: 160
+    width: 160
+    height: 45
+  parent: {fileID: 0}
+  children:
+  - {fileID: 1749893369}
+  behaviourTree: {fileID: 0}
+  runtimePriority: 0
+  breakpoint: 0
+--- !u!114 &1749893371
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1749893362}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b25af8627659c6949b60949c3aa8d91d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  selectedEditorNode: {fileID: 1749893363}
+  description: 
+  repeatOnFinish: 1
+  maxExecutionsPerTick: 1000
+  parent: {fileID: 0}
+--- !u!114 &1749893372
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1749893362}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b2217e4d35c0c94ea02cf2166c17e4b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  variables:
+  - {fileID: 1749893376}
+  - {fileID: 1749893375}
+  masterBlackboard: {fileID: 0}
+--- !u!4 &1749893373
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1749893362}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 17.781916, y: -15.683108, z: -1.5423366}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1690907707}
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1749893374
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1749893362}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e5f392bbea2fa2499665ed8b604ff86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  monoBehaviourTree: {fileID: 1749893371}
+--- !u!114 &1749893375
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1749893362}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4e5f4db414f0ab4c82c187a7653e99d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  key: timer
+  val: 10
+--- !u!114 &1749893376
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1749893362}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ae15c5e6bcb1714080f2e8296c3d17a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  key: ParentVar
+  val: 1
+--- !u!114 &1749893377
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1749893362}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9f8fc43d8d667e46a433232d46363ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  title: Random Chance
+  rect:
+    serializedVersion: 2
+    x: 320
+    y: 500
+    width: 160
+    height: 45
+  parent: {fileID: 0}
+  children: []
+  behaviourTree: {fileID: 0}
+  runtimePriority: 0
+  breakpoint: 0
+  probability:
+    useConstant: 1
+    mode: 0
+    blackboard: {fileID: 0}
+    key: 
+    constantValue: 0.5
 --- !u!1 &1794967343
 GameObject:
   m_ObjectHideFlags: 0
@@ -1194,6 +1731,7 @@ GameObject:
   - component: {fileID: 1794967353}
   - component: {fileID: 1794967358}
   - component: {fileID: 1794967357}
+  - component: {fileID: 1794967359}
   m_Layer: 0
   m_Name: GameObject
   m_TagString: Untagged
@@ -1263,18 +1801,19 @@ MonoBehaviour:
     x: 530
     y: 348
     width: 200
-    height: 57
+    height: 45
   parent: {fileID: 1794967351}
   children: []
   behaviourTree: {fileID: 0}
   runtimePriority: 0
   breakpoint: 0
   time:
+    useConstant: 1
+    mode: 0
     blackboard: {fileID: 0}
     key: 
     constantValue: 1
-    useConstant: 1
-    mode: 0
+  randomDeviation: 0
   continueOnRestart: 0
 --- !u!114 &1794967348
 MonoBehaviour:
@@ -1294,18 +1833,19 @@ MonoBehaviour:
     x: 414
     y: 416
     width: 200
-    height: 57
+    height: 45
   parent: {fileID: 1794967351}
   children: []
   behaviourTree: {fileID: 0}
   runtimePriority: 0
   breakpoint: 0
   time:
+    useConstant: 1
+    mode: 0
     blackboard: {fileID: 0}
     key: 
     constantValue: 1
-    useConstant: 1
-    mode: 0
+  randomDeviation: 0
   continueOnRestart: 0
 --- !u!114 &1794967349
 MonoBehaviour:
@@ -1325,18 +1865,19 @@ MonoBehaviour:
     x: 201
     y: 417
     width: 200
-    height: 57
+    height: 45
   parent: {fileID: 1794967351}
   children: []
   behaviourTree: {fileID: 0}
   runtimePriority: 0
   breakpoint: 0
   time:
+    useConstant: 1
+    mode: 0
     blackboard: {fileID: 0}
     key: 
     constantValue: 1
-    useConstant: 1
-    mode: 0
+  randomDeviation: 0
   continueOnRestart: 0
 --- !u!114 &1794967350
 MonoBehaviour:
@@ -1356,18 +1897,19 @@ MonoBehaviour:
     x: 70
     y: 352
     width: 200
-    height: 57
+    height: 45
   parent: {fileID: 1794967351}
   children: []
   behaviourTree: {fileID: 0}
   runtimePriority: 0
   breakpoint: 0
   time:
+    useConstant: 1
+    mode: 0
     blackboard: {fileID: 0}
     key: 
     constantValue: 1
-    useConstant: 1
-    mode: 0
+  randomDeviation: 0
   continueOnRestart: 0
 --- !u!114 &1794967351
 MonoBehaviour:
@@ -1387,7 +1929,7 @@ MonoBehaviour:
     x: 300
     y: 243
     width: 200
-    height: 57
+    height: 45
   parent: {fileID: 1794967352}
   children:
   - {fileID: 1794967350}
@@ -1416,7 +1958,7 @@ MonoBehaviour:
     x: 300
     y: 142
     width: 200
-    height: 57
+    height: 45
   parent: {fileID: 0}
   children:
   - {fileID: 1794967351}
@@ -1469,6 +2011,7 @@ MonoBehaviour:
   - {fileID: 1794967353}
   - {fileID: 1794967358}
   - {fileID: 1794967357}
+  masterBlackboard: {fileID: 0}
 --- !u!114 &1794967356
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -1511,3 +2054,47 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   key: target
   val: {fileID: 813137708}
+--- !u!114 &1794967359
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1794967343}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc2659d9740e09744b583d40f78bde8a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  title: Calculate Distance Service
+  rect:
+    serializedVersion: 2
+    x: 30
+    y: 531
+    width: 160
+    height: 45
+  parent: {fileID: 0}
+  children: []
+  behaviourTree: {fileID: 0}
+  runtimePriority: 0
+  breakpoint: 0
+  interval: 1
+  callOnEnter: 1
+  transform1:
+    useConstant: 1
+    mode: 0
+    blackboard: {fileID: 0}
+    key: 
+    constantValue: {fileID: 0}
+  transform2:
+    useConstant: 1
+    mode: 0
+    blackboard: {fileID: 0}
+    key: 
+    constantValue: {fileID: 0}
+  variable:
+    useConstant: 0
+    mode: 1
+    blackboard: {fileID: 1794967355}
+    key: distance
+    constantValue: 0
