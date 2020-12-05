@@ -214,10 +214,11 @@ namespace MBTEditor
             Repaint();
         }
 
-        void OnLostFocus()
-        {
-            // Debug.Log("lost focus");
-        }
+        // DeselectNode cannot be called here
+        // void OnLostFocus()
+        // {
+        //     // DeselectNode();
+        // }
 
         private void UpdateSelection()
         {
