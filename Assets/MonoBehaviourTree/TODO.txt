@@ -1,2 +1,0 @@
-1. More basic nodes and conditions
-2. Possibly aborts make no sense when condition changes to false
