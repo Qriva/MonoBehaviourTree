@@ -11,7 +11,6 @@ namespace MBT
     {
         [HideInInspector]
         public Node selectedEditorNode;
-        public string description;
         public bool repeatOnFinish = false;
         public int maxExecutionsPerTick = 1000;
         public MonoBehaviourTree parent;
