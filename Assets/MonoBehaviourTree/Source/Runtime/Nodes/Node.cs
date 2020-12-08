@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace MBT
 { 
+    [RequireComponent(typeof(MonoBehaviourTree))]
     public abstract class Node : MonoBehaviour
     {
         public const float NODE_DEFAULT_WIDTH = 160f;

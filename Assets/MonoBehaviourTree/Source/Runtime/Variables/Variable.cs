@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace MBT
 {
+    // [RequireComponent(typeof(Blackboard))]
     public abstract class Variable<T> : BlackboardVariable, Observable<T>
     {
         // [HideInInspector]
