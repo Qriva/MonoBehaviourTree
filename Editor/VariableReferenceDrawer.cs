@@ -27,7 +27,7 @@ namespace MBTEditor
             if (inspectedComponent != null)
             {
                 // Blackboard blackboard = inspectedComponent.GetComponent<Blackboard>();
-                Blackboard blackboard = inspectedComponent.GetComponentInParent<Blackboard>();
+                Blackboard blackboard = GetBlackboardInParent(inspectedComponent);
                 if (blackboard != null)
                 {
                     // Draw mode toggle if not disabled
@@ -104,10 +104,30 @@ namespace MBTEditor
         public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
         {
             MonoBehaviour monoBehaviour = property.serializedObject.targetObject as MonoBehaviour;
-            if (monoBehaviour != null && monoBehaviour.GetComponentInParent<Blackboard>() == null) {
+            if (monoBehaviour != null && GetBlackboardInParent(monoBehaviour) == null) {
                 return 3 * (EditorGUIUtility.standardVerticalSpacing + 16);
             }
             return 16 + EditorGUIUtility.standardVerticalSpacing;
+        }
+
+        /// <summary>
+        /// Find Blackboard in parent including inactive game objects
+        /// </summary>
+        /// <param name="component">Component to search</param>
+        /// <returns>Blackboard if found, otherwise null</returns>
+        protected Blackboard GetBlackboardInParent(Component component)
+        {
+            Transform current = component.transform;
+            Blackboard result = null;
+            while (current != null && result == null)
+            {
+                if (current.TryGetComponent<Blackboard>(out Blackboard b))
+                {
+                    result = b;
+                }
+                current = current.parent;
+            }
+            return result;
         }
     } 
 }
