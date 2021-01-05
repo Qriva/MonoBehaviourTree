@@ -136,6 +136,8 @@ Executes children from left to right until one of them return failure. Returns s
 Checks if blackboard variable is set. Node supports Bollean, Object and Transform variables. Selecting Invert option will produce "If not set" effect.
 ### Number Condition
 Checks if blackboard number variable meets requirement. Node supports Float and Int variables.
+### Distance Condition
+Checks distance between two transforms and returns success when given distance condition is met.
 ### Cooldown
 Blocks execition until the specified amount of time has elapsed.
 Time starts counting after branch is exited. If abort is enabled, the execution will be moved back to this node after time has elapsed.
