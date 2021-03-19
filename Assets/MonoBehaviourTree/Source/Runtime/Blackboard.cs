@@ -5,6 +5,7 @@ using UnityEngine;
 namespace MBT
 {
     [DisallowMultipleComponent]
+    [DefaultExecutionOrder(-1000)]
     public class Blackboard : MonoBehaviour
     {
         public List<BlackboardVariable> variables = new List<BlackboardVariable>();
