@@ -108,12 +108,17 @@ float value = floatRef.Value;
 
 ### Custom Variable
 If built in variables are not enough, you can create your own.
-To create new Variable and VariableReference you must extend Variable class and VariableReference class. Variable inheriths MonoBehaviour, so to work properly it must by placed in file of the same name as your custom type. VariableReference is normal serializable class and can be placed in the same file. To disallow adding variable component manually add [AddComponentMenu("")] attribute.
+To create new Variable and VariableReference you must extend Variable class and VariableReference class. Variable inheriths MonoBehaviour, so to work properly it must by placed in file of the same name as your custom type. VariableReference is normal serializable class and can be placed in the same file. To disallow adding variable component manually add ```[AddComponentMenu("")]``` attribute. 
+
+Any variable must implement ValueEquals method which is used to detect change of value. This mechanism allows to correctly compare Unity objects in generic class, avoid boxing, plus gives the way to implement your own change detection logic when needed.
 ```csharp
 [AddComponentMenu("")]
 public class CustomVariable : Variable<CustomType>
 {
-    
+    protected override bool ValueEquals(CustomType val1, CustomType val2)
+    {
+        return val1 == val2;
+    }
 }
 
 [System.Serializable]
