@@ -50,6 +50,7 @@ namespace MBT
         /// </summary>
         protected void StoreBTState()
         {
+            // TODO: GetStack generates garbage when array is copied - this can be improved
             if (stackState.Length == 0)
             {
                 stackState = behaviourTree.GetStack();
