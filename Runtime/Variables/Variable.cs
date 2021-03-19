@@ -12,6 +12,8 @@ namespace MBT
         protected T val = default(T);
         protected event ChangeListener<T> listeners = delegate {};
 
+        protected abstract bool ValueEquals(T val1, T val2);
+
         public void AddListener(ChangeListener<T> listener)
         {
             listeners += listener;
@@ -30,7 +32,7 @@ namespace MBT
             }
             set
             {
-                if (!Object.Equals(val, value)) {
+                if (!ValueEquals(val, value)) {
                     T oldValue = val;
                     val = value;
                     listeners.Invoke(oldValue, value);

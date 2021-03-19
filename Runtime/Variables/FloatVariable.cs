@@ -7,7 +7,10 @@ namespace MBT
     [AddComponentMenu("")]
     public class FloatVariable : Variable<float>
     {
-        
+        protected override bool ValueEquals(float val1, float val2)
+        {
+            return val1 == val2;
+        }
     }
 
     [System.Serializable]

@@ -7,7 +7,10 @@ namespace MBT
     [AddComponentMenu("")]
     public class BoolVariable : Variable<bool>
     {
-        
+        protected override bool ValueEquals(bool val1, bool val2)
+        {
+            return val1 == val2;
+        }
     }
 
     [System.Serializable]

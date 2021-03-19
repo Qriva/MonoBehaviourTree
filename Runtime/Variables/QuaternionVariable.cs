@@ -7,7 +7,10 @@ namespace MBT
     [AddComponentMenu("")]
     public class QuaternionVariable : Variable<Quaternion>
     {
-        
+        protected override bool ValueEquals(Quaternion val1, Quaternion val2)
+        {
+            return val1 == val2;
+        }
     }
 
     [System.Serializable]
