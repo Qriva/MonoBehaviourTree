@@ -156,9 +156,7 @@ namespace MBT
             
             // Run this when execution stack is empty and BT should repeat
             if (repeatOnFinish) {
-                ResetNodes();
-                executionStack.Add(rootNode);
-                executionLog.Add(rootNode);
+                Restart();
             }
         }
 
@@ -210,6 +208,16 @@ namespace MBT
             }
             executionLog.Clear();
             executionStack.Clear();
+        }
+
+        /// <summary>
+        /// Resets state to root node
+        /// </summary>
+        public void Restart()
+        {
+            ResetNodes();
+            executionStack.Add(rootNode);
+            executionLog.Add(rootNode);
         }
 
         internal Node[] GetStack()
