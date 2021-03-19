@@ -7,7 +7,10 @@ namespace MBT
     [AddComponentMenu("")]
     public class Vector2Variable : Variable<Vector2>
     {
-        
+        protected override bool ValueEquals(Vector2 val1, Vector2 val2)
+        {
+            return val1 == val2;
+        }
     }
 
     [System.Serializable]
