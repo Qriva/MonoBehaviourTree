@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace MBT
 {
@@ -15,6 +16,10 @@ namespace MBT
         public int maxExecutionsPerTick = 1000;
         public MonoBehaviourTree parent;
         
+        /// <summary>
+        /// Event triggered when tree is about to be updated
+        /// </summary>
+        public event UnityAction onTick = delegate {};
         private Root rootNode;
         private List<Node> executionStack;
         private List<Node> executionLog;
@@ -103,6 +108,9 @@ namespace MBT
         /// </summary>
         public void Tick()
         {
+            // Fire Tick event
+            onTick.Invoke();
+            
             // Check if there are any interrupting nodes
             EvaluateInterruptions();
 
