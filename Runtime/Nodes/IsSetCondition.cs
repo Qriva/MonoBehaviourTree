@@ -12,7 +12,7 @@ namespace MBT
         public bool invert = false;
         public Type type = Type.Boolean;
         public BoolReference boolReference = new BoolReference(VarRefMode.DisableConstant);
-        public ObjectReference objectReference = new ObjectReference(VarRefMode.DisableConstant);
+        public GameObjectReference objectReference = new GameObjectReference(VarRefMode.DisableConstant);
         public TransformReference transformReference = new TransformReference(VarRefMode.DisableConstant);
         
         public override bool Check()
@@ -21,7 +21,7 @@ namespace MBT
             {
                 case Type.Boolean:
                     return (boolReference.Value == true) ^ invert;
-                case Type.Object:
+                case Type.GameObject:
                     return (objectReference.Value != null) ^ invert;
                 case Type.Transform:
                     return (transformReference.Value != null) ^ invert;
@@ -39,7 +39,7 @@ namespace MBT
                     case Type.Boolean:
                         boolReference.GetVariable().AddListener(OnVariableChange);
                         break;
-                    case Type.Object:
+                    case Type.GameObject:
                         objectReference.GetVariable().AddListener(OnVariableChange);
                         break;
                     case Type.Transform:
@@ -58,7 +58,7 @@ namespace MBT
                     case Type.Boolean:
                         boolReference.GetVariable().RemoveListener(OnVariableChange);
                         break;
-                    case Type.Object:
+                    case Type.GameObject:
                         objectReference.GetVariable().RemoveListener(OnVariableChange);
                         break;
                     case Type.Transform:
@@ -73,7 +73,7 @@ namespace MBT
             EvaluateConditionAndTryAbort(abort);
         }
 
-        private void OnVariableChange(Object oldValue, Object newValue)
+        private void OnVariableChange(GameObject oldValue, GameObject newValue)
         {
             EvaluateConditionAndTryAbort(abort);
         }
@@ -88,7 +88,7 @@ namespace MBT
             switch (type)
             {
                 case Type.Boolean: return !boolReference.isInvalid;
-                case Type.Object: return !objectReference.isInvalid;
+                case Type.GameObject: return !objectReference.isInvalid;
                 case Type.Transform: return !transformReference.isInvalid;
                 default: return true;
             }
@@ -96,7 +96,7 @@ namespace MBT
 
         public enum Type
         {
-            Boolean, Object, Transform
+            Boolean, GameObject, Transform
         }
     }
 }

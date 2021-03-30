@@ -6,23 +6,23 @@ namespace MBT
 {
     // TODO: This should be GameObject
     [AddComponentMenu("")]
-    public class ObjectVariable : Variable<UnityEngine.Object>
+    public class GameObjectVariable : Variable<GameObject>
     {
-        protected override bool ValueEquals(Object val1, Object val2)
+        protected override bool ValueEquals(GameObject val1, GameObject val2)
         {
             return val1 == val2;
         }
     }
 
     [System.Serializable]
-    public class ObjectReference : VariableReference<ObjectVariable, UnityEngine.Object>
+    public class GameObjectReference : VariableReference<GameObjectVariable, GameObject>
     {
-        public ObjectReference(VarRefMode mode = VarRefMode.EnableConstant)
+        public GameObjectReference(VarRefMode mode = VarRefMode.EnableConstant)
         {
             SetMode(mode);
         }
         
-        public UnityEngine.Object Value
+        public GameObject Value
         {
             get
             {

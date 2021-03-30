@@ -42,7 +42,7 @@ namespace MBTEditor
             {
                 EditorGUILayout.PropertyField(boolReferenceProp, new GUIContent("Variable"));
             }
-            else if (typeProp.enumValueIndex == (int)IsSetCondition.Type.Object)
+            else if (typeProp.enumValueIndex == (int)IsSetCondition.Type.GameObject)
             {
                 EditorGUILayout.PropertyField(objectReferenceProp, new GUIContent("Variable"));
             }
