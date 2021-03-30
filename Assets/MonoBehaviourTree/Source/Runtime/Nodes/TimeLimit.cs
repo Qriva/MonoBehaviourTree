@@ -8,10 +8,10 @@ namespace MBT
     [MBTNode("Decorators/Time Limit")]
     public class TimeLimit : Decorator
     {
-        public float time = 5f;
-        private Coroutine coroutine;
-        private WaitForSeconds waitForSeconds;
+        public FloatReference time = new FloatReference(5f);
+        public float randomDeviation = 0f;
         private bool limitReached;
+        private float timeout;
 
         public override void OnAllowInterrupt()
         {
@@ -20,15 +20,10 @@ namespace MBT
 
         public override void OnEnter()
         {
-            // IMPROVEMENT: WaitForSeconds could be initialized in some special node init callback
-            if (waitForSeconds == null)
-            {
-                // Create new WaitForSeconds
-                OnValidate();
-            }
             // Reset block flag
             limitReached = false;
-            coroutine = StartCoroutine(ScheduleTimeLimit());
+            timeout = Time.time + time.Value + ((randomDeviation == 0f)? 0f : Random.Range(-randomDeviation, randomDeviation));
+            this.behaviourTree.onTick += OnBehaviourTreeTick;
         }
 
         public override NodeResult Execute()
@@ -45,27 +40,31 @@ namespace MBT
 
         public override void OnExit()
         {
-            if (coroutine == null)
-            {
-                return;
-            }
-            limitReached = false;
-            StopCoroutine(coroutine);
-            coroutine = null;
+            this.behaviourTree.onTick -= OnBehaviourTreeTick;
         }
 
-        private IEnumerator ScheduleTimeLimit()
+        private void OnBehaviourTreeTick()
         {
-            yield return waitForSeconds;
-            limitReached = true;
-            coroutine = null;
-            TryAbort(Abort.Self);
+            if (timeout <= Time.time)
+            {
+                timeout = float.MaxValue;
+                limitReached = true;
+                TryAbort(Abort.Self);
+            }
         }
 
         void OnValidate()
         {
-            time = Mathf.Max(0f, time);
-            waitForSeconds = new WaitForSeconds(time);
+            if (time.isConstant)
+            {
+                // this is safe to use only when reference is constant
+                time.Value = Mathf.Max(0f, time.GetConstant());
+                randomDeviation = Mathf.Clamp(randomDeviation, 0f, time.GetConstant());
+            }
+            else
+            {
+                randomDeviation = Mathf.Clamp(randomDeviation, 0f, 600f);
+            }
         }
     }
 }
