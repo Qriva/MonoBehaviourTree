@@ -21,6 +21,11 @@ namespace MBT
             SetMode(mode);
         }
 
+        protected override bool isConstantValid
+        {
+            get { return constantValue != null; }
+        }
+
         public Transform Value
         {
             get

@@ -103,12 +103,23 @@ namespace MBT
         }
 
         /// <summary>
-        /// Returns true when variable setup is invalid
+        /// Returns true when constant value is valid
         /// </summary>
         /// <value></value>
+        protected virtual bool isConstantValid
+        {
+            get
+            {
+                return true;
+            }
+        }
+
+        /// <summary>
+        /// Returns true when variable setup is invalid
+        /// </summary>
         public bool isInvalid
         {
-            get { return (!isConstant) && (blackboard == null || string.IsNullOrEmpty(key)); }
+            get { return (isConstant)? !isConstantValid : blackboard == null || string.IsNullOrEmpty(key); }
         }
 
         protected void SetMode(VarRefMode mode)
