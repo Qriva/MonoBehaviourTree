@@ -21,7 +21,12 @@ namespace MBT
         {
             SetMode(mode);
         }
-        
+
+        protected override bool isConstantValid
+        {
+            get { return constantValue != null; }
+        }
+
         public GameObject Value
         {
             get
