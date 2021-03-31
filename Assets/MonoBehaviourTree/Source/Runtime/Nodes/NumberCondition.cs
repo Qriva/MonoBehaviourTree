@@ -114,7 +114,12 @@ namespace MBT
 
         public enum Comparator
         {
-            Equal, GreaterThan, LessThan
+            [InspectorName("==")]
+            Equal, 
+            [InspectorName(">")]
+            GreaterThan, 
+            [InspectorName("<")]
+            LessThan
         }
     }
 }

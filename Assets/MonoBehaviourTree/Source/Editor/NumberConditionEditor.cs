@@ -37,14 +37,14 @@ namespace MBTEditor
 
             EditorGUILayout.PropertyField(titleProp);
             EditorGUILayout.PropertyField(abortProp);
-            EditorGUILayout.Space();
             EditorGUILayout.PropertyField(typeProp);
+            EditorGUILayout.Space();
             // GUILayout.Label("Condition");
             if (typeProp.enumValueIndex == (int)NumberCondition.Type.Float)
             {
                 EditorGUILayout.BeginHorizontal();
                     EditorGUILayout.PropertyField(floatReferenceProp, GUIContent.none);
-                    EditorGUILayout.PropertyField(comparatorProp, GUIContent.none);
+                    EditorGUILayout.PropertyField(comparatorProp, GUIContent.none, GUILayout.MaxWidth(60f));
                     EditorGUILayout.PropertyField(floatReference2Prop, GUIContent.none);
                 EditorGUILayout.EndHorizontal();
             }
@@ -52,7 +52,7 @@ namespace MBTEditor
             {
                 EditorGUILayout.BeginHorizontal();
                     EditorGUILayout.PropertyField(intReferenceProp, GUIContent.none);
-                    EditorGUILayout.PropertyField(comparatorProp, GUIContent.none);
+                    EditorGUILayout.PropertyField(comparatorProp, GUIContent.none, GUILayout.MaxWidth(60f));
                     EditorGUILayout.PropertyField(intReference2Prop, GUIContent.none);
                 EditorGUILayout.EndHorizontal();
             }
