@@ -168,6 +168,8 @@ Determines how long branch can be executed. After given time elapses branch is a
 Calculates distance between two transforms and updates blackboard float variable with the result.
 ### Update Position Service
 Updates blackboard Vector3 variable with position of given source transform.
+### Set Number
+Sets blackboard Float or Int variable.
 ### Wait
 Waits specific amount of time, then returns Success.
 ### Subtree
