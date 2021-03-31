@@ -6,7 +6,7 @@ using MBT;
 
 namespace MBTEditor
 {    
-    public class BehaviourTreeWindow : EditorWindow
+    public class BehaviourTreeWindow : EditorWindow, IHasCustomMenu
     {
         private MonoBehaviourTree currentMBT;
         private Editor currentMBTEditor;
@@ -17,6 +17,7 @@ namespace MBTEditor
         private NodeHandle currentHandle;
         private NodeHandle dropdownHandleCache;
         private bool snapNodesToGrid;
+        private bool locked = false;
 
         private Rect nodeFinderActivatorRect;
         private NodeDropdown nodeDropdown;
@@ -24,6 +25,7 @@ namespace MBTEditor
 
         private readonly float _handleDetectionDistance = 8f;
         private readonly Color _editorBackgroundColor = new Color(0.16f, 0.19f, 0.25f, 1);
+        private GUIStyle _lockButtonStyle;
         private GUIStyle _defaultNodeStyle;
         private GUIStyle _selectedNodeStyle;
         private GUIStyle _successNodeStyle;
@@ -169,7 +171,10 @@ namespace MBTEditor
                 if (Event.current.type == EventType.Repaint) nodeFinderActivatorRect = GUILayoutUtility.GetLastRect();
                 EditorGUI.EndDisabledGroup();
                 GUILayout.FlexibleSpace();
-                GUILayout.Label((-workspaceOffset).ToString());
+                if (currentMBT != null)
+                {
+                    GUILayout.Label(string.Format("{0} {1}", currentMBT.name, -workspaceOffset));
+                }
             EditorGUILayout.EndHorizontal();
         }
 
@@ -190,6 +195,8 @@ namespace MBTEditor
 
         private void OnPlayModeStateChanged(PlayModeStateChange state)
         {
+            // Disable lock when changing state
+            this.locked = false;
             UpdateSelection();
             Repaint();
         }
@@ -202,9 +209,13 @@ namespace MBTEditor
 
         void OnSelectionChange() 
         {
-            // Reset workspace position
-            workspaceOffset = Vector2.zero;
+            MonoBehaviourTree previous = currentMBT;
             UpdateSelection();
+            // Reset workspace position only when selection changed
+            if (previous != currentMBT)
+            {
+                workspaceOffset = Vector2.zero;
+            }
             Repaint();
         }
 
@@ -212,6 +223,27 @@ namespace MBTEditor
         {
             UpdateSelection();
             Repaint();
+        }
+
+        void IHasCustomMenu.AddItemsToMenu(GenericMenu menu)
+        {
+            menu.AddItem(new GUIContent("Lock"), this.locked, () => {
+                this.locked = !this.locked;
+                UpdateSelection();
+            });
+        }
+
+        // http://leahayes.co.uk/2013/04/30/adding-the-little-padlock-button-to-your-editorwindow.html
+        private void ShowButton(Rect position)
+        {
+            // Cache style
+            if (_lockButtonStyle == null) {
+                _lockButtonStyle = "IN LockButton";
+            }
+            // Generic menu button
+            GUI.enabled = currentMBT != null;
+            this.locked = GUI.Toggle(position, this.locked, GUIContent.none, _lockButtonStyle);
+            GUI.enabled = true;
         }
 
         // DeselectNode cannot be called here
@@ -222,22 +254,28 @@ namespace MBTEditor
 
         private void UpdateSelection()
         {
-            if (Selection.activeGameObject == null)
+            MonoBehaviourTree prevMBT = currentMBT;
+            if (!this.locked && Selection.activeGameObject != null)
             {
-                currentMBT = null;
-                DestroyImmediate(currentMBTEditor);
-                currentNodes = new Node[0];
-                return;
+                currentMBT = Selection.activeGameObject.GetComponent<MonoBehaviourTree>();
+                // If new selection is null then restore previous one
+                if (currentMBT == null)
+                {
+                    currentMBT = prevMBT;
+                }
             }
-            // Get tree and list of nodes
-            currentMBT = Selection.activeGameObject.GetComponent<MonoBehaviourTree>();
-            currentMBTEditor = Editor.CreateEditor(currentMBT);
+            if (currentMBT != prevMBT)
+            {
+                // Get new editor for new MBT
+                Editor.CreateCachedEditor(currentMBT, null, ref currentMBTEditor);
+            }
             if (currentMBT != null) {
                 currentNodes = currentMBT.GetComponents<Node>();
             } else {
                 currentNodes = new Node[0];
+                // Unlock when there is nothing to display
+                this.locked = false;
             }
-            
         }
 
         private void ProcessEvents(Event e)
