@@ -14,7 +14,7 @@ namespace MBT
         public FloatReference time = new FloatReference(1f);
 
         private Coroutine coroutine;
-        private float lastExit = float.NegativeInfinity;
+        private float cooldownTime = 0f;
         private bool entered = false;
         public enum AbortTypes
         {
@@ -38,7 +38,7 @@ namespace MBT
             if (node.status == Status.Success || node.status == Status.Failure) {
                 return NodeResult.From(node.status);
             }
-            if (Time.time - lastExit >= time.Value) {
+            if (cooldownTime <= Time.time) {
                 entered = true;
                 return node.runningNodeResult;
             } else {
@@ -52,29 +52,28 @@ namespace MBT
             if (entered)
             {
                 entered = false;
-                lastExit = Time.time;
+                cooldownTime = Time.time + time.Value;
                 // For LowerPriority try to abort after given time
-                if (abort == AbortTypes.LowerPriority && coroutine == null)
+                if (abort == AbortTypes.LowerPriority)
                 {
-                    coroutine = StartCoroutine(ScheduleCooldown());
+                    behaviourTree.onTick += OnBehaviourTreeTick;
                 }
             }
         }
 
         public override void OnDisallowInterrupt()
         {
-            if (coroutine != null)
-            {
-                StopCoroutine(coroutine);
-                coroutine = null;
-            }
+            behaviourTree.onTick -= OnBehaviourTreeTick;
         }
 
-        private IEnumerator ScheduleCooldown()
+        private void OnBehaviourTreeTick()
         {
-            yield return new WaitForSeconds(time.Value);
-            coroutine = null;
-            TryAbort(Abort.LowerPriority);
+            if (cooldownTime <= Time.time)
+            {
+                // Task should be aborted, so there is no need to listen anymore
+                behaviourTree.onTick -= OnBehaviourTreeTick;
+                TryAbort(Abort.LowerPriority);
+            }
         }
     }
 }

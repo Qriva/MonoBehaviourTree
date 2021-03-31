@@ -1,24 +1,25 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace MBT
 {
-    public abstract class Service : Decorator
+    public abstract class CoroutineService : Decorator
     {
         public float interval = 1f;
         public bool callOnEnter = true;
-        /// <summary>
-        /// Time of the next update of the task
-        /// </summary>
-        protected float nextScheduledTime;
+        protected Coroutine coroutine;
+        private WaitForSeconds waitForSeconds;
 
         public override void OnEnter()
         {
-            // Set time of next update
-            nextScheduledTime = Time.time + interval;
-            behaviourTree.onTick += OnBehaviourTreeTick;
+            // IMPROVEMENT: WaitForSeconds could be initialized in some special node init callback
+            if (waitForSeconds == null)
+            {
+                // Create new WaitForSeconds
+                OnValidate();
+            }
+            coroutine = StartCoroutine(ScheduleTask());
             if (callOnEnter)
             {
                 Task();
@@ -41,15 +42,19 @@ namespace MBT
 
         public override void OnExit()
         {
-            behaviourTree.onTick -= OnBehaviourTreeTick;
+            if (coroutine == null)
+            {
+                return;
+            }
+            StopCoroutine(coroutine);
+            coroutine = null;
         }
 
-        private void OnBehaviourTreeTick()
+        private IEnumerator ScheduleTask()
         {
-            if (nextScheduledTime <= Time.time)
+            while(true)
             {
-                // Set time of next update and run the task
-                nextScheduledTime = Time.time + interval;
+                yield return waitForSeconds;
                 Task();
             }
         }
@@ -57,6 +62,7 @@ namespace MBT
         protected virtual void OnValidate()
         {
             interval = Mathf.Max(0f, interval);
+            waitForSeconds = new WaitForSeconds(interval);
         }
     }
 }
