@@ -211,8 +211,12 @@ namespace MBT
             for (int i = 0; i < executionLog.Count; i++)
             {
                 Node node = executionLog[i];
-                node.status = Status.Ready;
+                if (node.status == Status.Running)
+                {
+                    node.OnExit();
+                }
                 node.OnDisallowInterrupt();
+                node.status = Status.Ready;
             }
             executionLog.Clear();
             executionStack.Clear();
