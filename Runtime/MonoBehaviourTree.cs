@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using Unity.Profiling;
 
 namespace MBT
 {
@@ -10,6 +11,8 @@ namespace MBT
     // [RequireComponent(typeof(Blackboard))]
     public class MonoBehaviourTree : MonoBehaviour
     {
+        private static readonly ProfilerMarker _TickMarker = new ProfilerMarker("MonoBehaviourTree.Tick");
+
         [HideInInspector]
         public Node selectedEditorNode;
         public bool repeatOnFinish = false;
@@ -108,6 +111,7 @@ namespace MBT
         /// </summary>
         public void Tick()
         {
+            _TickMarker.Begin();
             // Fire Tick event
             onTick.Invoke();
             
@@ -120,6 +124,7 @@ namespace MBT
             while (executionStack.Count > 0)
             {
                 if (executionLimit == 0) {
+                    _TickMarker.End();
                     return;
                 }
                 executionLimit -= 1;
@@ -134,6 +139,7 @@ namespace MBT
                     Node child = nodeResult.child;
                     if (child == null) {
                         // Stop execution and continue next tick
+                        _TickMarker.End();
                         return;
                     } else {
                         // Add child to execution stack and execute it in next loop
@@ -150,6 +156,7 @@ namespace MBT
                             Debug.Break();
                             UnityEditor.Selection.activeGameObject = this.gameObject;
                             Debug.Log("MBT Breakpoint: " + child.title, this);
+                            _TickMarker.End();
                             return;
                         }
                         #endif
@@ -166,6 +173,7 @@ namespace MBT
             if (repeatOnFinish) {
                 Restart();
             }
+            _TickMarker.End();
         }
 
         /// <summary>
