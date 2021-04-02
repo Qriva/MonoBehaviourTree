@@ -271,6 +271,11 @@ namespace MBTEditor
             }
             if (currentMBT != null) {
                 currentNodes = currentMBT.GetComponents<Node>();
+                // Ensure there is no error when node script is missing
+                for (int i = 0; i < currentNodes.Length; i++)
+                {
+                    currentNodes[i].children.RemoveAll(item => item == null);
+                }
             } else {
                 currentNodes = new Node[0];
                 // Unlock when there is nothing to display
