@@ -314,3 +314,7 @@ During playmode you can preview tree execution flow in editor window. Nodes are 
 When the node is invalid, an error icon will be displayed in the upper right corner. You should not run the tree when there are any errors in connected nodes.
 
 Except that, you can set breakpoints on multiple nodes. Breakpoint will stop execution and pause play mode after node is entered, but before it get executed. Nodes with breakpoint enabled will have red node names.
+
+## Known Issues
+- All nodes should be removed before deleting their script. When the missing script is restored and children of this node were connected to other parent, it will break the tree. Additonaly nodes with missing script remain hidden in the inspector and it is hard to remove them.
+- When tree is turned into prefab, all their instances should not change connections between nodes. Sometimes connections are desynchronized and the tree does not work properly.
