@@ -11,6 +11,8 @@ namespace MBTEditor
     [CustomEditor(typeof(Blackboard))]
     public class BlackboardEditor : Editor
     {
+        const double CONSTANT_REPAINT_INTERVAL = 0.5d;
+
         readonly string[] varOptions = new string[]{"Delete"};
         SerializedProperty variables;
         SerializedProperty masterBlackboardProperty;
@@ -22,6 +24,7 @@ namespace MBTEditor
         Blackboard blackboard;
         GameObject blackboardGameObject;
         bool showVariables = true;
+        private double lastRepaint;
 
         void OnEnable()
         {
@@ -65,6 +68,11 @@ namespace MBTEditor
             }
         }
 
+        public override bool RequiresConstantRepaint()
+        {
+            return Application.isPlaying && EditorApplication.timeSinceStartup > lastRepaint + CONSTANT_REPAINT_INTERVAL;
+        }
+
         private void SetupVariableTypes()
         {
             // Find all types
@@ -81,6 +89,8 @@ namespace MBTEditor
 
         public override void OnInspectorGUI()
         {
+            // Update repaint timer
+            lastRepaint = EditorApplication.timeSinceStartup;
             // Init styles
             if (popupStyle == null) {
                 popupStyle = new GUIStyle(GUI.skin.GetStyle("PaneOptions"));
