@@ -12,6 +12,7 @@ namespace MBT
         protected T val = default(T);
         protected event ChangeListener<T> listeners = delegate {};
 
+        // This is required to correctly compare Unity Objects as generic fields
         protected abstract bool ValueEquals(T val1, T val2);
 
         public void AddListener(ChangeListener<T> listener)
@@ -38,6 +39,12 @@ namespace MBT
                     listeners.Invoke(oldValue, value);
                 }
             }
+        }
+
+        protected virtual void OnValidate()
+        {
+            // Special case: Invoke listeners when there was change in inspector
+            listeners.Invoke(val, val);
         }
     }
 

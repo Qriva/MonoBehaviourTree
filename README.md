@@ -61,11 +61,11 @@ Main component used as hub of behaviour tree.
 
 **Node Inspector** - Inspector of node selected in Behaviour Tree editor window.
 
-### Blacboard component
+### Blackboard component
 Component used to provide and manage observable variables.
 To add variable fill the **Key** text field, select it's type and press "Add" button. Key is used as identifier to get or set variable value, this can be done by VariableReference or blackboard method: ```public T GetVariable<T>(string key)```.
 Blackboard component displays all available variables in list and allows to set initial value for each of them.
-> **Implementation note:** Changing variable value during playmode will not trigger change listeners. Additionally as  variables are components too, displayed values can be not up to date, because unity gui refreshes only when its property change. You can force repaint by hovering pointer above component inspector.
+> **Implementation note:** Changing blackboard variables during playmode triggers change listeners, however old and new value  will be the same in this event, because it's called from  `OnValidate`. Displayed values are refreshed every half second.
 
 **Built In variable types:** Bool, Float, Int, Object, Quaternion, String, Transform, Vector2, Vector3. If you need to add your own custom type read [Custom Variable section](#custom-variable).
 
