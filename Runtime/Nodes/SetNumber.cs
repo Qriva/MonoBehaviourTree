@@ -8,7 +8,8 @@ namespace MBT
     [MBTNode(name = "Tasks/Set Number")]
     public class SetNumber : Leaf
     {
-        public Type type = Type.Float;
+        [SerializeField]
+        private Type type = Type.Float;
         public Operation operation = Operation.Set;
 
         public FloatReference sourceFloat = new FloatReference(0f);
@@ -58,7 +59,7 @@ namespace MBT
             }
         }
 
-        public enum Type
+        private enum Type
         {
             Float, Int
         }
