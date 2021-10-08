@@ -25,7 +25,7 @@ namespace MBT
         {
             if (abort == AbortTypes.LowerPriority)
             {
-                StoreBTState();
+                ObtainTreeSnapshot();
             }
         }
 

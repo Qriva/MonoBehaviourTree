@@ -15,7 +15,7 @@ namespace MBT
 
         public override void OnAllowInterrupt()
         {
-            StoreBTState();
+            ObtainTreeSnapshot();
         }
 
         public override void OnEnter()
