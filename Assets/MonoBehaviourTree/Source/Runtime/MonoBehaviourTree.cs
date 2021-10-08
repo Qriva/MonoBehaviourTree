@@ -74,7 +74,7 @@ namespace MBT
 
             // Revert stack
             executionStack.Clear();
-            executionStack.AddRange(abortingNode.GetStoredBTState());
+            executionStack.AddRange(abortingNode.GetStoredTreeSnapshot());
             // Restore flow of events in nodes after abort
             for (int i = 0; i < executionStack.Count; i++)
             {
@@ -240,9 +240,24 @@ namespace MBT
             executionLog.Add(rootNode);
         }
 
-        internal Node[] GetStack()
+        internal void GetStack(ref Node[] stack)
         {
-            return executionStack.ToArray();
+            // Resize array when size is too small
+            if (executionStack.Count > stack.Length)
+            {
+                // Node should not change priority and position during runtime
+                // It means the array will be resized once during first call of this method
+                Array.Resize<Node>(ref stack, executionStack.Count);
+            }
+#if UNITY_EDITOR
+            // Additional sanity check in case nodes are reordered or changed in editor
+            if (stack.Length > executionStack.Count)
+            {
+                Debug.LogError("Changing order of MBT nodes during runtime might cause errors or unpredictable results.");
+            }
+#endif
+            // Copy elements to provided array
+            executionStack.CopyTo(stack);
         }
 
         public Node GetRoot()

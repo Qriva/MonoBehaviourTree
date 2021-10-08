@@ -33,7 +33,7 @@ namespace MBT
         {
             if (abort != Abort.None)
             {
-                StoreBTState();
+                ObtainTreeSnapshot();
                 switch (type)
                 {
                     case Type.Boolean:

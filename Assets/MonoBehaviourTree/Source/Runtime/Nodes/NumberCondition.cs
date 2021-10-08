@@ -50,7 +50,7 @@ namespace MBT
         {
             if (abort != Abort.None)
             {
-                StoreBTState();
+                ObtainTreeSnapshot();
                 if (type == Type.Float) {
                     floatReference.GetVariable().AddListener(OnVariableChange);
                     if (!floatReference2.isConstant)

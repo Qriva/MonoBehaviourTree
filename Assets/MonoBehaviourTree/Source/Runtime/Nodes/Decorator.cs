@@ -48,21 +48,22 @@ namespace MBT
         /// <summary>
         /// Copy and store current state of execution stack if it was not saved before.
         /// </summary>
-        protected void StoreBTState()
+        protected void ObtainTreeSnapshot()
         {
-            // TODO: GetStack generates garbage when array is copied - this can be improved
+            // Copy stack only when this method is called for the first time
             if (stackState.Length == 0)
             {
-                stackState = behaviourTree.GetStack();
+                behaviourTree.GetStack(ref stackState);
             }
         }
 
+        [System.Obsolete]
         protected void DisposeBTState()
         {
             stackState = new Node[0];
         }
 
-        internal Node[] GetStoredBTState()
+        internal Node[] GetStoredTreeSnapshot()
         {
             return stackState;
         }
