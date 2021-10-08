@@ -36,7 +36,9 @@ namespace MBTEditor
             EditorGUILayout.PropertyField(titleProp);
             EditorGUILayout.PropertyField(typeProp);
             EditorGUILayout.Space();
-            if (typeProp.enumValueIndex == (int)SetNumber.Type.Float)
+
+            const int floatIndex = 0;
+            if (typeProp.enumValueIndex == floatIndex)
             {
                 // Float
                 EditorGUILayout.BeginHorizontal();
