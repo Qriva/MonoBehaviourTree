@@ -154,12 +154,22 @@ Blocks execition until the specified amount of time has elapsed.
 Time starts counting after branch is exited. If abort is enabled, the execution will be moved back to this node after time has elapsed.
 ### Inverter
 Inverts node result. Failure becomes Success and vice versa.
+### Invoke Unity Event
+Triggers Unity Event with one parameter of selected type
 ### Random Chance
 There is fixed chance that node will be executed. Returns Failure if roll is not favorable.
 ### Repeat Until Fail
 Repeats branch as long as Success is returned from child.
 ### Repeater
 Repeat branch specified amount of times or infinitely.
+### Set Boolean
+Sets blackboard bool variable
+### Set Number
+Sets blackboard int or float variable
+### Set Object
+Sets blackboard Transform or GameObject variable
+### Set Vector
+Sets blackboard Vector3 or Vector2 variable
 ### Succeeder
 Always returns Success.
 ### Time Limit
@@ -260,7 +270,7 @@ public class CustomCondition : Condition
         if (abort != Abort.None)
         {
             // This method cache current tree state used later by abort system
-            StoreBTState();
+            ObtainTreeSnapshot();
             // If somePropertyRef is constant, then null exception will be thrown.
             // Use somePropertyRef.isConstant in case you need constant enabled.
             // Constant variable is disabled here, so it is safe to do this.
@@ -272,9 +282,7 @@ public class CustomCondition : Condition
     {
         if (abort != Abort.None)
         {
-            // Optionally reset cached state with DisposeBTState()
-            // This is not required - it will be overridden anyways
-            // DisposeBTState();
+            // Remove listener
             somePropertyRef.GetVariable().RemoveListener(OnVariableChange);
         }
     }
@@ -316,5 +324,5 @@ When the node is invalid, an error icon will be displayed in the upper right cor
 Except that, you can set breakpoints on multiple nodes. Breakpoint will stop execution and pause play mode after node is entered, but before it get executed. Nodes with breakpoint enabled will have red node names.
 
 ## Known Issues
-- All nodes should be removed before deleting their script. When the missing script is restored and children of this node were connected to other parent, it will break the tree. Additonaly nodes with missing script remain hidden in the inspector and it is hard to remove them.
+- All nodes should be removed before deleting their script. When the missing script is restored and children of this node were connected to other parent, it will break the tree. Additionaly nodes with missing script remain hidden in the inspector and it is hard to remove them.
 - When tree is turned into prefab, all their instances should not change connections between nodes. Sometimes connections are desynchronized and the tree does not work properly.
