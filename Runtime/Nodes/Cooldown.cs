@@ -12,10 +12,12 @@ namespace MBT
         public AbortTypes abort = AbortTypes.None;
         [Space]
         public FloatReference time = new FloatReference(1f);
-
-        private Coroutine coroutine;
+        [Tooltip("When set to true, there will be no cooldown when child node returns failure")]
+        public bool resetOnChildFailure = false;
         private float cooldownTime = 0f;
         private bool entered = false;
+        private bool childFailed = false;
+        
         public enum AbortTypes
         {
             None, LowerPriority
@@ -32,11 +34,16 @@ namespace MBT
         public override NodeResult Execute()
         {
             Node node = GetChild();
-            if(node == null) {
+            if (node == null) {
                 return NodeResult.failure;
             }
-            if (node.status == Status.Success || node.status == Status.Failure) {
-                return NodeResult.From(node.status);
+            if (node.status == Status.Success) {
+                return NodeResult.success;
+            }
+            if (node.status == Status.Failure) {
+                // If reset option is enabled flag will be raised and set true
+                childFailed = resetOnChildFailure;
+                return NodeResult.failure;
             }
             if (cooldownTime <= Time.time) {
                 entered = true;
@@ -48,10 +55,10 @@ namespace MBT
 
         public override void OnExit()
         {
-            // Record exit time when there was no failure
-            if (entered)
+            // Setup cooldown and event when child was entered
+            // Check reset option too
+            if (entered && !childFailed)
             {
-                entered = false;
                 cooldownTime = Time.time + time.Value;
                 // For LowerPriority try to abort after given time
                 if (abort == AbortTypes.LowerPriority)
@@ -59,6 +66,9 @@ namespace MBT
                     behaviourTree.onTick += OnBehaviourTreeTick;
                 }
             }
+            // Reset flags
+            entered = false;
+            childFailed = false;
         }
 
         public override void OnDisallowInterrupt()
