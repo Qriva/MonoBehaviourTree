@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEditor;
 using System;
 using System.Linq;
+using System.Reflection;
 using MBT;
 
 namespace MBTEditor
@@ -75,16 +76,22 @@ namespace MBTEditor
 
         private void SetupVariableTypes()
         {
-            // Find all types
-            IEnumerable<Type> enumerable = System.Reflection.Assembly.GetAssembly(typeof(BlackboardVariable)).GetTypes()
-            .Where(myType => myType.IsClass && !myType.IsAbstract && myType.IsSubclassOf(typeof(BlackboardVariable)));
+            List<Type> types = new List<Type>();
             List<string> names = new List<string>();
-            foreach (Type type in enumerable)
+            
+            // Find all types
+            foreach (Assembly assembly in AppDomain.CurrentDomain.GetAssemblies())
             {
-                names.Add(type.Name);
+                IEnumerable<Type> enumerable = assembly.GetTypes()
+                .Where(myType => myType.IsClass && !myType.IsAbstract && myType.IsSubclassOf(typeof(BlackboardVariable)));
+                foreach (Type type in enumerable)
+                {
+                    names.Add(type.Name);
+                    types.Add(type);
+                }
             }
             variableTypesNames = names.ToArray();
-            variableTypes = enumerable.ToArray();
+            variableTypes = types.ToArray();
         }
 
         public override void OnInspectorGUI()

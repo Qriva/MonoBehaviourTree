@@ -37,17 +37,25 @@ namespace MBTEditor
         protected override AdvancedDropdownItem BuildRoot()
         {
             var root = new ClassTypeDropdownItem("Nodes");
+
+            // List for all found subclasses
+            List<Type> results = new List<Type>();
             
-            // Find all subclasses of Node
-            IEnumerable<Type> enumerable = System.Reflection.Assembly.GetAssembly(typeof(Node)).GetTypes()
-            .Where(myType => myType.IsClass && !myType.IsAbstract && myType.IsSubclassOf(typeof(Node)));
+            // Search all assemblies
+            foreach (Assembly assembly in AppDomain.CurrentDomain.GetAssemblies())
+            {
+                // Find all subclasses of Node
+                IEnumerable<Type> enumerable = assembly.GetTypes()
+                .Where(myType => myType.IsClass && !myType.IsAbstract && myType.IsSubclassOf(typeof(Node)));
+                results.AddRange(enumerable);
+            }
 
             // Keep track of all paths to correctly build tree later
             Dictionary<string, ClassTypeDropdownItem> nodePathsDictionary = new Dictionary<string, ClassTypeDropdownItem>();
             nodePathsDictionary.Add("", root);
             // Create list of items
             List<ClassTypeDropdownItem> items = new List<ClassTypeDropdownItem>();
-            foreach (Type type in enumerable)
+            foreach (Type type in results)
             {
                 if(type.IsDefined(typeof(MBTNode), false))
                 {
@@ -85,7 +93,7 @@ namespace MBTEditor
                 nodePathsDictionary[items[i].path].AddChild(items[i]);
             }
 
-            // Remove root to avoid infinite root foler loop
+            // Remove root to avoid infinite root folder loop
             nodePathsDictionary.Remove("");
             List<ClassTypeDropdownItem> parentNodes = nodePathsDictionary.Values.ToList();
             parentNodes.Sort((x, y) => {
