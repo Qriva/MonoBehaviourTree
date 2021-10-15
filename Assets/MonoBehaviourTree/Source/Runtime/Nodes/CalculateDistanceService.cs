@@ -8,6 +8,7 @@ namespace MBT
     [MBTNode("Services/Calculate Distance Service")]
     public class CalculateDistanceService : Service
     {
+        [Space]
         public TransformReference transform1;
         public TransformReference transform2;
         public FloatReference variable = new FloatReference(VarRefMode.DisableConstant);
