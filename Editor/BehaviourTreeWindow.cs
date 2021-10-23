@@ -601,6 +601,7 @@ namespace MBTEditor
         {
             GenericMenu genericMenu = new GenericMenu();
             genericMenu.AddItem(new GUIContent("Breakpoint"), node.breakpoint, () => ToggleNodeBreakpoint(node));
+            genericMenu.AddItem(new GUIContent("Duplicate"), false, () => DuplicateNode(node));
             genericMenu.AddItem(new GUIContent("Disconnect Children"), false, () => DisconnectNodeChildren(node)); 
             genericMenu.AddItem(new GUIContent("Disconnect Parent"), false, () => DisconnectNodeParent(node)); 
             genericMenu.AddItem(new GUIContent("Delete Node"), false, () => DeleteNode(node)); 
@@ -669,6 +670,32 @@ namespace MBTEditor
                 Undo.RecordObject(node.children[i], "Disconnect Children");
                 node.RemoveChild(node.children[i]);
             }
+        }
+
+        private void DuplicateNode(Node contextNode)
+        {
+            // NOTE: This code is mostly copied from AddNode()
+            // Check if there is MBT
+            if (currentMBT == null) {
+                return;
+            }
+            System.Type classType = contextNode.GetType();
+            // Allow only one root
+            if (classType.IsAssignableFrom(typeof(Root)) && currentMBT.GetComponent<Root>() != null) {
+                Debug.LogWarning("You can not add more than one Root node.");
+                return;
+            }
+            Undo.SetCurrentGroupName("Duplicate Node");
+            Node node = (Node)Undo.AddComponent(currentMBT.gameObject, classType);
+            // Copy values
+            EditorUtility.CopySerialized(contextNode, node);
+            // Set flags anyway to ensure it is not visible in inspector
+            node.hideFlags = HideFlags.HideInInspector;
+            node.rect.position = contextNode.rect.position + new Vector2(20, 20);
+            // Remove all connections or graph gonna break
+            node.parent = null;
+            node.children.Clear();
+            UpdateSelection();
         }
 
         /// It is quite unique, but https://stackoverflow.com/questions/2920696/how-generate-unique-integers-based-on-guids
