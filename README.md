@@ -1,4 +1,7 @@
 # MonoBehaviourTree — Simple behaviour tree for Unity
+<p align="center">
+  <img src="readme-image.png" alt="Screenshot"/>
+</p>
 This project is simple event driven behaviour tree based on Unity engine component system. This asset comes with minimal node library and tree visual editor.
 
 **Important:** This is not fully fledged visual scripting tool. Package has its own visual editor, however requires you to implement your own nodes.
@@ -45,8 +48,8 @@ Most of nodes has additional properties that you can change. To do this select t
 
 ### Editor Window Features
 Right click on empty space to create new node. To connect nodes click on in/out handler (black dot on top and bottom of node), then drag and drop it above another node. In case node cannot have more than one child (decorator) the connection will be overridden by the new one.
-To delete or disconnect nodes right click on node to open context menu and select the appropriate option.
-Use left mouse button to drag workspace or nodes. You can drag whole nodes branch when CTRL key is pressed.
+To delete, duplicate or disconnect nodes right click on node to open context menu and select the appropriate option.
+Use left mouse button to drag workspace or nodes. You can drag whole branch of nodes when CTRL key is pressed.
 
 ## Component Reference
 
@@ -108,7 +111,7 @@ float value = floatRef.Value;
 
 ### Custom Variable
 If built in variables are not enough, you can create your own.
-To create new Variable and VariableReference you must extend Variable class and VariableReference class. Variable inheriths MonoBehaviour, so to work properly it must by placed in file of the same name as your custom type. VariableReference is normal serializable class and can be placed in the same file. To disallow adding variable component manually add ```[AddComponentMenu("")]``` attribute. 
+To create new Variable and VariableReference you must extend Variable class and VariableReference class. Variable inheriths MonoBehaviour, so to work properly it must by placed in file of the same name as your custom type. VariableReference is normal serializable class and can be placed in the same file. Add ```[AddComponentMenu("")]``` attribute to disallow adding variable component manually. 
 
 Any variable must implement ValueEquals method which is used to detect change of value. This mechanism allows to correctly compare Unity objects in generic class, avoid boxing, plus gives the way to implement your own change detection logic when needed.
 ```csharp
@@ -159,9 +162,9 @@ Triggers Unity Event with one parameter of selected type
 ### Random Chance
 There is fixed chance that node will be executed. Returns Failure if roll is not favorable.
 ### Repeat Until Fail
-Repeats branch as long as Success is returned from child.
+Repeats branch as long as Success is returned from the child.
 ### Repeater
-Repeat branch specified amount of times or infinitely.
+Repeats branch specified amount of times or infinitely.
 ### Set Boolean
 Sets blackboard bool variable
 ### Set Number
