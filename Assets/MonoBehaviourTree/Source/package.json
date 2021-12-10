@@ -1,0 +1,29 @@
+{
+    "name": "com.qriva.monobehaviourtree",
+    "version": "1.0.0",
+    "displayName": "MonoBehaviourTree",
+    "description": "Simple event driven behaviour tree based on Unity engine component system",
+    "unity": "2019.3",
+    "unityRelease": "14f1",
+    "documentationUrl": "https://github.com/Qriva/MonoBehaviourTree/blob/master/README.md",
+    "licensesUrl": "https://github.com/Qriva/MonoBehaviourTree/blob/master/LICENSE",
+    "keywords": [
+      "ai",
+      "behaviour-tree",
+      "state-machine",
+      "flow",
+      "behaviour"
+    ],
+    "author": {
+      "name": "Qriva",
+      "email": "griva199@gmail.com",
+      "url": "https://github.com/Qriva"
+    },
+    "samples": [
+      {
+          "displayName": "Demo Scenes URP",
+          "description": "Contains simple examples of usage",
+          "path": "Samples~/Demo URP"
+      }
+  ]
+}
