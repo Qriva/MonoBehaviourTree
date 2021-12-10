@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -383,14 +383,14 @@ MonoBehaviour:
   runtimePriority: 0
   breakpoint: 0
   destination:
+    useConstant: 0
+    mode: 0
     blackboard: {fileID: 632508378}
     key: target
     constantValue: {fileID: 0}
-    useConstant: 0
-    mode: 0
   agent: {fileID: 1004612863}
   stopDistance: 2
-  updateTime: 0.5
+  updateInterval: 0.5
 --- !u!114 &632508375
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -442,8 +442,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b25af8627659c6949b60949c3aa8d91d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selectedEditorNode: {fileID: 0}
-  description: Patrolling enemy
+  selectedEditorNode: {fileID: 632508374}
   repeatOnFinish: 1
   maxExecutionsPerTick: 1000
   parent: {fileID: 0}
@@ -464,6 +463,7 @@ MonoBehaviour:
   - {fileID: 632508387}
   - {fileID: 632508384}
   - {fileID: 632508391}
+  masterBlackboard: {fileID: 0}
 --- !u!114 &632508379
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -561,23 +561,23 @@ MonoBehaviour:
   invert: 0
   type: 2
   boolReference:
+    useConstant: 0
+    mode: 1
     blackboard: {fileID: 0}
     key: 
     constantValue: 0
+  objectReference:
     useConstant: 0
     mode: 1
-  objectReference:
     blackboard: {fileID: 0}
     key: 
     constantValue: {fileID: 0}
+  transformReference:
     useConstant: 0
     mode: 1
-  transformReference:
     blackboard: {fileID: 632508378}
     key: target
     constantValue: {fileID: 0}
-    useConstant: 0
-    mode: 1
 --- !u!114 &632508383
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -606,30 +606,30 @@ MonoBehaviour:
   abort: 0
   type: 0
   floatReference:
+    useConstant: 0
+    mode: 1
     blackboard: {fileID: 632508378}
     key: distanceToTarget
     constantValue: 0
+  intReference:
     useConstant: 0
     mode: 1
-  intReference:
     blackboard: {fileID: 0}
     key: 
     constantValue: 0
-    useConstant: 0
-    mode: 1
   comparator: 1
   floatReference2:
+    useConstant: 1
+    mode: 0
     blackboard: {fileID: 0}
     key: 
     constantValue: 2
+  intReference2:
     useConstant: 1
     mode: 0
-  intReference2:
     blackboard: {fileID: 0}
     key: 
     constantValue: 0
-    useConstant: 1
-    mode: 0
 --- !u!114 &632508384
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -670,25 +670,26 @@ MonoBehaviour:
   runtimePriority: 0
   breakpoint: 0
   interval: 1
+  randomDeviation: 0
   callOnEnter: 1
   transform1:
+    useConstant: 0
+    mode: 0
     blackboard: {fileID: 632508378}
     key: target
     constantValue: {fileID: 0}
+  transform2:
     useConstant: 0
     mode: 0
-  transform2:
     blackboard: {fileID: 632508378}
     key: self
     constantValue: {fileID: 0}
-    useConstant: 0
-    mode: 0
   variable:
+    useConstant: 0
+    mode: 1
     blackboard: {fileID: 632508378}
     key: distanceToTarget
     constantValue: 0
-    useConstant: 0
-    mode: 1
 --- !u!114 &632508387
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -755,11 +756,12 @@ MonoBehaviour:
   runtimePriority: 0
   breakpoint: 0
   time:
+    useConstant: 1
+    mode: 0
     blackboard: {fileID: 0}
     key: 
     constantValue: 1
-    useConstant: 1
-    mode: 0
+  randomDeviation: 0
   continueOnRestart: 0
 --- !u!114 &632508390
 MonoBehaviour:
@@ -786,11 +788,11 @@ MonoBehaviour:
   runtimePriority: 0
   breakpoint: 0
   variableToSet:
+    useConstant: 0
+    mode: 0
     blackboard: {fileID: 632508378}
     key: patrolTarget
     constantValue: {fileID: 0}
-    useConstant: 0
-    mode: 0
   waypoints:
   - {fileID: 1725448484}
   - {fileID: 1895652040}
@@ -834,14 +836,14 @@ MonoBehaviour:
   runtimePriority: 0
   breakpoint: 0
   destination:
+    useConstant: 0
+    mode: 0
     blackboard: {fileID: 632508378}
     key: patrolTarget
     constantValue: {fileID: 0}
-    useConstant: 0
-    mode: 0
   agent: {fileID: 1004612863}
   stopDistance: 1
-  updateTime: 3
+  updateInterval: 1
 --- !u!114 &632508393
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -868,17 +870,18 @@ MonoBehaviour:
   runtimePriority: 0
   breakpoint: 0
   interval: 1
+  randomDeviation: 0
   callOnEnter: 1
   mask:
     serializedVersion: 2
     m_Bits: 16
   range: 10
   variableToSet:
+    useConstant: 0
+    mode: 0
     blackboard: {fileID: 632508378}
     key: target
     constantValue: {fileID: 0}
-    useConstant: 0
-    mode: 0
 --- !u!1 &646624727
 GameObject:
   m_ObjectHideFlags: 0
@@ -2253,11 +2256,11 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Enemy is patrolling designated zone, if player enter his view range, he
-    is going to chase him.
+  m_Text: 'The enemy is patrolling designated zone. When player moves into his line
+    of sight, the enemy will chase him.
 
-    When player leaves his view range, bot stops and
-    continues patrolling.'
+    If the player escapes its range, the
+    bot will resume patrolling. '
 --- !u!224 &4284888950709544718
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2335,7 +2338,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Example2
+  m_Text: 'Example 2
 
     Patrolling Enemy'
 --- !u!224 &4284888950810326138

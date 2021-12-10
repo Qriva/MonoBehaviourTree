@@ -20,6 +20,7 @@ namespace MBTExample
             {
                 return NodeResult.failure;
             }
+            // Ping-pong between waypoints
             if (direction == 1 && index == waypoints.Length-1)
             {
                 direction = -1;
@@ -30,6 +31,7 @@ namespace MBTExample
             }
             index += direction;
             
+            // Set blackboard variable with need waypoint (position)
             variableToSet.Value = waypoints[index];
             return NodeResult.success;
         }

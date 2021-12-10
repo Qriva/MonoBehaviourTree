@@ -13,7 +13,8 @@ namespace MBTExample
         public TransformReference destination;
         public NavMeshAgent agent;
         public float stopDistance = 2f;
-        public float updateTime = 1f;
+        [Tooltip("How often target position should be updated")]
+        public float updateInterval = 1f;
         private float time = 0;
 
         public override void OnEnter()
@@ -26,8 +27,10 @@ namespace MBTExample
         public override NodeResult Execute()
         {
             time += Time.deltaTime;
-            if (time > updateTime)
+            // Update destination every given interval
+            if (time > updateInterval)
             {
+                // Reset time and update destination
                 time = 0;
                 agent.SetDestination(destination.Value.position);
             }
@@ -41,7 +44,7 @@ namespace MBTExample
             {
                 return NodeResult.success;
             }
-            // Check if there is any path
+            // Check if there is any path (if not pending, it should be set)
             if (agent.hasPath)
             {
                 return NodeResult.running;

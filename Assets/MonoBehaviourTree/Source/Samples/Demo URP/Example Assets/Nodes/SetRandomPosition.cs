@@ -14,6 +14,7 @@ namespace MBTExample
 
         public override NodeResult Execute()
         {
+            // Random values per component inside bounds
             blackboardVariable.Value = new Vector3(
                 Random.Range(bounds.min.x, bounds.max.x),
                 Random.Range(bounds.min.y, bounds.max.y),
