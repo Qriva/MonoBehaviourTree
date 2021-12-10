@@ -2,7 +2,7 @@
     "name": "com.qriva.monobehaviourtree",
     "version": "1.0.0",
     "displayName": "MonoBehaviourTree",
-    "description": "Simple event driven behaviour tree based on Unity engine component system",
+    "description": "Simple event driven behaviour tree based on Unity engine component system.",
     "unity": "2019.3",
     "unityRelease": "14f1",
     "documentationUrl": "https://github.com/Qriva/MonoBehaviourTree/blob/master/README.md",
