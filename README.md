@@ -33,7 +33,7 @@ There are four abort types:
 
 >Execution order (priority) of nodes with common ancestor is defined by position on X axis, nodes to the left has higher priority.
 
-Aborts can be performed only by ```Decorator``` nodes. See example abort implementation in [Decorator](###custom-decorator--condition) section.
+Aborts can be performed only by ```Decorator``` nodes. See example abort implementation in [Decorator](#custom-decorator--condition) section.
 
 ## Basic Usage
 The main core of behaviour tree is **MonoBehaviourTree** component. It contains most of tree state during runtime. It is important to note, that tree does not run automatically and must be updated by other script. This design gives you possibility to tick the tree in Update, FixedUpdate or custom interval. However, most of the time Update event will be used, so you can use component **MBT Executor** to do that.
