@@ -158,12 +158,20 @@ namespace MBTEditor
                     // Store this setting
                     EditorPrefs.SetBool("snapNodesToGrid", snapNodesToGrid);
                 }
-                if (GUILayout.Button("Auto Layout", EditorStyles.toolbarButton)){
-                    Debug.Log("Auto layout is not implemented.");
-                }
+                // TODO: Autolayout
+                // if (GUILayout.Button("Auto Layout", EditorStyles.toolbarButton)){
+                //     Debug.Log("Auto layout is not implemented.");
+                // }
                 EditorGUILayout.Space();
                 if (GUILayout.Button("Focus Root", EditorStyles.toolbarButton)){
                     FocusRoot();
+                }
+                if (GUILayout.Button("Select In Hierarchy", EditorStyles.toolbarButton)){
+                    if (currentMBT != null)
+                    {
+                        Selection.activeGameObject = currentMBT.gameObject;
+                        EditorGUIUtility.PingObject(currentMBT.gameObject);
+                    }
                 }
                 if (GUILayout.Button("Add Node", EditorStyles.toolbarDropDown)){
                     OpenNodeFinder(nodeFinderActivatorRect, false);
