@@ -1,8 +1,6 @@
 # MonoBehaviourTree — Simple behaviour tree for Unity
-<p align="center">
-  <img src="readme-image.png" alt="Screenshot"/>
-</p>
-This project is simple event driven behaviour tree based on Unity engine component system. This asset comes with minimal node library and tree visual editor.
+
+This project is simple event driven behaviour tree based on Unity engine component system. This asset comes with minimal node library and tree visual editor. [Online version of this readme](https://github.com/Qriva/MonoBehaviourTree/blob/master/README.md)
 
 **Important:** This is not fully fledged visual scripting tool. Package has its own visual editor, however requires you to implement your own nodes.
 
@@ -10,13 +8,13 @@ This project is simple event driven behaviour tree based on Unity engine compone
 Contribution in any form is very welcome. Bugs, feature requests or feedback can be reported in form of Issues.
 
 ## Getting started
-The latest version can be installed via [package manager](https://docs.unity3d.com/Manual/upm-ui-giturl.html) using following git URL: ```https://github.com/Qriva/MonoBehaviourTree.git#upm``` 
-<br>Alternatively you can copy the `Assets/MonoBehaviourTree` folder to your project.
+The latest version can be installed via [package manager](https://docs.unity3d.com/Manual/upm-ui-giturl.html) using following git URL:<br> ```https://github.com/Qriva/MonoBehaviourTree.git#upm``` 
+<br>Alternatively you can copy the `Assets/MonoBehaviourTree` folder to your project or download from [Unity Asset Store](https://assetstore.unity.com/packages/slug/213452).
 
 Examples of usage are available in package manager or in folder **Samples** containing demo scenes. If you copy assets manually you might want to delete `Samples` directory to get rid of redundant files.
 
 This documentation assumes you have basic knowledge about behaviour trees. If you don't have it, you should check some online resources like this 
-[Gamasutra article](https://www.gamasutra.com/blogs/ChrisSimpson/20140717/221339/Behavior_trees_for_AI_How_they_work.php)
+[Game Developer article](https://www.gamedeveloper.com/programming/behavior-trees-for-ai-how-they-work)
 or [Unreal Engine documentation](https://docs.unrealengine.com/en-US/Engine/ArtificialIntelligence/BehaviorTrees/BehaviorTreesOverview/index.html).
 
 ## Event Driven Behaviour Tree Overview

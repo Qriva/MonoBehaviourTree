@@ -11,12 +11,12 @@ Contribution in any form is very welcome. Bugs, feature requests or feedback can
 
 ## Getting started
 The latest version can be installed via [package manager](https://docs.unity3d.com/Manual/upm-ui-giturl.html) using following git URL:<br> ```https://github.com/Qriva/MonoBehaviourTree.git#upm``` 
-<br>Alternatively you can copy the `Assets/MonoBehaviourTree` folder to your project.
+<br>Alternatively you can copy the `Assets/MonoBehaviourTree` folder to your project or download from [Unity Asset Store](https://assetstore.unity.com/packages/slug/213452).
 
 Examples of usage are available in package manager or in folder **Samples** containing demo scenes. If you copy assets manually you might want to delete `Samples` directory to get rid of redundant files.
 
 This documentation assumes you have basic knowledge about behaviour trees. If you don't have it, you should check some online resources like this 
-[Gamasutra article](https://www.gamasutra.com/blogs/ChrisSimpson/20140717/221339/Behavior_trees_for_AI_How_they_work.php)
+[Game Developer article](https://www.gamedeveloper.com/programming/behavior-trees-for-ai-how-they-work)
 or [Unreal Engine documentation](https://docs.unrealengine.com/en-US/Engine/ArtificialIntelligence/BehaviorTrees/BehaviorTreesOverview/index.html).
 
 ## Event Driven Behaviour Tree Overview
