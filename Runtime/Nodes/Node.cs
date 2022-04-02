@@ -20,8 +20,8 @@ namespace MBT
         public Status status = Status.Ready;
         [HideInInspector]
         public MonoBehaviourTree behaviourTree;
-        [HideInInspector]
-        public NodeResult runningNodeResult;
+        // [HideInInspector]
+        public NodeResult runningNodeResult { get; internal set;}
         [HideInInspector]
         public int runtimePriority = 0;
         [HideInInspector]
