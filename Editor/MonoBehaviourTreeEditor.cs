@@ -53,12 +53,6 @@ namespace MBTEditor
 
         public override void OnInspectorGUI()
         {
-            // Destroy previous editor
-            if (nodeEditor != null)
-            {
-                DestroyImmediate(nodeEditor);
-            }
-
             InitStyle();
 
             DrawDefaultInspector();
@@ -81,7 +75,7 @@ namespace MBTEditor
                         GUILayout.Space(3);
                         EditorGUILayout.BeginVertical();
                             GUILayout.Space(5);
-                            nodeEditor = Editor.CreateEditor(mbt.selectedEditorNode);
+                            Editor.CreateCachedEditor(mbt.selectedEditorNode, null, ref nodeEditor);
                             nodeEditor.OnInspectorGUI();
                             GUILayout.Space(5);
                         EditorGUILayout.EndVertical();
