@@ -150,6 +150,8 @@ Entry node of behaviour tree.
 Executes children from left to right as long as each subsequent child returns success. Returns success when all children succeeded. Failure if one of them failed. When Random option is enabled, then execution goes in random order.
 ### Selector
 Executes children from left to right until one of them return failure. Returns success if any children succeed. Failure if all of them failed. When Random option is enabled, then execution goes in random order.
+### Parallel
+Runs children simultaneously. Returns success when all children succeeded. Return fail if one of them fails. 
 ### Is Set Condition
 Checks if blackboard variable is set. Node supports Bollean, Object and Transform variables. Selecting Invert option will produce "If not set" effect.
 ### Number Condition
