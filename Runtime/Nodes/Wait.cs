@@ -23,7 +23,6 @@ namespace MBT
 
         public override NodeResult Execute()
         {
-            timer += Time.deltaTime;
             if (timer >= time.Value) {
                 // Reset timer in case continueOnRestart option is active
                 if (continueOnRestart)
@@ -32,6 +31,7 @@ namespace MBT
                 }
                 return NodeResult.success;
             }
+            timer += this.DeltaTime;
             return NodeResult.running;
         }
 
