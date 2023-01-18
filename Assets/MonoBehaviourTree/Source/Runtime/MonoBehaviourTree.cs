@@ -22,7 +22,7 @@ namespace MBT
         /// <summary>
         /// Event triggered when tree is about to be updated
         /// </summary>
-        public event UnityAction onTick = delegate {};
+        public event UnityAction onTick;
         private Root rootNode;
         private List<Node> executionStack;
         private List<Node> executionLog;
@@ -114,7 +114,7 @@ namespace MBT
         {
             _TickMarker.Begin();
             // Fire Tick event
-            onTick.Invoke();
+            onTick?.Invoke();
             
             // Check if there are any interrupting nodes
             EvaluateInterruptions();
