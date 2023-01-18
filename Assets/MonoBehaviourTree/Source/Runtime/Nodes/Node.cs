@@ -32,7 +32,16 @@ namespace MBT
             get { return _selected; }
             set { _selected = value; }
         }
-        
+
+        /// <summary>
+        /// Time of last tick retrieved from Time.time
+        /// </summary>
+        public float LastTick => behaviourTree.LastTick;
+        /// <summary>
+        /// The interval in seconds from the last tick of behaviour tree.
+        /// </summary>
+        public float DeltaTime => Time.time - behaviourTree.LastTick;
+
         public virtual void OnAllowInterrupt() {}
         public virtual void OnEnter() {}
         public abstract NodeResult Execute();
