@@ -67,7 +67,7 @@ namespace MBTEditor
             MonoBehaviourTree mbt = ((MonoBehaviourTree) target);
             bool renderNodeInspector = mbt.selectedEditorNode != null;
 
-            EditorGUILayout.BeginFoldoutHeaderGroup(renderNodeInspector, "Node inspector", foldStyle);
+            EditorGUILayout.Foldout(renderNodeInspector, "Node inspector", foldStyle);
                 EditorGUILayout.Space(1);
                 if (renderNodeInspector)
                 {
@@ -81,7 +81,6 @@ namespace MBTEditor
                         EditorGUILayout.EndVertical();
                     EditorGUILayout.EndHorizontal();
                 }
-            EditorGUILayout.EndFoldoutHeaderGroup();
             EditorGUILayout.Space();
         }
     }
