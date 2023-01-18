@@ -27,9 +27,10 @@ namespace MBT
         private List<Node> executionStack;
         private List<Node> executionLog;
         private List<Decorator> interruptingNodes = new List<Decorator>();
-        
+        public float LastTick { get; private set; }
+
         void Awake()
-        {   
+        {
             rootNode = GetComponent<Root>();
             if (rootNode == null) {
                 Debug.LogWarning("Missing Root node in behaviour tree.", this);
@@ -124,6 +125,7 @@ namespace MBT
             while (executionStack.Count > 0)
             {
                 if (executionLimit == 0) {
+                    LastTick = Time.time;
                     _TickMarker.End();
                     return;
                 }
@@ -139,6 +141,7 @@ namespace MBT
                     Node child = nodeResult.child;
                     if (child == null) {
                         // Stop execution and continue next tick
+                        LastTick = Time.time;
                         _TickMarker.End();
                         return;
                     } else {
@@ -156,6 +159,7 @@ namespace MBT
                             Debug.Break();
                             UnityEditor.Selection.activeGameObject = this.gameObject;
                             Debug.Log("MBT Breakpoint: " + child.title, this);
+                            LastTick = Time.time;
                             _TickMarker.End();
                             return;
                         }
@@ -173,6 +177,8 @@ namespace MBT
             if (repeatOnFinish) {
                 Restart();
             }
+
+            LastTick = Time.time;
             _TickMarker.End();
         }
 
