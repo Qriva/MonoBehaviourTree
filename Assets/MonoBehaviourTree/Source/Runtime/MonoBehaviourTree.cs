@@ -28,7 +28,7 @@ namespace MBT
         private List<Node> executionStack;
         private List<Node> executionLog;
         private List<Decorator> interruptingNodes = new List<Decorator>();
-        public float LastTick { get; private set; }
+        public float LastTick { get; internal set; }
 
         void Awake()
         {

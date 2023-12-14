@@ -35,6 +35,8 @@ namespace MBT
                 if (child.status == Status.Success || child.status == Status.Failure) {
                     return NodeResult.From(child.status);
                 }
+                // Set last tick to current time because execution just started (this reduces first deltaTime to 0)
+                behaviourTree.LastTick = Time.time;
                 return child.runningNodeResult;
             }
             return NodeResult.failure;
