@@ -36,6 +36,22 @@ namespace MBT
             return null;
         }
 
+        protected bool TryGetChild(out Node node)
+        {
+            if (children.Count > 0)
+            {
+                node = children[0];
+                return true;
+            }
+            node = null;
+            return false;
+        }
+
+        protected bool HasChild()
+        {
+            return children.Count > 0;
+        }
+
         public override void RemoveChild(Node node)
         {
             if (children.Contains(node))
