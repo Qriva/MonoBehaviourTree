@@ -1561,6 +1561,7 @@ GameObject:
   - component: {fileID: 1794967353}
   - component: {fileID: 1794967358}
   - component: {fileID: 1794967357}
+  - component: {fileID: 1794967360}
   m_Layer: 0
   m_Name: GameObject
   m_TagString: Untagged
@@ -1595,7 +1596,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   selectedEditorNode: {fileID: 0}
   repeatOnFinish: 0
-  maxExecutionsPerTick: 1000
+  maxExecutionsPerTick: 1
   parent: {fileID: 0}
 --- !u!4 &1794967346
 Transform:
@@ -1626,8 +1627,8 @@ MonoBehaviour:
   title: Wait
   rect:
     serializedVersion: 2
-    x: 530
-    y: 348
+    x: 640
+    y: 420
     width: 200
     height: 45
   parent: {fileID: 1794967351}
@@ -1658,8 +1659,8 @@ MonoBehaviour:
   title: Wait
   rect:
     serializedVersion: 2
-    x: 414
-    y: 416
+    x: 420
+    y: 420
     width: 200
     height: 45
   parent: {fileID: 1794967351}
@@ -1690,8 +1691,8 @@ MonoBehaviour:
   title: Wait
   rect:
     serializedVersion: 2
-    x: 201
-    y: 417
+    x: 200
+    y: 420
     width: 200
     height: 45
   parent: {fileID: 1794967351}
@@ -1722,8 +1723,8 @@ MonoBehaviour:
   title: Wait
   rect:
     serializedVersion: 2
-    x: 20
-    y: 360
+    x: -20
+    y: 420
     width: 200
     height: 45
   parent: {fileID: 1794967351}
@@ -1736,7 +1737,7 @@ MonoBehaviour:
     mode: 0
     blackboard: {fileID: 0}
     key: 
-    constantValue: 100
+    constantValue: 10
   randomDeviation: 0
   continueOnRestart: 0
 --- !u!114 &1794967351
@@ -1784,7 +1785,7 @@ MonoBehaviour:
   rect:
     serializedVersion: 2
     x: 300
-    y: 142
+    y: 160
     width: 200
     height: 45
   parent: {fileID: 0}
@@ -1839,6 +1840,7 @@ MonoBehaviour:
   - {fileID: 1794967353}
   - {fileID: 1794967358}
   - {fileID: 1794967357}
+  - {fileID: 1794967360}
   masterBlackboard: {fileID: 0}
 --- !u!114 &1794967356
 MonoBehaviour:
@@ -1882,3 +1884,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   key: target
   val: {fileID: 813137708}
+--- !u!114 &1794967360
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1794967343}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4be6860a83fe93e4bbd689336d96bdc7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  key: intVar
+  val: 0
