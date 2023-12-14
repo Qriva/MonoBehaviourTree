@@ -10,6 +10,7 @@ namespace MBT
     {
         public int loops = 1;
         public bool infinite = false;
+        public bool breakOnFailure = false;
         private int count;
         
         public override void OnEnter()
@@ -19,8 +20,12 @@ namespace MBT
 
         public override NodeResult Execute()
         {
-            Node node = GetChild();
-            if(node == null) {
+            if (!TryGetChild(out Node node))
+            {
+                return NodeResult.failure;
+            }
+            if (breakOnFailure && node.status == Status.Failure)
+            {
                 return NodeResult.failure;
             }
             if (infinite || count > 0) {
