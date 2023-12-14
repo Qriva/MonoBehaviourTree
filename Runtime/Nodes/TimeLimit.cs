@@ -6,7 +6,7 @@ namespace MBT
 {
     [AddComponentMenu("")]
     [MBTNode("Decorators/Time Limit")]
-    public class TimeLimit : Decorator
+    public class TimeLimit : Decorator, IMonoBehaviourTreeTickListener
     {
         public FloatReference time = new FloatReference(5f);
         public float randomDeviation = 0f;
@@ -23,7 +23,7 @@ namespace MBT
             // Reset block flag
             limitReached = false;
             timeout = Time.time + time.Value + ((randomDeviation == 0f)? 0f : Random.Range(-randomDeviation, randomDeviation));
-            this.behaviourTree.onTick += OnBehaviourTreeTick;
+            behaviourTree.AddTickListener(this);
         }
 
         public override NodeResult Execute()
@@ -40,10 +40,10 @@ namespace MBT
 
         public override void OnExit()
         {
-            this.behaviourTree.onTick -= OnBehaviourTreeTick;
+            behaviourTree.RemoveTickListener(this);
         }
 
-        private void OnBehaviourTreeTick()
+        void IMonoBehaviourTreeTickListener.OnBehaviourTreeTick()
         {
             if (timeout <= Time.time)
             {

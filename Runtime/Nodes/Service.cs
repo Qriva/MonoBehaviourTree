@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace MBT
 {
-    public abstract class Service : Decorator
+    public abstract class Service : Decorator, IMonoBehaviourTreeTickListener
     {
         public float interval = 1f;
         public float randomDeviation = 0f;
@@ -18,7 +18,7 @@ namespace MBT
         {
             // Set time of the next update
             nextScheduledTime = Time.time + interval + Random.Range(-randomDeviation, randomDeviation);
-            behaviourTree.onTick += OnBehaviourTreeTick;
+            behaviourTree.AddTickListener(this);
             if (callOnEnter)
             {
                 Task();
@@ -41,10 +41,10 @@ namespace MBT
 
         public override void OnExit()
         {
-            behaviourTree.onTick -= OnBehaviourTreeTick;
+            behaviourTree.RemoveTickListener(this);
         }
 
-        private void OnBehaviourTreeTick()
+        void IMonoBehaviourTreeTickListener.OnBehaviourTreeTick()
         {
             if (nextScheduledTime <= Time.time)
             {

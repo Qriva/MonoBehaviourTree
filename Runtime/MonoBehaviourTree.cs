@@ -23,6 +23,7 @@ namespace MBT
         /// Event triggered when tree is about to be updated
         /// </summary>
         public event UnityAction onTick;
+        private List<IMonoBehaviourTreeTickListener> tickListeners = new List<IMonoBehaviourTreeTickListener>();
         private Root rootNode;
         private List<Node> executionStack;
         private List<Node> executionLog;
@@ -113,8 +114,12 @@ namespace MBT
         public void Tick()
         {
             _TickMarker.Begin();
-            // Fire Tick event
+            // Fire Tick event and notify listeners
             onTick?.Invoke();
+            for (int i = 0; i < tickListeners.Count; i++)
+            {
+                tickListeners[i].OnBehaviourTreeTick();
+            }
             
             // Check if there are any interrupting nodes
             EvaluateInterruptions();
@@ -180,6 +185,22 @@ namespace MBT
 
             LastTick = Time.time;
             _TickMarker.End();
+        }
+
+        public void AddTickListener(IMonoBehaviourTreeTickListener listener)
+        {
+#if UNITY_EDITOR
+            if (tickListeners.Contains(listener))
+            {
+                Debug.LogErrorFormat(this, "Tick listener {0} has been already added.", listener);
+            }
+#endif
+            tickListeners.Add(listener);
+        }
+
+        public void RemoveTickListener(IMonoBehaviourTreeTickListener listener)
+        {
+            tickListeners.Remove(listener);
         }
 
         /// <summary>
@@ -280,7 +301,7 @@ namespace MBT
             return parent.GetMasterTree();
         }
 
-        #if UNITY_EDITOR
+#if UNITY_EDITOR
         void OnValidate()
         {
             if (maxExecutionsPerTick <= 0)
@@ -303,6 +324,6 @@ namespace MBT
                 }
             }
         }
-        #endif
+#endif
     }
 }

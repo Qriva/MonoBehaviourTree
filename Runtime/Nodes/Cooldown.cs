@@ -7,7 +7,7 @@ namespace MBT
 {
     [AddComponentMenu("")]
     [MBTNode(name = "Decorators/Cooldown")]
-    public class Cooldown : Decorator
+    public class Cooldown : Decorator, IMonoBehaviourTreeTickListener
     {
         public AbortTypes abort = AbortTypes.None;
         [Space]
@@ -63,7 +63,7 @@ namespace MBT
                 // For LowerPriority try to abort after given time
                 if (abort == AbortTypes.LowerPriority)
                 {
-                    behaviourTree.onTick += OnBehaviourTreeTick;
+                    behaviourTree.AddTickListener(this);
                 }
             }
             // Reset flags
@@ -73,15 +73,15 @@ namespace MBT
 
         public override void OnDisallowInterrupt()
         {
-            behaviourTree.onTick -= OnBehaviourTreeTick;
+            behaviourTree.RemoveTickListener(this);
         }
 
-        private void OnBehaviourTreeTick()
+        void IMonoBehaviourTreeTickListener.OnBehaviourTreeTick()
         {
             if (cooldownTime <= Time.time)
             {
                 // Task should be aborted, so there is no need to listen anymore
-                behaviourTree.onTick -= OnBehaviourTreeTick;
+                behaviourTree.RemoveTickListener(this);
                 TryAbort(Abort.LowerPriority);
             }
         }
