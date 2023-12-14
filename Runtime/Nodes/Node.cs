@@ -115,7 +115,10 @@ namespace MBT
 
     public enum Status
     {
-        Success, Failure, Running, Ready
+        Success = 0, 
+        Failure = 1, 
+        Running = 2, 
+        Ready = 3
     }
 
     public enum Abort
