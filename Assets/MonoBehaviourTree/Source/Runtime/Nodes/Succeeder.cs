@@ -10,8 +10,12 @@ namespace MBT
     {
         public override NodeResult Execute()
         {
-            Node node = GetChild();
-            if (node != null && (node.status == Status.Success || node.status == Status.Failure)) {
+            if (!TryGetChild(out Node node))
+            {
+                return NodeResult.failure;
+            }
+            if (node.status == Status.Success || node.status == Status.Failure)
+            {
                 return NodeResult.success;
             }
             return node.runningNodeResult;
