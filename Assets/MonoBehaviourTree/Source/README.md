@@ -31,7 +31,7 @@ There are four abort types:
 
 >Execution order (priority) of nodes with common ancestor is defined by position on X axis, nodes to the left has higher priority.
 
-Aborts can be performed only by ```Decorator``` nodes. See example abort implementation in [Decorator](###custom-decorator--condition) section.
+Aborts can be performed only by ```Decorator``` nodes. See example abort implementation in [Decorator](#custom-decorator--condition) section.
 
 ## Basic Usage
 The main core of behaviour tree is **MonoBehaviourTree** component. It contains most of tree state during runtime. It is important to note, that tree does not run automatically and must be updated by other script. This design gives you possibility to tick the tree in Update, FixedUpdate or custom interval. However, most of the time Update event will be used, so you can use component **MBT Executor** to do that.
@@ -157,16 +157,24 @@ Checks distance between two transforms and returns success when given distance c
 ### Cooldown
 Blocks execition until the specified amount of time has elapsed.
 Time starts counting after branch is exited. If abort is enabled, the execution will be moved back to this node after time has elapsed.
+### Force Result
+Forces success or failure.
 ### Inverter
 Inverts node result. Failure becomes Success and vice versa.
 ### Invoke Unity Event
 Triggers Unity Event with one parameter of selected type
 ### Random Chance
 There is fixed chance that node will be executed. Returns Failure if roll is not favorable.
+### Random Float
+Generates random float in provided range.
+### Random Integer
+Generates random integer in provided range.
 ### Repeat Until Fail
-Repeats branch as long as Success is returned from the child.
+Repeats branch as long as Success is returned from the child. Use Loop node to create a more advanced flow.
 ### Repeater
-Repeats branch specified amount of times or infinitely.
+Repeats branch specified amount of times or infinitely. Use Loop node to create a more advanced flow.
+### Loop
+Repeats branch specified amount of times, infinitely or until selected result is returned. Results and flow can be fully customized.
 ### Set Boolean
 Sets blackboard bool variable
 ### Set Number

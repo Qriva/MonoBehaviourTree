@@ -159,16 +159,24 @@ Checks distance between two transforms and returns success when given distance c
 ### Cooldown
 Blocks execition until the specified amount of time has elapsed.
 Time starts counting after branch is exited. If abort is enabled, the execution will be moved back to this node after time has elapsed.
+### Force Result
+Forces success or failure.
 ### Inverter
 Inverts node result. Failure becomes Success and vice versa.
 ### Invoke Unity Event
 Triggers Unity Event with one parameter of selected type
 ### Random Chance
 There is fixed chance that node will be executed. Returns Failure if roll is not favorable.
+### Random Float
+Generates random float in provided range.
+### Random Integer
+Generates random integer in provided range.
 ### Repeat Until Fail
-Repeats branch as long as Success is returned from the child.
+Repeats branch as long as Success is returned from the child. Use Loop node to create a more advanced flow.
 ### Repeater
-Repeats branch specified amount of times or infinitely.
+Repeats branch specified amount of times or infinitely. Use Loop node to create a more advanced flow.
+### Loop
+Repeats branch specified amount of times, infinitely or until selected result is returned. Results and flow can be fully customized.
 ### Set Boolean
 Sets blackboard bool variable
 ### Set Number
