@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEditor;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEditor.IMGUI.Controls;
 using MBT;
 
@@ -608,6 +609,7 @@ namespace MBTEditor
         private void OpenNodeMenu(Vector2 mousePosition, Node node)
         {
             GenericMenu genericMenu = new GenericMenu();
+            genericMenu.AddItem(new GUIContent("Edit Script"), false, () => OpenScriptInEditor(node.GetType()));
             genericMenu.AddItem(new GUIContent("Breakpoint"), node.breakpoint, () => ToggleNodeBreakpoint(node));
             genericMenu.AddItem(new GUIContent("Duplicate"), false, () => DuplicateNode(node));
             genericMenu.AddItem(new GUIContent("Disconnect Children"), false, () => DisconnectNodeChildren(node)); 
@@ -704,6 +706,15 @@ namespace MBTEditor
             node.parent = null;
             node.children.Clear();
             UpdateSelection();
+        }
+
+        private static void OpenScriptInEditor(System.Type scriptType)
+        {
+            var scriptAsset = Resources
+                .FindObjectsOfTypeAll<MonoScript>()
+                .FirstOrDefault(script => script.GetClass() == scriptType);
+
+            AssetDatabase.OpenAsset(scriptAsset);
         }
 
         /// It is quite unique, but https://stackoverflow.com/questions/2920696/how-generate-unique-integers-based-on-guids
