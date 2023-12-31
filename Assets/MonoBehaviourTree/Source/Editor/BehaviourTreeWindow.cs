@@ -609,8 +609,8 @@ namespace MBTEditor
         private void OpenNodeMenu(Vector2 mousePosition, Node node)
         {
             GenericMenu genericMenu = new GenericMenu();
-            genericMenu.AddItem(new GUIContent("Edit Script"), false, () => OpenScriptInEditor(node.GetType()));
             genericMenu.AddItem(new GUIContent("Breakpoint"), node.breakpoint, () => ToggleNodeBreakpoint(node));
+            genericMenu.AddItem(new GUIContent("Open Script"), false, () => OpenScriptInEditor(node.GetType()));
             genericMenu.AddItem(new GUIContent("Duplicate"), false, () => DuplicateNode(node));
             genericMenu.AddItem(new GUIContent("Disconnect Children"), false, () => DisconnectNodeChildren(node)); 
             genericMenu.AddItem(new GUIContent("Disconnect Parent"), false, () => DisconnectNodeParent(node)); 
