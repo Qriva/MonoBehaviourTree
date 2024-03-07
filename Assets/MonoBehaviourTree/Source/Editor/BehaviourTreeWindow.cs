@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using UnityEditor;
 using System.Collections.Generic;
 using UnityEditor.IMGUI.Controls;
@@ -391,6 +391,9 @@ namespace MBTEditor
                     currentHandle = null;
                     GUI.changed = true;
                     break;
+                case EventType.KeyDown:
+                    if (e.keyCode == KeyCode.Delete) DeleteNode(selectedNode);
+                    break;
             }
         }
 
@@ -648,7 +651,7 @@ namespace MBTEditor
 
         private void DeleteNode(Node node)
         {
-            if (currentMBT == null) {
+            if (currentMBT == null || node == null) {
                 return;
             }
             DeselectNode();
