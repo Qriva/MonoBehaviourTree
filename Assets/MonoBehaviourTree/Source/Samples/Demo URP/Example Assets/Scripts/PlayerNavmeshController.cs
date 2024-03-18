@@ -3,27 +3,30 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class PlayerNavmeshController : MonoBehaviour
+namespace MBTExample
 {
-    public Camera cam;
-    public NavMeshAgent agent;
-    
-    void Reset()
+    public class PlayerNavmeshController : MonoBehaviour
     {
-        cam = Camera.main;
-        agent = GetComponent<NavMeshAgent>();
-    }
+        public Camera cam;
+        public NavMeshAgent agent;
 
-    // Update is called once per frame
-    void Update()
-    {
-        if(Input.GetMouseButtonDown(0))
+        void Reset()
         {
-            Ray ray = cam.ScreenPointToRay(Input.mousePosition);
+            cam = Camera.main;
+            agent = GetComponent<NavMeshAgent>();
+        }
 
-            if(Physics.Raycast(ray, out RaycastHit hit))
+        // Update is called once per frame
+        void Update()
+        {
+            if (Input.GetMouseButtonDown(0))
             {
-                agent.SetDestination(hit.point);
+                Ray ray = cam.ScreenPointToRay(Input.mousePosition);
+
+                if (Physics.Raycast(ray, out RaycastHit hit))
+                {
+                    agent.SetDestination(hit.point);
+                }
             }
         }
     }
