@@ -145,9 +145,9 @@ public class CustomReference : VariableReference<CustomVariable, CustomType>
 ### Root
 Entry node of behaviour tree.
 ### Sequence
-Executes children from left to right as long as each subsequent child returns success. Returns success when all children succeeded. Failure if one of them failed. When Random option is enabled, then execution goes in random order.
+Executes children from left to right as long as each subsequent child returns success. Returns success when all children succeeded, or failure if one of them failed. When Random option is enabled, then execution goes in random order.
 ### Selector
-Executes children from left to right until one of them return failure. Returns success if any children succeed. Failure if all of them failed. When Random option is enabled, then execution goes in random order.
+Executes children from left to right until one of their children succeeds. Returns success if any children succeed, or failure if all of them failed. When Random option is enabled, then execution goes in random order.
 ### Is Set Condition
 Checks if blackboard variable is set. Node supports Bollean, Object and Transform variables. Selecting Invert option will produce "If not set" effect.
 ### Number Condition
