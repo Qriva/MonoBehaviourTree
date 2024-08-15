@@ -1,6 +1,6 @@
 {
     "name": "com.qriva.monobehaviourtree",
-    "version": "1.2.0",
+    "version": "1.2.1",
     "displayName": "MonoBehaviourTree",
     "description": "Simple event driven behaviour tree based on Unity engine component system.",
     "unity": "2019.3",
