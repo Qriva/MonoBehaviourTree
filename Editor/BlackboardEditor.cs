@@ -14,7 +14,7 @@ namespace MBTEditor
     {
         const double CONSTANT_REPAINT_INTERVAL = 0.5d;
 
-        readonly string[] varOptions = new string[]{"Delete"};
+        readonly string[] varOptions = new string[]{"Copy Key", "Delete"};
         SerializedProperty variables;
         SerializedProperty masterBlackboardProperty;
         GUIStyle popupStyle;
@@ -161,7 +161,14 @@ namespace MBTEditor
                         }
                         // Delete on change
                         if (v != popupOption) {
-                            DeleteVariabe(serializedV.objectReferenceValue as BlackboardVariable);
+                            if (v == 0)
+                            {
+                                EditorGUIUtility.systemCopyBuffer = serializedVariable.FindProperty("key").stringValue;
+                            }
+                            else if (v == 1)
+                            {
+                                DeleteVariabe(serializedV.objectReferenceValue as BlackboardVariable);
+                            }
                         }
                     }
                 }
