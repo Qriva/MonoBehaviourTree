@@ -392,7 +392,10 @@ namespace MBTEditor
                     GUI.changed = true;
                     break;
                 case EventType.KeyDown:
+                    bool controlPressed = e.control && Application.platform != RuntimePlatform.OSXEditor 
+                                          || e.command && Application.platform == RuntimePlatform.OSXEditor;
                     if (e.keyCode == KeyCode.Delete) DeleteNode(selectedNode);
+                    if (controlPressed && e.keyCode == KeyCode.D) DuplicateNode(selectedNode);
                     break;
             }
         }
@@ -612,10 +615,10 @@ namespace MBTEditor
         {
             GenericMenu genericMenu = new GenericMenu();
             genericMenu.AddItem(new GUIContent("Breakpoint"), node.breakpoint, () => ToggleNodeBreakpoint(node));
-            genericMenu.AddItem(new GUIContent("Duplicate"), false, () => DuplicateNode(node));
+            genericMenu.AddItem(new GUIContent("Duplicate %_d"), false, () => DuplicateNode(node));
             genericMenu.AddItem(new GUIContent("Disconnect Children"), false, () => DisconnectNodeChildren(node)); 
             genericMenu.AddItem(new GUIContent("Disconnect Parent"), false, () => DisconnectNodeParent(node)); 
-            genericMenu.AddItem(new GUIContent("Delete Node"), false, () => DeleteNode(node)); 
+            genericMenu.AddItem(new GUIContent("Delete Node _DEL"), false, () => DeleteNode(node)); 
             genericMenu.ShowAsContext();
         }
 
@@ -687,7 +690,7 @@ namespace MBTEditor
         {
             // NOTE: This code is mostly copied from AddNode()
             // Check if there is MBT
-            if (currentMBT == null) {
+            if (currentMBT == null || contextNode == null) {
                 return;
             }
             System.Type classType = contextNode.GetType();
@@ -706,6 +709,8 @@ namespace MBTEditor
             // Remove all connections or graph gonna break
             node.parent = null;
             node.children.Clear();
+            DeselectNode();
+            SelectNode(node);
             UpdateSelection();
         }
 
