@@ -395,7 +395,7 @@ namespace MBTEditor
                     bool controlPressed = e.control && Application.platform != RuntimePlatform.OSXEditor 
                                           || e.command && Application.platform == RuntimePlatform.OSXEditor;
                     if (e.keyCode == KeyCode.Delete) DeleteNode(selectedNode);
-                    if (controlPressed && e.keyCode == KeyCode.D) DuplicateNode(selectedNode);
+                    else if (controlPressed && e.keyCode == KeyCode.D) DuplicateNode(selectedNode);
                     break;
             }
         }
