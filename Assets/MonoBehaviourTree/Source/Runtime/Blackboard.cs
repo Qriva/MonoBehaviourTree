@@ -64,7 +64,18 @@ namespace MBT
             return (dictionary.TryGetValue(key, out BlackboardVariable val)) ? (T)val : null;
         }
 
-        #if UNITY_EDITOR
+#if UNITY_EDITOR
+        [ContextMenu("Log variables", false)]
+        protected void LogVariables()
+        {
+            string txt = "<b>Blackboard Variables</b>\n";
+            for (int i = 0; i < variables.Count; i++)
+            {
+                txt += variables[i].key + " (" + variables[i].GetType().Name + ") \n";
+            }
+            Debug.Log(txt, this);
+        }
+
         [ContextMenu("Delete all variables", false)]
         protected void DeleteAllVariables()
         {
@@ -89,6 +100,6 @@ namespace MBT
                 masterBlackboard = null;
             }
         }
-        #endif
+#endif
     }
 }
